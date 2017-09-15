@@ -3,6 +3,7 @@ import { CoreHttpUrlDom } from '../../core/http/url/dom';
 export class SourceModel {
 
   public isInitialized: boolean = false;
+  public isLoading: boolean = false;
   public hasMorePages: boolean = true;
   public imageLinkPattern: string = '';
   public pageLinkPattern: string = '';

@@ -17,7 +17,7 @@ export class GalleryImageService {
   public image$: Observable<GalleryImageModel>;
   private image: Subject<GalleryImageModel>;
   private source: SourceModel[] = [];
-  private srcLoaded: {[key: string]: boolean} = {};
+  private srcLoaded: { [key: string]: boolean } = {};
 
   /**
    *
@@ -52,109 +52,121 @@ export class GalleryImageService {
    */
   loadImages(): Observable<GalleryImageModel> {
 
+    // Only consider sources that are not loading and that have more pages to load
     this.source
-      .filter(source => source.hasMorePages)
+      .filter(source => !source.isLoading && source.hasMorePages)
       .forEach(source => {
 
-        // Default URL to download content from
-        let url: string = source.getHttpUrl().getUrl();
+        // Set source as loading
+        source.isLoading = true;
 
-        // Source is initialized
-        if (source.isInitialized === true) {
+      // Default URL to download content from
+      let url: string = source.getHttpUrl().getUrl();
 
-          // Increment page number
-          source.page++;
+      // Source is initialized
+      if (source.isInitialized === true) {
 
-          // Use page pattern to set next page URL
-          url = source.pageLinkPattern.replace(/@page@/gi, String(source.page));
-        }
+        // Increment page number
+        source.page++;
 
-        // Download content
-        this
-          .downloader
-          .getContent(url)
-          .then((content: string) => {
+        // Use page pattern to set next page URL
+        url = source.pageLinkPattern.replace(/@page@/gi, String(source.page));
+      }
 
-            // Extract links
-            const links = this.linkExtractor.extract(content);
+      // Download content
+      this
+        .downloader
+        .getContent(url)
+        .then((content: string) => {
 
-            // Extract images
-            const images = this.imageExtractor.extract(links);
+          // Set source as not loading
+          source.isLoading = false;
 
-            // Source not initialized
-            if (source.isInitialized === false) {
+          // Extract links
+          const links = this.linkExtractor.extract(content);
 
-              // Extract image link pattern
-              const imageLinkPattern = this.imageLinkPatternExtractor.extract(images);
-              source.imageLinkPattern = CoreUtilRegExp.escape(imageLinkPattern, '/');
-              source.imageLinkPattern = source.imageLinkPattern.replace('@subdomain@', '[a-z0-9]+');
-              source.imageLinkPattern = source.imageLinkPattern.replace('@number@', '[0-9]+');
-              source.imageLinkPattern = source.imageLinkPattern.replace('@file@', '[^\?]+');
-              source.imageLinkPattern = source.imageLinkPattern.replace('@params@', '.*');
-              source.imageLinkPattern = '^' + source.imageLinkPattern + '$';
+          // Extract images
+          const images = this.imageExtractor.extract(links);
 
-              // Extract page link pattern
-              source.pageLinkPattern = this.pageLinkPatternExtractor.extract(links, imageLinkPattern);
+          // Source not initialized
+          if (source.isInitialized === false) {
 
-              // Missing protocol
-              if (source.pageLinkPattern.indexOf('//') === 0) {
+            // Extract image link pattern
+            const imageLinkPattern = this.imageLinkPatternExtractor.extract(images);
+            source.imageLinkPattern = CoreUtilRegExp.escape(imageLinkPattern, '/');
+            source.imageLinkPattern = source.imageLinkPattern.replace('@subdomain@', '[a-z0-9]+');
+            source.imageLinkPattern = source.imageLinkPattern.replace('@number@', '[0-9]+');
+            source.imageLinkPattern = source.imageLinkPattern.replace('@file@', '[^\?]+');
+            source.imageLinkPattern = source.imageLinkPattern.replace('@params@', '.*');
+            source.imageLinkPattern = '^' + source.imageLinkPattern + '$';
 
-                source.pageLinkPattern = source.getHttpUrl().getProtocol() + ':' + source.pageLinkPattern;
+            // Extract page link pattern
+            source.pageLinkPattern = this.pageLinkPatternExtractor.extract(links, imageLinkPattern);
+
+            // Missing protocol
+            if (source.pageLinkPattern.indexOf('//') === 0) {
+
+              source.pageLinkPattern = source.getHttpUrl().getProtocol() + ':' + source.pageLinkPattern;
 
               // Missing protocol & domain but is absolute link
-              } else if (source.pageLinkPattern.indexOf('/') === 0) {
+            } else if (source.pageLinkPattern.indexOf('/') === 0) {
 
-                source.pageLinkPattern = source.getHttpUrl().getOrigin() + source.pageLinkPattern;
+              source.pageLinkPattern = source.getHttpUrl().getOrigin() + source.pageLinkPattern;
 
               // Missing protocol & domain but is relative link
-              } else if (!source.pageLinkPattern.match(/^https?:\/\//gi)) {
+            } else if (!source.pageLinkPattern.match(/^https?:\/\//gi)) {
 
-                source.pageLinkPattern = source.getHttpUrl().getOrigin() + '/' + source.pageLinkPattern;
+              source.pageLinkPattern = source.getHttpUrl().getOrigin() + '/' + source.pageLinkPattern;
 
-              }
-
-              // Extract current page number
-              let currentPagePattern = source.pageLinkPattern.replace('@page@', '([0-9]+)');
-              currentPagePattern = '^' + currentPagePattern + '$';
-
-              if (url.match(currentPagePattern)) {
-
-                source.page = parseInt(url.replace(new RegExp(currentPagePattern), '$1'), 10);
-              }
-
-              // Set source as initialized
-              source.isInitialized = true;
             }
 
-            // Images found
-            if (images.length > 0 && source.pageLinkPattern) {
+            // Extract current page number
+            let currentPagePattern = source.pageLinkPattern.replace('@page@', '([0-9]+)');
+            currentPagePattern = '^' + currentPagePattern + '$';
 
-              images
-                // Prevent duplicated src
-                .filter(image => !this.srcLoaded[image.getSrc()])
-                // Apply censorship
-                .filter(image => this.censorship.isSafe(image.getLink().getHtml()))
-                // Match image link pattern
-                .filter(image => image.getLink().getUrl().match(new RegExp(source.imageLinkPattern)))
-                // Keep image
-                .forEach(image => {
+            if (url.match(currentPagePattern)) {
 
-                  // Keep src as loaded
-                  this.srcLoaded[image.getSrc()] = true;
-
-                  // Image loaded
-                  this.image.next(image);
-                })
-              ;
-
-            } else {
-
-              // Prevent more image loadings
-              source.hasMorePages = false;
+              source.page = parseInt(url.replace(new RegExp(currentPagePattern), '$1'), 10);
             }
-          })
-        ;
-      });
+
+            // Set source as initialized
+            source.isInitialized = true;
+          }
+
+          // Images found
+          if (images.length > 0 && source.pageLinkPattern) {
+
+            images
+            // Prevent duplicated src
+              .filter(image => !this.srcLoaded[image.getSrc()])
+              // Apply censorship
+              .filter(image => this.censorship.isSafe(image.getLink().getHtml()))
+              // Match image link pattern
+              .filter(image => image.getLink().getUrl().match(new RegExp(source.imageLinkPattern)))
+              // Keep image
+              .forEach(image => {
+
+                // Keep src as loaded
+                this.srcLoaded[image.getSrc()] = true;
+
+                // Image loaded
+                this.image.next(image);
+              })
+            ;
+
+          } else {
+
+            // Prevent more image loadings
+            source.hasMorePages = false;
+          }
+        })
+        .catch(e => {
+
+          // Set source as not loading
+          source.isLoading = false;
+        })
+      ;
+    });
 
     return this.image$;
   }

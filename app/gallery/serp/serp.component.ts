@@ -9,12 +9,19 @@ import { SourceModel } from '../shared/source.model';
   moduleId: module.id,
   selector: 'app-wallpaper-serp',
   styleUrls: ['./serp.component.css'],
-  templateUrl: './serp.component.html'
+  templateUrl: './serp.component.html',
+  host: {
+    '(window:scroll)': 'onScrollWindow($event)',
+    '(window:resize)': 'onResizeWindow($event)'
+  }
 })
 export class GallerySerpComponent implements OnInit, OnDestroy {
 
-  private subscriptions: Subscription[] = [];
+  static INFINITE_SCROLL_THRESHOLD = 0.3; // 33% of the screen remaining
+
   images: GalleryImageModel[] = [];
+  placeholders: number = 20;
+  private subscriptions: Subscription[] = [];
 
   constructor(private route: ActivatedRoute,
               private galleryImageService: GalleryImageService) {
@@ -55,6 +62,32 @@ export class GallerySerpComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Auto load more images if needed
+   */
+  autoload(): void {
+
+    // TODO: Find out how to get reference on window, without creating a dummy WindowService...
+
+    let documentHeight = Math.max(
+      window.document.documentElement.clientHeight,
+      window.document.body.scrollHeight,
+      window.document.documentElement.scrollHeight,
+      window.document.body.offsetHeight,
+      window.document.documentElement.offsetHeight
+    );
+
+    let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+    let scrollable = documentHeight - window.innerHeight;
+
+    // Scroll threshold reached
+    if (scrollable - scrollTop < window.innerHeight * GallerySerpComponent.INFINITE_SCROLL_THRESHOLD) {
+
+      // Load more images
+      this.galleryImageService.loadImages();
+    }
+  }
+
+  /**
    * Changed route params
    *
    * @param params
@@ -65,10 +98,10 @@ export class GallerySerpComponent implements OnInit, OnDestroy {
 
       // Add sources
       this.galleryImageService.addSource(new SourceModel('http://konachan.net/post'));
-      this.galleryImageService.addSource(new SourceModel('https://www.desktopnexus.com/all'));
+      this.galleryImageService.addSource(new SourceModel('https://people.desktopnexus.com/all/'));
 
-      // Load images
-      this.galleryImageService.loadImages(); // TODO: replace by infinite scrolling + placeholders
+      // Auto load more images if needed
+      this.autoload();
     }
   }
 
@@ -83,5 +116,28 @@ export class GallerySerpComponent implements OnInit, OnDestroy {
 
     img.onload = () => this.images.push(image);
     img.src = image.getSrc();
+
+    // Load more images
+    this.autoload();
+  }
+
+  /**
+   * Scrolled window
+   *
+   * @param event
+   */
+  onScrollWindow(event: Event) {
+
+    this.autoload();
+  }
+
+  /**
+   * Resized window
+   *
+   * @param event
+   */
+  onResizeWindow(event: Event) {
+
+    this.autoload();
   }
 }

@@ -12,15 +12,19 @@ const download = function (url, resolveOriginal, rejectOriginal) {
       .get(url, function (res) {
 
         // Redirect 301 or 302
-        if ((res.statusCode === 301 || res.statusCode === 302) && res.headers.location) {
+        /*if ((res.statusCode === 301 || res.statusCode === 302) && res.headers.location) {
 
           return download(res.headers.location, resolveOriginal || resolve, rejectOriginal || reject);
-        }
+        }*/
 
         let content = '';
 
         res.on('data', function (chunk) {
           content += chunk;
+
+          if (!chunk) {
+            (resolveOriginal || resolve)(content);
+          }
         });
 
         res.on('end', () => {
@@ -80,8 +84,8 @@ exports.getSource = functions.https.onRequest((req, res) => {
       res.set('Content-length', content.length);
 
       res
-        .status(400)
-        .send(content)
+        .status(500)
+        .send('error')
       ;
     })
   ;
