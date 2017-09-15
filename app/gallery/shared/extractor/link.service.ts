@@ -13,14 +13,17 @@ export class GalleryExtractorLinkService {
 
     let links: GalleryLinkModel[] = [];
 
+    // Remove line breaks
+    html = html.replace(/\n|\r/gi, '');
+
     // Regular expression to identify a link
-    const regExp = new RegExp(/<a+[^>]*href=["']?([^"'\s>]+)[^>]*>.+<\/a>/gim);
+    const regExp = new RegExp(/(<([a]+)[^>]*href=["']?([^"'\s>]+)[^>]*>)(.*?)(<\/\2>)/gi);
     let match: string[]|null;
 
     while (match = regExp.exec(html)) {
 
       links.push(
-        new GalleryLinkModel(match[1], match[0])
+        new GalleryLinkModel(match[3], match[0])
       );
     }
 

@@ -20,9 +20,7 @@ export class GallerySerpComponent implements OnInit, OnDestroy {
   static INFINITE_SCROLL_THRESHOLD = 0.3; // 33% of the screen remaining
 
   images: GalleryImageModel[] = [];
-  placeholders: boolean[] = [];
 
-  private placeholdersMax: number = 10;
   private subscriptions: Subscription[] = [];
 
   /**
@@ -47,12 +45,6 @@ export class GallerySerpComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.galleryImageService.image$.subscribe((image: GalleryImageModel) => this.onLoadImage(image))
     );
-
-    // Set placeholders
-    for (let i = 0; i < this.placeholdersMax; i++) {
-
-      this.placeholders.push(true);
-    }
   }
 
   /**
@@ -98,12 +90,6 @@ export class GallerySerpComponent implements OnInit, OnDestroy {
       // Load more images
       this.galleryImageService.loadImages();
 
-      // No more images to load
-      if (this.galleryImageService.hasMoreImages() === false) {
-console.log('no more images to load');
-        // Empty placeholders
-        this.placeholders = [];
-      }
     }
   }
 
@@ -117,7 +103,7 @@ console.log('no more images to load');
     if (params['gallery_key'] === 'demo') {
 
       // Add sources
-      this.galleryImageService.addSource(new SourceModel('http://konachan.net/post'));
+      this.galleryImageService.addSource(new SourceModel('https://konachan.net/post'));
       this.galleryImageService.addSource(new SourceModel('https://anime.desktopnexus.com/all/'));
 
       // Auto load more images if needed

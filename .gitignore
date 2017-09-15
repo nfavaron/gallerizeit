@@ -16,3 +16,4 @@ _temp
 /app/environments/environment.prod.ts
 /app/environments/environment.ts.backup
 .DS_Store
+firebase-debug.log

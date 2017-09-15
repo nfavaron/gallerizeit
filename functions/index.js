@@ -1,42 +1,5 @@
 const functions = require('firebase-functions');
 const https = require('https');
-const http = require('http');
-
-const download = function (url, resolveOriginal, rejectOriginal) {
-
-  return new Promise((resolve, reject) => {
-
-    const method = url.match(/^https/) !== null ? https : http;
-
-    method
-      .get(url, function (res) {
-
-        // Redirect 301 or 302
-        if ((res.statusCode === 301 || res.statusCode === 302) && res.headers.location) {
-
-          return download(res.headers.location, resolveOriginal || resolve, rejectOriginal || reject);
-        }
-
-        let content = '';
-
-        res.on('data', function (chunk) {
-          content += chunk;
-
-          if (!chunk) {
-            (resolveOriginal || resolve)(content);
-          }
-        });
-
-        res.on('end', () => {
-          (resolveOriginal || resolve)(content);
-        });
-      })
-      .on('error', function (e) {
-        (rejectOriginal || reject)(e);
-      })
-    ;
-  });
-};
 
 exports.getSource = functions.https.onRequest((req, res) => {
 
@@ -50,42 +13,33 @@ exports.getSource = functions.https.onRequest((req, res) => {
   }
 
   res.set('Access-Control-Allow-Origin', origin);
-  res.set('Access-Control-Allow-Methods', 'OPTIONS, GET');
+  res.set('Access-Control-Allow-Methods', 'GET');
 
-  // OPTIONS request
-  if (req.method.toUpperCase() === 'OPTIONS') {
+  const url = decodeURI(req.query.url);
 
-    res
-      .status(200)
-      .send()
-    ;
+  return https
+    .get(url, function (response) {
 
-    return;
-  }
+      const body = [];
 
-  // Default header
-  res.set('Content-type', 'text/plain');
+      response.on('data', function (chunk) {
 
-  // GET request
-  download(decodeURI(req.query.url))
-    .then(content => {
+        body.push(chunk);
+      });
 
-      res.set('Content-length', content.length);
+      response.on('end', () => {
 
-      res
-        .status(200)
-        .send(content)
-      ;
+        res
+          .status(200)
+          .send(Buffer.concat(body).toString())
+        ;
+      });
     })
-    .catch(e => {
-
-      const content = e.toString();
-
-      res.set('Content-length', content.length);
+    .on('error', function (e) {
 
       res
         .status(500)
-        .send('error')
+        .send('Error while downloading source')
       ;
     })
   ;
