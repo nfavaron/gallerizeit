@@ -1,0 +1,39 @@
+html {
+  height: 100%;
+}
+
+html * {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  border: none;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Helvetica, Roboto, Arial, sans-serif;
+  background: #f0f0f0;
+  height: 100%;
+  font-size: 14px;
+  color: #444444;
+}
+
+*:not(input):not(textarea) {
+  user-select: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+form {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+main {
+  padding-top: 50px;
+}

@@ -1,0 +1,18 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="fade-in">
+  <div class="subheader">
+    <section class="wallpaper">
+      <div class="name">
+        <input type="text" placeholder="Wallpaper name" formControlName="name">
+      </div>
+    </section>
+  </div>
+</form>
+<footer>
+  <section>
+    <span *ngIf="form.valid === false">Type the wallpaper name...</span>
+    <span *ngIf="form.valid === true">Do you confirm ?</span>
+    <div (click)="submit()" class="fab done" [class.locked]="form.valid === false">
+      <div class="loader"><i></i><i></i><i></i></div>
+    </div>
+  </section>
+</footer>

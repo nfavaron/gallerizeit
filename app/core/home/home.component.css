@@ -1,0 +1,164 @@
+.home {
+  transition: padding 300ms ease-out;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.home strong {
+  display: block;
+  padding: 10px 0;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.home span {
+  display: inline-block;
+  max-width: 90%;
+  padding: 3px 13px;
+  margin: 0 auto 10px auto;
+  font-size: 20px;
+  background: #55bbff;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.home h1 {
+  display: block;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0 auto 10px auto;
+  max-width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.home strong, .home span, .home h1 {
+  transition: font-size 300ms ease-out;
+}
+
+.home .btn {
+  padding: 15px;
+  margin: 5px 0;
+  font-size: 18px;
+  color: #ffffff;
+  display: none;
+}
+
+.home section {
+  position: relative;
+  z-index: 2;
+}
+
+.home div {
+  width: 120%;
+  height: 120%;
+  position: absolute;
+  left: -10%;
+  top: -10%;
+  z-index: 1;
+  background: url(https://drscdn.500px.org/photo/142786755/q%3D80_m%3D2000_k%3D1/19ffbdefd04b10a4dbcc7b4b0fbfe145) center top no-repeat;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+}
+
+@media (min-width: 400px) {
+
+  .home h1 {
+    font-size: 16px;
+  }
+
+  .home span {
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 500px) {
+
+  .home {
+    padding: 50px 0;
+  }
+
+  .home strong {
+    font-size: 20px;
+  }
+
+  .home h1 {
+    max-width: 70%;
+  }
+}
+
+@media (min-width: 580px) {
+
+  .home span {
+    font-size: 24px;
+  }
+}
+
+@media (min-width: 700px) {
+
+  .home strong {
+    font-size: 22px;
+  }
+
+  .home span {
+    font-size: 26px;
+  }
+
+  .home h1 {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 800px) {
+
+  .home span {
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 900px) {
+
+  .home {
+    padding: 65px 0;
+  }
+  .home strong {
+    font-size: 24px;
+  }
+
+  .home span {
+    font-size: 30px;
+  }
+
+  .home h1 {
+    max-width: none;
+  }
+}
+
+@media (min-width: 1024px) {
+
+  .home .btn {
+    display: inline-block;
+  }
+}
+
+@media (min-width: 1600px) {
+
+  .home {
+    padding: 130px 0;
+  }
+
+  .home div {
+    background-size: cover;
+  }
+}

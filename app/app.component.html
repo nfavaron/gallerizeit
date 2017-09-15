@@ -1,0 +1,21 @@
+<app-header title="GallerizeIt!"></app-header>
+<main>
+  <router-outlet></router-outlet>
+</main>
+<div [class.loading]="hasUpdate === false" class="update">
+  <div class="logo"></div>
+  <div class="message">
+    <span>A new version is available!</span>
+    <div>
+      <button class="accept" (click)="onClickAcceptUpdate()">Update</button>
+      <button class="refuse" (click)="onClickRefuseUpdate()">Dismiss</button>
+    </div>
+  </div>
+</div>
+<div [class.loading]="isInstalling === false" class="install app-loader">
+  <div class="logo"></div>
+  <div class="name">
+    Gallerize<span>It!</span>
+  </div>
+  <div class="message">Updating application...</div>
+</div>

@@ -1,0 +1,7 @@
+<section>
+  <article *ngFor="let image of images; trackBy: trackByIndex;">
+    <a href="{{image.getLink().getUrl()}}" target="_blank">
+      <img src="https://{{image.getSrc()}}" /> <!-- replace by a pipe with argument -->
+    </a>
+  </article>
+</section>

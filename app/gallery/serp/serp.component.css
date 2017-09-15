@@ -1,0 +1,18 @@
+section {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+article {
+  min-width: 250px;
+  max-width: 20%;
+  padding: 5px;
+  height: 200px;
+  overflow: hidden;
+}
+
+img {
+  width: 100%;
+}
