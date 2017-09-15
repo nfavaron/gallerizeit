@@ -12,10 +12,10 @@ const download = function (url, resolveOriginal, rejectOriginal) {
       .get(url, function (res) {
 
         // Redirect 301 or 302
-        /*if ((res.statusCode === 301 || res.statusCode === 302) && res.headers.location) {
+        if ((res.statusCode === 301 || res.statusCode === 302) && res.headers.location) {
 
           return download(res.headers.location, resolveOriginal || resolve, rejectOriginal || reject);
-        }*/
+        }
 
         let content = '';
 

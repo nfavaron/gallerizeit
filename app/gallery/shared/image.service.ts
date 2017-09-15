@@ -50,15 +50,15 @@ export class GalleryImageService {
   /**
    * Returns an observable of image, loaded from all added sources
    */
-  loadImages(): Observable<GalleryImageModel> {
+  loadImages(): boolean {
 
     // Only consider sources that are not loading and that have more pages to load
-    this.source
-      .filter(source => !source.isLoading && source.hasMorePages)
-      .forEach(source => {
+    const sources = this.source.filter(source => !source.isLoading && source.hasMorePages);
 
-        // Set source as loading
-        source.isLoading = true;
+    sources.forEach(source => {
+
+      // Set source as loading
+      source.isLoading = true;
 
       // Default URL to download content from
       let url: string = source.getHttpUrl().getUrl();
@@ -87,7 +87,7 @@ export class GalleryImageService {
 
           // Extract images
           const images = this.imageExtractor.extract(links);
-
+console.log(links, images);
           // Source not initialized
           if (source.isInitialized === false) {
 
@@ -131,6 +131,8 @@ export class GalleryImageService {
 
             // Set source as initialized
             source.isInitialized = true;
+
+            console.log(source);
           }
 
           // Images found
@@ -168,6 +170,6 @@ export class GalleryImageService {
       ;
     });
 
-    return this.image$;
+    return sources.length > 0;
   }
 }

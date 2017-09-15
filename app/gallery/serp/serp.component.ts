@@ -20,9 +20,16 @@ export class GallerySerpComponent implements OnInit, OnDestroy {
   static INFINITE_SCROLL_THRESHOLD = 0.3; // 33% of the screen remaining
 
   images: GalleryImageModel[] = [];
-  placeholders: number = 20;
+  placeholders: boolean[] = [];
+
+  private placeholdersMax: number = 10;
   private subscriptions: Subscription[] = [];
 
+  /**
+   *
+   * @param route
+   * @param galleryImageService
+   */
   constructor(private route: ActivatedRoute,
               private galleryImageService: GalleryImageService) {
 
@@ -83,7 +90,15 @@ export class GallerySerpComponent implements OnInit, OnDestroy {
     if (scrollable - scrollTop < window.innerHeight * GallerySerpComponent.INFINITE_SCROLL_THRESHOLD) {
 
       // Load more images
-      this.galleryImageService.loadImages();
+      if (this.galleryImageService.loadImages()) {
+
+        // Set placeholders
+        const iMax = this.placeholdersMax - this.placeholders.length;
+        for (let i = 0; i < iMax; i++) {
+
+          this.placeholders.push(true);
+        }
+      }
     }
   }
 
@@ -98,7 +113,7 @@ export class GallerySerpComponent implements OnInit, OnDestroy {
 
       // Add sources
       this.galleryImageService.addSource(new SourceModel('http://konachan.net/post'));
-      this.galleryImageService.addSource(new SourceModel('https://people.desktopnexus.com/all/'));
+      this.galleryImageService.addSource(new SourceModel('https://anime.desktopnexus.com/all/'));
 
       // Auto load more images if needed
       this.autoload();
@@ -114,7 +129,15 @@ export class GallerySerpComponent implements OnInit, OnDestroy {
 
     const img = new Image();
 
-    img.onload = () => this.images.push(image);
+    img.onload = () => {
+
+      // Remove placeholder
+      this.placeholders.pop();
+
+      // Add image
+      this.images.push(image);
+    };
+
     img.src = image.getSrc();
 
     // Load more images

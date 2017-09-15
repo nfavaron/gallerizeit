@@ -1,7 +1,8 @@
 <section>
   <article *ngFor="let image of images; trackBy: trackByIndex;">
-    <a href="{{image.getLink().getUrl()}}" target="_blank">
-      <img src="https://{{image.getSrc()}}" /> <!-- replace by a pipe with argument -->
-    </a>
+    <a href="{{image.getLink().getUrl()}}" target="_blank" class="image" [style.background-image]="'url(https://' + image.getSrc() + ')' | trustCss"></a>
+  </article>
+  <article *ngFor="let placeholder of placeholders; trackBy: trackByIndex;">
+    <div class="image placeholder"></div>
   </article>
 </section>

@@ -14,7 +14,7 @@ export class GalleryExtractorLinkService {
     let links: GalleryLinkModel[] = [];
 
     // Regular expression to identify a link
-    const regExp = new RegExp(/<a+[^>]*href=["']?([^"'\s>]+)[^>]*>.*?<\/a>/gim);
+    const regExp = new RegExp(/<a+[^>]*href=["']?([^"'\s>]+)[^>]*>.+<\/a>/gim);
     let match: string[]|null;
 
     while (match = regExp.exec(html)) {
