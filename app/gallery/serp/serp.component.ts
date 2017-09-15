@@ -47,6 +47,12 @@ export class GallerySerpComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.galleryImageService.image$.subscribe((image: GalleryImageModel) => this.onLoadImage(image))
     );
+
+    // Set placeholders
+    for (let i = 0; i < this.placeholdersMax; i++) {
+
+      this.placeholders.push(true);
+    }
   }
 
   /**
@@ -90,14 +96,13 @@ export class GallerySerpComponent implements OnInit, OnDestroy {
     if (scrollable - scrollTop < window.innerHeight * GallerySerpComponent.INFINITE_SCROLL_THRESHOLD) {
 
       // Load more images
-      if (this.galleryImageService.loadImages()) {
+      this.galleryImageService.loadImages();
 
-        // Set placeholders
-        const iMax = this.placeholdersMax - this.placeholders.length;
-        for (let i = 0; i < iMax; i++) {
-
-          this.placeholders.push(true);
-        }
+      // No more images to load
+      if (this.galleryImageService.hasMoreImages() === false) {
+console.log('no more images to load');
+        // Empty placeholders
+        this.placeholders = [];
       }
     }
   }
@@ -129,14 +134,7 @@ export class GallerySerpComponent implements OnInit, OnDestroy {
 
     const img = new Image();
 
-    img.onload = () => {
-
-      // Remove placeholder
-      this.placeholders.pop();
-
-      // Add image
-      this.images.push(image);
-    };
+    img.onload = () => this.images.push(image);
 
     img.src = image.getSrc();
 

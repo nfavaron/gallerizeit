@@ -161,6 +161,6 @@ export class GalleryExtractorPageLinkPatternService {
 
     pattern = pagePattern;
 
-    return pattern;
+    return pattern.indexOf('@page@') > -1 ? pattern : '';
   }
 }

@@ -87,7 +87,7 @@ export class GalleryImageService {
 
           // Extract images
           const images = this.imageExtractor.extract(links);
-console.log(links, images);
+
           // Source not initialized
           if (source.isInitialized === false) {
 
@@ -102,6 +102,12 @@ console.log(links, images);
 
             // Extract page link pattern
             source.pageLinkPattern = this.pageLinkPatternExtractor.extract(links, imageLinkPattern);
+
+            if (source.pageLinkPattern === '') {
+              console.log('page pattern not found', source);
+              source.hasMorePages = false;
+              return;
+            }
 
             // Missing protocol
             if (source.pageLinkPattern.indexOf('//') === 0) {
@@ -132,7 +138,7 @@ console.log(links, images);
             // Set source as initialized
             source.isInitialized = true;
 
-            console.log(source);
+            console.log('source initialized', source);
           }
 
           // Images found
@@ -171,5 +177,15 @@ console.log(links, images);
     });
 
     return sources.length > 0;
+  }
+
+  /**
+   * Has more images to load ?
+   *
+   * @returns {boolean}
+   */
+  hasMoreImages(): boolean {
+
+    return this.source.some(source => source.hasMorePages);
   }
 }
