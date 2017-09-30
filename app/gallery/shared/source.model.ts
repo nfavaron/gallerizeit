@@ -5,7 +5,8 @@ export class SourceModel {
   public isInitialized: boolean = false;
   public isLoading: boolean = false;
   public hasMorePages: boolean = true;
-  public imageLinkPattern: string = '';
+  public imageLinkPattern: RegExp;
+  public imageSrcPattern: RegExp;
   public pageLinkPattern: string = '';
   public page: number = 1;
   protected httpUrl: CoreHttpUrlDom;

@@ -11,8 +11,6 @@ import { CorePageService } from '../page.service';
 
 export class CoreHomeComponent implements OnInit, OnDestroy {
 
-  isLoading: boolean = true;
-
   private subscriptions: Subscription[] = [];
 
   constructor(
@@ -22,8 +20,6 @@ export class CoreHomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
-    console.log('homepage!!');
 
     this.pageService.setHeader('GallerizeIt!');
   }

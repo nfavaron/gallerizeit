@@ -1,19 +1,30 @@
 import { Injectable } from '@angular/core';
 import { GalleryLinkModel } from '../link.model';
 import { GalleryImageModel } from '../image.model';
+import { GalleryExtractorUrlService } from './url.service';
+import { SourceModel } from '../source.model';
 
-Injectable()
+@Injectable()
 export class GalleryExtractorImageService {
+
+  /**
+   *
+   * @param galleryExtractorUrlService
+   */
+  constructor(private galleryExtractorUrlService: GalleryExtractorUrlService) {
+
+  }
 
   /**
    * Returns an array of images extracted from an array of links
    *
+   * @param source
    * @param links
    */
-  extract(links: GalleryLinkModel[]): GalleryImageModel[] {
+  extract(source: SourceModel, links: GalleryLinkModel[]): GalleryImageModel[] {
 
     // Regular expression to identify an image
-    const regExp = /(?:src=["']?([^">\s']+))|(?:url\(["']?([^")\s']+))/gim;
+    const regExp = /(?:[\s]+src=["']?([^">\s']+))|(?:[\s]*:url\(["']?([^")\s']+))/gim;
 
     // Extracted images
     const image: {[key: string]: GalleryLinkModel[]} = {};
@@ -27,14 +38,20 @@ export class GalleryExtractorImageService {
       // Found an img within a link
       while (match = regExp.exec(link.getHtml())) {
 
-        src = match[1] || match[3];
+        let url = match[1] || match[2];
 
-        if (!image[src]) {
+        if (url) {
 
-          image[src] = [];
+          // Make URL absolute
+          src = this.galleryExtractorUrlService.extract(source, url);
+
+          if (!image[src]) {
+
+            image[src] = [];
+          }
+
+          image[src].push(link);
         }
-
-        image[src].push(link);
       }
     });
 

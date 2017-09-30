@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { GalleryImageModel } from '../image.model';
 
 @Injectable()
-export class GalleryExtractorImageLinkPatternService {
+export class GalleryExtractorImageSrcPatternService {
 
   /**
    * Returns an image link pattern extracted from an array of images
@@ -19,7 +19,7 @@ export class GalleryExtractorImageLinkPatternService {
     images.forEach(image => {
 
       // Extraction based on the image's href
-      let p = image.getLink().getUrl();
+      let p = image.getSrc();
 
       // TODO extract logic to prevent duplication
 

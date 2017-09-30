@@ -1,5 +1,5 @@
 <section>
   <article *ngFor="let image of images; trackBy: trackByIndex;">
-    <a href="{{image.getLink().getUrl()}}" target="_blank" class="image" [style.background-image]="'url(https://' + image.getSrc() + ')' | trustCss"></a>
+    <a href="{{image.getLink().getUrl()}}" target="_blank" class="image" [style.background-image]="'url(' + image.getSrc() + ')' | trustCss"></a>
   </article>
 </section>

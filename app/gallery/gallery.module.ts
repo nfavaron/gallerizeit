@@ -9,6 +9,8 @@ import { GalleryExtractorImageService } from './shared/extractor/image.service';
 import { GalleryExtractorImageLinkPatternService } from './shared/extractor/image-link-pattern.service';
 import { GalleryExtractorLinkService } from './shared/extractor/link.service';
 import { GalleryExtractorPageLinkPatternService } from './shared/extractor/page-link-pattern.service';
+import { GalleryExtractorUrlService } from './shared/extractor/url.service';
+import { GalleryExtractorImageSrcPatternService } from './shared/extractor/image-src-pattern.service';
 
 @NgModule({
   imports: [
@@ -21,11 +23,13 @@ import { GalleryExtractorPageLinkPatternService } from './shared/extractor/page-
     GalleryFormComponent
   ],
   providers: [
-    GalleryImageService,
+    GalleryExtractorUrlService,
     GalleryExtractorImageService,
     GalleryExtractorImageLinkPatternService,
     GalleryExtractorLinkService,
-    GalleryExtractorPageLinkPatternService
+    GalleryExtractorPageLinkPatternService,
+    GalleryImageService,
+    GalleryExtractorImageSrcPatternService
   ]
 })
 export class GalleryModule {}

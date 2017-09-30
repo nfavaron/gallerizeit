@@ -1,15 +1,26 @@
 import { Injectable } from '@angular/core';
 import { GalleryLinkModel } from '../link.model';
+import { SourceModel } from '../source.model';
+import { GalleryExtractorUrlService } from './url.service';
 
-Injectable()
+@Injectable()
 export class GalleryExtractorLinkService {
+
+  /**
+   *
+   * @param galleryExtractorUrlService
+   */
+  constructor(private galleryExtractorUrlService: GalleryExtractorUrlService) {
+
+  }
 
   /**
    * Returns an array of links extracted from a HTML string
    *
+   * @param source
    * @param html
    */
-  extract(html: string): GalleryLinkModel[] {
+  extract(source: SourceModel, html: string): GalleryLinkModel[] {
 
     let links: GalleryLinkModel[] = [];
 
@@ -22,9 +33,16 @@ export class GalleryExtractorLinkService {
 
     while (match = regExp.exec(html)) {
 
-      links.push(
-        new GalleryLinkModel(match[3], match[0])
-      );
+      if (match[3]) {
+
+        // Make URL absolute
+        let url = this.galleryExtractorUrlService.extract(source, match[3]);
+
+        // Keep link
+        links.push(
+          new GalleryLinkModel(url, match[0])
+        );
+      }
     }
 
     return links;

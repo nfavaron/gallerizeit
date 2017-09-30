@@ -4,7 +4,6 @@ import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
-
 import { SharedModule } from '../shared/shared.module';
 import { CoreHeaderComponent } from './header/header.component';
 import { CoreHomeComponent } from './home/home.component';
@@ -12,7 +11,6 @@ import { CorePageService } from './page.service';
 import { environment } from '../environments/environment';
 import { CoreHttpDownloaderFirebase } from './http/downloader/firebase';
 import { CoreContentCensorshipWordService } from './content/censorship/word.service';
-import { GalleryImageService } from '../gallery/shared/image.service';
 
 @NgModule({
   imports: [
@@ -34,8 +32,7 @@ import { GalleryImageService } from '../gallery/shared/image.service';
     CorePageService,
     Title,
     CoreHttpDownloaderFirebase,
-    CoreContentCensorshipWordService,
-    GalleryImageService
+    CoreContentCensorshipWordService
   ]
 })
 export class CoreModule {
@@ -47,8 +44,7 @@ export class CoreModule {
         CorePageService,
         Title,
         CoreHttpDownloaderFirebase,
-        CoreContentCensorshipWordService,
-        GalleryImageService
+        CoreContentCensorshipWordService
       ]
     };
   }

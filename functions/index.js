@@ -16,31 +16,39 @@ exports.getSource = functions.https.onRequest((req, res) => {
   res.set('Access-Control-Allow-Methods', 'GET');
 
   const url = decodeURI(req.query.url);
+  let request;
 
-  return https
-    .get(url, function (response) {
+  return new Promise((resolve, reject) => {
 
-      const body = [];
+    request = https
+      .get(url, (response) => {
 
-      response.on('data', function (chunk) {
+        const body = [];
 
-        body.push(chunk);
-      });
+        // Received chunk of data
+        response.on('data', function (chunk) {
 
-      response.on('end', () => {
+          body.push(chunk);
+        });
 
-        res
-          .status(200)
-          .send(Buffer.concat(body).toString())
-        ;
-      });
-    })
-    .on('error', function (e) {
+        // Finished downloading
+        response.on('end', () => {
 
-      res
-        .status(500)
-        .send('Error while downloading source')
-      ;
-    })
-  ;
+          resolve(Buffer.concat(body).toString());
+        });
+      })
+      .on('error', (e) => {
+
+        resolve('error');
+      })
+    ;
+  })
+  .then(content => {
+
+    // Abort request to prevent Firebase Functions random timeout
+    request.abort();
+
+    // Send response
+    res.send(content);
+  });
 });

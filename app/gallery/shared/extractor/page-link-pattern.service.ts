@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { GalleryLinkModel } from '../link.model';
 import { CoreUtilRegExp } from '../../../core/util/reg-exp';
 
-Injectable()
+@Injectable()
 export class GalleryExtractorPageLinkPatternService {
 
   /**
@@ -51,7 +51,7 @@ export class GalleryExtractorPageLinkPatternService {
         patternCount[p]++;
 
         // If the pattern contains the word 'page'
-        if (url.match(/[^a-z]page/gi)) {
+        if (url.match(/[&;?/]page/gi)) {
 
           // We most likely have a winner!
           patternCount[p] += 1337;
@@ -63,19 +63,22 @@ export class GalleryExtractorPageLinkPatternService {
     let max = 1;
     let pagePattern = '';
 
-    Object.keys(patternCount).forEach(p => {
+    Object
+      .keys(patternCount)
+      .forEach(p => {
 
-      // Found more occurrences
-      if (patternCount[p] > max) {
+        // Found more occurrences
+        if (patternCount[p] > max) {
 
-        // Not the image pattern
-        if (p !== imageLinkPattern) {
+          // Not the image pattern
+          if (p !== imageLinkPattern) {
 
-          pagePattern = p;
-          max = patternCount[p];
+            pagePattern = p;
+            max = patternCount[p];
+          }
         }
-      }
-    });
+      })
+    ;
 
     // Did not find any page pattern
     if (!pagePattern) {
@@ -120,14 +123,14 @@ export class GalleryExtractorPageLinkPatternService {
 
             let testPattern = p + part + '@page@';
             testPattern = CoreUtilRegExp.escape(testPattern, '/');
-            testPattern = testPattern.replace('@page@', '([0-9]+)');
-            testPattern = '/^' + testPattern + '.*/gi';
+            testPattern = testPattern.replace(/@page@/gi, '([0-9]+)');
+            const testRegExp = new RegExp('^' + testPattern + '.*$', 'gi');
 
             // For each URL
             patternUrl[pagePattern].forEach(url => {
 
               // Extract number
-              const number = url.replace(testPattern, '$1');
+              const number = url.replace(testRegExp, '$1');
 
               if (numbers.indexOf(number) === -1) {
 
@@ -146,9 +149,10 @@ export class GalleryExtractorPageLinkPatternService {
 
             // Extract number
             let testPattern = CoreUtilRegExp.escape(p + part, '/');
-            testPattern = '/^' + testPattern + '([0-9]+).*/gi';
+            testPattern = testPattern.replace(/@page@/gi, '[0-9]+');
+            const testRegExp = new RegExp('^' + testPattern + '([0-9]+).*$', 'gi');
 
-            let number = pageUrl.replace(testPattern, '$1');
+            let number = pageUrl.replace(testRegExp, '$1');
 
             p += part + number;
           }

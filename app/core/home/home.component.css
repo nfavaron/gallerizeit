@@ -1,11 +1,26 @@
 .home {
+  -webkit-transition: padding 300ms ease-out;
+  -o-transition: padding 300ms ease-out;
+  -moz-transition: padding 300ms ease-out;
   transition: padding 300ms ease-out;
   position: fixed;
   width: 100%;
   height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+     -moz-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   text-align: center;
 }
 
@@ -28,7 +43,8 @@
   text-transform: uppercase;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
 }
 
 .home h1 {
@@ -40,10 +56,14 @@
   max-width: 80%;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
 }
 
 .home strong, .home span, .home h1 {
+  -webkit-transition: font-size 300ms ease-out;
+  -o-transition: font-size 300ms ease-out;
+  -moz-transition: font-size 300ms ease-out;
   transition: font-size 300ms ease-out;
 }
 
@@ -159,6 +179,7 @@
   }
 
   .home div {
-    background-size: cover;
+    -moz-background-size: cover;
+         background-size: cover;
   }
 }
