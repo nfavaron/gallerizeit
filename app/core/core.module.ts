@@ -11,6 +11,7 @@ import { CorePageService } from './page.service';
 import { environment } from '../environments/environment';
 import { CoreHttpDownloaderFirebase } from './http/downloader/firebase';
 import { CoreContentCensorshipWordService } from './content/censorship/word.service';
+import { GalleryModule } from '../gallery/gallery.module';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { CoreContentCensorshipWordService } from './content/censorship/word.serv
     SharedModule,
     HttpModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    GalleryModule
   ],
   declarations: [
     CoreHeaderComponent,

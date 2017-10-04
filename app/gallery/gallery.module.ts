@@ -17,7 +17,9 @@ import { GalleryExtractorImageSrcPatternService } from './shared/extractor/image
     SharedModule,
     ReactiveFormsModule
   ],
-  exports: [],
+  exports: [
+    GalleryFormComponent
+  ],
   declarations: [
     GallerySerpComponent,
     GalleryFormComponent

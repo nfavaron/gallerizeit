@@ -7,7 +7,7 @@ import { SourceModel } from '../shared/source.model';
 
 @Component({
   moduleId: module.id,
-  selector: 'app-wallpaper-serp',
+  selector: 'app-gallery-serp',
   styleUrls: ['./serp.component.css'],
   templateUrl: './serp.component.html',
   host: {
