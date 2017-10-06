@@ -1,6 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
-import { CorePageService } from '../page.service';
+import { Component } from '@angular/core';
 
 @Component({
   moduleId: module.id,
@@ -9,23 +7,13 @@ import { CorePageService } from '../page.service';
   templateUrl: './home.component.html'
 })
 
-export class CoreHomeComponent implements OnInit, OnDestroy {
+export class CoreHomeComponent{
 
-  private subscriptions: Subscription[] = [];
-
-  constructor(
-    private pageService: CorePageService
-  ) {
-
-  }
-
-  ngOnInit() {
-
-    this.pageService.setHeader('GallerizeIt!');
-  }
-
-  ngOnDestroy() {
-
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
-  }
+  /**
+   * Which URL to load as a demo
+   */
+  demoUrl: string[] = [
+    'https://konachan.net/post',
+    'https://anime.desktopnexus.com/all/'
+  ];
 }

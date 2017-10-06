@@ -43,6 +43,15 @@ export class GalleryImageService {
   }
 
   /**
+   * Reset the service
+   */
+  reset(): void {
+
+    this.source = [];
+    this.srcLoaded = {};
+  }
+
+  /**
    * Add a source URL
    */
   addSource(source: SourceModel): void {

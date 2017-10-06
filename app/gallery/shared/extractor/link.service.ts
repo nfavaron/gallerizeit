@@ -33,7 +33,8 @@ export class GalleryExtractorLinkService {
 
     while (match = regExp.exec(html)) {
 
-      if (match[3]) {
+      // Found URL that is not just a hash
+      if (match[3] && match[3] !== '#') {
 
         // Make URL absolute
         let url = this.galleryExtractorUrlService.extract(source, match[3]);

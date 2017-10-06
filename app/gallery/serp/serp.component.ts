@@ -4,6 +4,9 @@ import { Subscription } from 'rxjs/Subscription';
 import { GalleryImageModel } from '../shared/image.model';
 import { GalleryImageService } from '../shared/image.service';
 import { SourceModel } from '../shared/source.model';
+import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+import { Params } from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -17,18 +20,29 @@ import { SourceModel } from '../shared/source.model';
 })
 export class GallerySerpComponent implements OnInit, OnDestroy {
 
-  static INFINITE_SCROLL_THRESHOLD = 0.3; // 33% of the screen remaining
+  /**
+   * Number of "screen height" remaining to scroll before triggering an autoload
+   */
+  static AUTOLOAD_THRESHOLD: number = 2;
 
+  /**
+   * List of loaded images
+   */
   images: GalleryImageModel[] = [];
 
+  /**
+   * Observable subscriptions
+   */
   private subscriptions: Subscription[] = [];
 
   /**
    *
+   * @param router
    * @param route
    * @param galleryImageService
    */
-  constructor(private route: ActivatedRoute,
+  constructor(private router: Router,
+              private route: ActivatedRoute,
               private galleryImageService: GalleryImageService) {
 
   }
@@ -39,7 +53,11 @@ export class GallerySerpComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.subscriptions.push(
-      this.route.params.subscribe(params => this.onChangeRouteParams(params))
+      this.route.params.subscribe(params => this.onChangeRoute())
+    );
+
+    this.subscriptions.push(
+      this.route.queryParams.subscribe(params => this.onChangeRoute())
     );
 
     this.subscriptions.push(
@@ -85,30 +103,43 @@ export class GallerySerpComponent implements OnInit, OnDestroy {
     let scrollable = documentHeight - window.innerHeight;
 
     // Scroll threshold reached
-    if (scrollable - scrollTop < window.innerHeight * GallerySerpComponent.INFINITE_SCROLL_THRESHOLD) {
+    if (scrollable - scrollTop < window.innerHeight * GallerySerpComponent.AUTOLOAD_THRESHOLD) {
 
       // Load more images
       this.galleryImageService.loadImages();
-
     }
   }
 
   /**
-   * Changed route params
-   *
-   * @param params
+   * Changed route
    */
-  onChangeRouteParams(params: Object): void {
+  onChangeRoute(): void {
 
-    if (params['gallery_key'] === 'demo') {
+    // Reset images list & service
+    this.images = [];
+    this.galleryImageService.reset();
 
-      // Add sources
-      this.galleryImageService.addSource(new SourceModel('https://konachan.net/post'));
-      this.galleryImageService.addSource(new SourceModel('https://anime.desktopnexus.com/all/'));
+    // Get URL list from query params
+    const urlQueryParam = (<BehaviorSubject<Params>>this.route.queryParams).value['url'];
+    let urlList: string[];
 
-      // Auto load more images if needed
-      this.autoload();
+    // Make sure URL list is an array
+    urlList = Array.isArray(urlQueryParam) ? urlQueryParam : [urlQueryParam];
+
+    // Keep only HTTPS URLS
+    urlList = urlList.filter((url) => url.indexOf('https') === 0);
+
+    // Invalid URL list
+    if (!urlList || urlList.length === 0) {
+
+      this.router.navigate(['/home']);
     }
+
+    // Add each URL as image source
+    urlList.forEach((url: string) => this.galleryImageService.addSource(new SourceModel(url)));
+
+    // Auto load more images if needed (after DOM updated)
+    setTimeout(() => this.autoload());
   }
 
   /**

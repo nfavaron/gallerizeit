@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
 
     if (e instanceof NavigationEnd) {
 
-      // TODO: use DomAdapter
+      // TODO: use DomAdapter (if still exists)
       window.scrollTo(0, 0);
     }
   }

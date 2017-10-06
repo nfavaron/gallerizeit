@@ -2,19 +2,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CoreHomeComponent } from './core/home/home.component';
 import { GallerySerpComponent } from './gallery/serp/serp.component';
-import { GalleryFormComponent } from './gallery/form/form.component';
 
 const routes: Routes = [
 
-  // Settings
+  // SERP
   {
-    path: 'settings',
-    component: GalleryFormComponent
-  },
-
-  // Gallery
-  {
-    path: ':gallery_key',
+    path: 'browse',
     component: GallerySerpComponent
   },
 
@@ -45,4 +38,5 @@ const routes: Routes = [
   providers: []
 })
 export class AppRoutingModule {
+
 }

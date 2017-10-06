@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs/Subscription';
 import { FormControl } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 
@@ -12,12 +11,17 @@ import { FormArray } from '@angular/forms';
   templateUrl: './form.component.html'
 })
 
-export class GalleryFormComponent implements OnInit, OnDestroy {
+export class GalleryFormComponent implements OnInit {
 
   /**
    * Form definition
    */
   form: FormGroup;
+
+  /**
+   * List of URL inputs
+   */
+  urlInputList: FormArray;
 
   /**
    * Is the form open ?
@@ -28,11 +32,6 @@ export class GalleryFormComponent implements OnInit, OnDestroy {
    * Maximum number of URL inputs
    */
   maxUrlInput: number = 3;
-
-  /**
-   * Observable subscriptions
-   */
-  private subscriptions: Subscription[] = [];
 
   /**
    *
@@ -55,16 +54,10 @@ export class GalleryFormComponent implements OnInit, OnDestroy {
       url: this.formBuilder.array([])
     });
 
+    this.urlInputList = <FormArray>this.form.get('url');
+
     // Add one URL input by default
     this.addUrlInput();
-  }
-
-  /**
-   * Destroyed the component
-   */
-  ngOnDestroy() {
-
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   /**
@@ -72,11 +65,9 @@ export class GalleryFormComponent implements OnInit, OnDestroy {
    */
   addUrlInput() {
 
-    const inputs = (<FormArray>this.form.get('url'));
+    if (this.urlInputList.length < this.maxUrlInput) {
 
-    if (inputs.length < this.maxUrlInput) {
-
-      (<FormArray>this.form.get('url')).push(new FormControl());
+      this.urlInputList.push(new FormControl());
     }
   }
 
@@ -101,11 +92,13 @@ export class GalleryFormComponent implements OnInit, OnDestroy {
    */
   submit() {
 
+    // Form is valid
     if (this.form.valid) {
 
-
-
-      console.log('submit', this.form.getRawValue());
+      // Redirect to SERP page
+      this.router.navigate(['/browse'], { queryParams: {
+        url: this.form.get('url').value
+      }});
     }
   }
 
@@ -126,7 +119,7 @@ export class GalleryFormComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Clicked the add button (TODO: remove in favour of dynaic add)
+   * Clicked the add button (TODO: remove in favour of dynamic add)
    */
   onClickAdd() {
 
