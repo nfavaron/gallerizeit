@@ -126,8 +126,8 @@ export class GallerySerpComponent implements OnInit, OnDestroy {
     // Make sure URL list is an array
     urlList = Array.isArray(urlQueryParam) ? urlQueryParam : [urlQueryParam];
 
-    // Keep only HTTPS URLS
-    urlList = urlList.filter((url) => url.indexOf('https') === 0);
+    // Keep only valid URLs
+    urlList = urlList.filter((url) => url.match(/^https?:\/\/([a-z0-9\-]+\.)?[a-z0-9\-]+\.[a-z]+/gi));
 
     // Invalid URL list
     if (!urlList || urlList.length === 0) {

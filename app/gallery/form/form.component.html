@@ -8,7 +8,7 @@
         <p>Copy & paste <strong>up to 3 URLs</strong> of picture/wallpaper galleries you want to <strong>browse simultaneously</strong>, then click the <strong>GallerizeIt!</strong> button:</p>
         <ul formArrayName="url">
           <li *ngFor="let control of urlInputList.controls; let i = index" >
-            <input type="text" placeholder="https://wallpaper.cat/category/lolcat?page=1" [formControlName]="i">
+            <input type="text" placeholder="Example: https://wallpaperscraft.com/catalog/animals" [formControlName]="i">
           </li>
         </ul>
       </form>

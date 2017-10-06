@@ -13,7 +13,8 @@ export class CoreHomeComponent{
    * Which URL to load as a demo
    */
   demoUrl: string[] = [
+    'https://wallpaperscraft.com/catalog/animals',
+    'https://www.hdcarwallpapers.com',
     'https://konachan.net/post',
-    'https://anime.desktopnexus.com/all/'
   ];
 }

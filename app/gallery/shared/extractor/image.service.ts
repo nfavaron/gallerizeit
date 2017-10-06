@@ -40,7 +40,8 @@ export class GalleryExtractorImageService {
 
         let url = match[1] || match[2];
 
-        if (url) {
+        // URL is not a gif
+        if (url && url.match(/\.gif$/gi) === null) {
 
           // Make URL absolute
           src = this.galleryExtractorUrlService.extract(source, url);

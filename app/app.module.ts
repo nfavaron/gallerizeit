@@ -1,6 +1,7 @@
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+import {UrlSerializer} from '@angular/router';
 
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
@@ -11,6 +12,7 @@ import { AppServiceConfig } from './app.service.config';
 import { FirebaseServiceConfig } from './firebase.service.config';
 import { AppService } from './app.service';
 import { GalleryModule } from './gallery/gallery.module';
+import { CoreHttpUrlSerializer } from './core/http/url/serializer';
 
 @NgModule({
   imports: [
@@ -24,6 +26,7 @@ import { GalleryModule } from './gallery/gallery.module';
   providers: [
     { provide: AppServiceConfig, useValue: environment.app },
     { provide: FirebaseServiceConfig, useValue: environment.firebase },
+    { provide: UrlSerializer, useClass: CoreHttpUrlSerializer },
     AppService
   ],
   bootstrap: [ AppComponent ]

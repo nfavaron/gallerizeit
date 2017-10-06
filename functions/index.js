@@ -1,5 +1,6 @@
 const functions = require('firebase-functions');
 const https = require('https');
+const http = require('http');
 
 exports.getSource = functions.https.onRequest((req, res) => {
 
@@ -20,7 +21,7 @@ exports.getSource = functions.https.onRequest((req, res) => {
 
   return new Promise((resolve, reject) => {
 
-    request = https
+    request = (url.indexOf('https') === 0 ? https : http)
       .get(url, (response) => {
 
         const body = [];
