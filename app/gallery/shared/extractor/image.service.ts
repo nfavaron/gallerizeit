@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { GalleryLinkModel } from '../link.model';
 import { GalleryImageModel } from '../image.model';
 import { GalleryExtractorUrlService } from './url.service';
-import { SourceModel } from '../source.model';
+import { GallerySiteModel } from '../site.model';
 
 @Injectable()
 export class GalleryExtractorImageService {
@@ -21,7 +21,7 @@ export class GalleryExtractorImageService {
    * @param source
    * @param links
    */
-  extract(source: SourceModel, links: GalleryLinkModel[]): GalleryImageModel[] {
+  extract(source: GallerySiteModel, links: GalleryLinkModel[]): GalleryImageModel[] {
 
     // Regular expression to identify an image
     const regExp = /(?:[\s]+src=["']?([^">\s']+))|(?:[\s]*:url\(["']?([^")\s']+))/gim;

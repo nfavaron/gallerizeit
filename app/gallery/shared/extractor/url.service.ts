@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SourceModel } from '../source.model';
+import { GallerySiteModel } from '../site.model';
 
 @Injectable()
 export class GalleryExtractorUrlService {
@@ -10,7 +10,7 @@ export class GalleryExtractorUrlService {
    * @param source
    * @param url
    */
-  extract(source: SourceModel, url: string): string {
+  extract(source: GallerySiteModel, url: string): string {
 
     const httpUrl = source.getHttpUrl();
 

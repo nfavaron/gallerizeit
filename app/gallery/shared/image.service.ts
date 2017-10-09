@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { GalleryImageModel } from './image.model';
 import { CoreHttpDownloaderFirebase } from '../../core/http/downloader/firebase';
 import { CoreContentCensorshipWordService } from '../../core/content/censorship/word.service';
-import { SourceModel } from './source.model';
+import { GallerySiteModel } from './site.model';
 import { GalleryExtractorImageService } from './extractor/image.service';
 import { GalleryExtractorLinkService } from './extractor/link.service';
 import { GalleryExtractorImageLinkPatternService } from './extractor/image-link-pattern.service';
@@ -11,19 +11,21 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { CoreUtilRegExp } from '../../core/util/reg-exp';
 import { GalleryExtractorImageSrcPatternService } from './extractor/image-src-pattern.service';
+import { GallerySiteService } from './site.service';
 
 @Injectable()
 export class GalleryImageService {
 
   public image$: Observable<GalleryImageModel>;
   private image: Subject<GalleryImageModel>;
-  private source: SourceModel[] = [];
+  private site: GallerySiteModel[] = [];
   private srcLoaded: { [key: string]: boolean } = {};
 
   /**
    *
    * @param downloader
    * @param censorship
+   * @param siteService
    * @param imageExtractor
    * @param linkExtractor
    * @param imageLinkPatternExtractor
@@ -32,6 +34,7 @@ export class GalleryImageService {
    */
   constructor(private downloader: CoreHttpDownloaderFirebase,
               private censorship: CoreContentCensorshipWordService,
+              private siteService: GallerySiteService,
               private imageExtractor: GalleryExtractorImageService,
               private linkExtractor: GalleryExtractorLinkService,
               private imageLinkPatternExtractor: GalleryExtractorImageLinkPatternService,
@@ -47,42 +50,42 @@ export class GalleryImageService {
    */
   reset(): void {
 
-    this.source = [];
+    this.site = [];
     this.srcLoaded = {};
   }
 
   /**
-   * Add a source URL
+   * Add a site URL
    */
-  addSource(source: SourceModel): void {
+  addSite(site: GallerySiteModel): void {
 
-    this.source.push(source);
+    this.site.push(site);
   }
 
   /**
-   * Returns an observable of image, loaded from all added sources
+   * Returns an observable of image, loaded from all added sites
    */
   loadImages(): Observable<GalleryImageModel> {
 
-    // Only consider sources that are not loading and that have more pages to load
-    const sources = this.source.filter(source => !source.isLoading && source.hasMorePages);
+    // Only consider sites that are not loading and that have more pages to load
+    const sites = this.site.filter(site => !site.isLoading && site.hasMorePages);
 
-    sources.forEach(source => {
+    sites.forEach(site => {
 
-      // Set source as loading
-      source.isLoading = true;
+      // Set site as loading
+      site.isLoading = true;
 
       // Default URL to download content from
-      let url: string = source.getHttpUrl().getUrl();
+      let url: string = site.getHttpUrl().getUrl();
 
-      // Source is initialized
-      if (source.isInitialized === true) {
+      // Site is initialized
+      if (site.isInitialized === true) {
 
         // Increment page number
-        source.page++;
+        site.page++;
 
         // Use page pattern to set next page URL
-        url = source.pageLinkPattern.replace(/@page@/gi, String(source.page));
+        url = site.pageLinkPattern.replace(/@page@/gi, String(site.page));
       }
 
       // Download content
@@ -91,50 +94,50 @@ export class GalleryImageService {
         .getContent(url)
         .then((content: string) => {
 
-          // Set source as not loading
-          source.isLoading = false;
+          // Set site as not loading
+          site.isLoading = false;
 
           // Extract links
-          const links = this.linkExtractor.extract(source, content);
+          const links = this.linkExtractor.extract(site, content);
 
           // Extract images
-          const images = this.imageExtractor.extract(source, links);
+          const images = this.imageExtractor.extract(site, links);
 
-          // Source not initialized
-          if (source.isInitialized === false) {
+          // Site not initialized
+          if (site.isInitialized === false) {
 
             // Extract image link pattern
             const imageLinkPattern = this.imageLinkPatternExtractor.extract(images);
-            source.imageLinkPattern = this.patternToRegExp(imageLinkPattern);
+            site.imageLinkPattern = this.patternToRegExp(imageLinkPattern);
 
             // Extract image src pattern
             const imageSrcPattern = this.imageSrcPatternExtractor.extract(images);
-            source.imageSrcPattern = this.patternToRegExp(imageSrcPattern);
+            site.imageSrcPattern = this.patternToRegExp(imageSrcPattern);
 
             // Extract page link pattern
-            source.pageLinkPattern = this.pageLinkPatternExtractor.extract(links, imageLinkPattern);
+            site.pageLinkPattern = this.pageLinkPatternExtractor.extract(links, imageLinkPattern);
 
-            if (source.pageLinkPattern === '') {
+            if (site.pageLinkPattern === '') {
 
-              source.hasMorePages = false;
+              site.hasMorePages = false;
               return;
             }
 
             // Extract current page number
-            let currentPagePattern = source.pageLinkPattern.replace(/@page@/gi, '([0-9]+)');
+            let currentPagePattern = site.pageLinkPattern.replace(/@page@/gi, '([0-9]+)');
             currentPagePattern = '^' + currentPagePattern + '$';
 
             if (url.match(currentPagePattern)) {
 
-              source.page = parseInt(url.replace(new RegExp(currentPagePattern), '$1'), 10);
+              site.page = parseInt(url.replace(new RegExp(currentPagePattern), '$1'), 10);
             }
 
-            // Set source as initialized
-            source.isInitialized = true;
+            // Set site as initialized
+            site.isInitialized = true;
           }
 
           // Images found
-          if (images.length > 0 && source.pageLinkPattern) {
+          if (images.length > 0 && site.pageLinkPattern) {
 
             images
               // Prevent duplicated src
@@ -144,13 +147,59 @@ export class GalleryImageService {
               // Match image link pattern
               .filter(image => {
 
-                const linkMatch = image.getLink().getUrl().match(source.imageLinkPattern);
-                const srcMatch = image.getSrc().match(source.imageSrcPattern);
+                const linkMatch = image.getLink().getUrl().match(site.imageLinkPattern);
+                const srcMatch = image.getSrc().match(site.imageSrcPattern);
 
                 return linkMatch || srcMatch;
               })
               // Keep image
               .forEach(image => {
+
+                // Site not loaded yet
+                if (!site.isLoaded) {
+
+                  // Set site as loaded
+                  site.isLoaded = true;
+
+                  // Set cover URL
+                  site.coverUrl = image.getSrc();
+
+                  // Load from DB
+                  const subscription = this
+                    .siteService
+                    .getSite(site.getId())
+                    .subscribe(
+                      (siteDb: GallerySiteModel) => {
+
+                        // Unsubscribe from getSite() observable
+                        subscription.unsubscribe();
+
+                        // Update load count
+                        siteDb.loadCount++;
+
+                        // Update in DB
+                        this
+                          .siteService
+                          .updateSite(siteDb)
+                        ;
+                      },
+                      () => {
+
+                        // Unsubscribe from getSite() observable
+                        subscription.unsubscribe();
+
+                        // Set load count
+                        site.loadCount = 1;
+
+                        // Add in DB
+                        this
+                          .siteService
+                          .addSite(site)
+                        ;
+                      }
+                    )
+                  ;
+                }
 
                 // Keep src as loaded
                 this.srcLoaded[image.getSrc()] = true;
@@ -162,13 +211,13 @@ export class GalleryImageService {
           } else {
 
             // Prevent more image loadings
-            source.hasMorePages = false;
+            site.hasMorePages = false;
           }
         })
         .catch(e => {
 
-          // Set source as not loading
-          source.isLoading = false;
+          // Set site as not loading
+          site.isLoading = false;
         })
       ;
     });
@@ -183,7 +232,7 @@ export class GalleryImageService {
    */
   hasMoreImages(): boolean {
 
-    return this.source.some(source => source.hasMorePages);
+    return this.site.some(site => site.hasMorePages);
   }
 
   /**

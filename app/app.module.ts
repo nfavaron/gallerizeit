@@ -1,9 +1,8 @@
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
-import {UrlSerializer} from '@angular/router';
-
 import { NgModule } from '@angular/core';
+import { UrlSerializer } from '@angular/router';
 import { AppComponent } from './app.component';
 import { environment } from './environments/environment';
 import { CoreModule } from './core/core.module';

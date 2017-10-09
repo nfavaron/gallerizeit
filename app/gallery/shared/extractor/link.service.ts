@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { GalleryLinkModel } from '../link.model';
-import { SourceModel } from '../source.model';
+import { GallerySiteModel } from '../site.model';
 import { GalleryExtractorUrlService } from './url.service';
 
 @Injectable()
@@ -20,7 +20,7 @@ export class GalleryExtractorLinkService {
    * @param source
    * @param html
    */
-  extract(source: SourceModel, html: string): GalleryLinkModel[] {
+  extract(source: GallerySiteModel, html: string): GalleryLinkModel[] {
 
     let links: GalleryLinkModel[] = [];
 

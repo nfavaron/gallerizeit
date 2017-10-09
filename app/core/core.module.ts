@@ -3,7 +3,6 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import * as firebase from 'firebase/app';
 import { SharedModule } from '../shared/shared.module';
 import { CoreHeaderComponent } from './header/header.component';
 import { CoreHomeComponent } from './home/home.component';

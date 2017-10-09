@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { GalleryImageModel } from '../shared/image.model';
 import { GalleryImageService } from '../shared/image.service';
-import { SourceModel } from '../shared/source.model';
+import { GallerySiteModel } from '../shared/site.model';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Params } from '@angular/router';
@@ -136,7 +136,7 @@ export class GallerySerpComponent implements OnInit, OnDestroy {
     }
 
     // Add each URL as image source
-    urlList.forEach((url: string) => this.galleryImageService.addSource(new SourceModel(url)));
+    urlList.forEach((url: string) => this.galleryImageService.addSite(new GallerySiteModel(url)));
 
     // Auto load more images if needed (after DOM updated)
     setTimeout(() => this.autoload());

@@ -11,6 +11,7 @@ import { GalleryExtractorLinkService } from './shared/extractor/link.service';
 import { GalleryExtractorPageLinkPatternService } from './shared/extractor/page-link-pattern.service';
 import { GalleryExtractorUrlService } from './shared/extractor/url.service';
 import { GalleryExtractorImageSrcPatternService } from './shared/extractor/image-src-pattern.service';
+import { GallerySiteService } from './shared/site.service';
 
 @NgModule({
   imports: [
@@ -27,11 +28,12 @@ import { GalleryExtractorImageSrcPatternService } from './shared/extractor/image
   providers: [
     GalleryExtractorUrlService,
     GalleryExtractorImageService,
-    GalleryExtractorImageLinkPatternService,
     GalleryExtractorLinkService,
+    GalleryExtractorImageLinkPatternService,
     GalleryExtractorPageLinkPatternService,
+    GalleryExtractorImageSrcPatternService,
     GalleryImageService,
-    GalleryExtractorImageSrcPatternService
+    GallerySiteService
   ]
 })
 export class GalleryModule {}
