@@ -46,13 +46,13 @@ export class CoreHomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     // Subscribe to most popular sites list
-    this.siteMostPopular$ = this.gallerySiteService.listSiteByMostPopular(6);
+    this.siteMostPopular$ = this.gallerySiteService.listSiteByMostPopular(8);
     this.subscriptions.push(
       this.siteMostPopular$.subscribe()
     );
 
     // Subscribe to most recent sites list
-    this.siteMostRecent$ = this.gallerySiteService.listSiteByMostRecent(6);
+    this.siteMostRecent$ = this.gallerySiteService.listSiteByMostRecent(8);
     this.subscriptions.push(
       this.siteMostRecent$.subscribe()
     );
@@ -64,5 +64,16 @@ export class CoreHomeComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
 
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
+  /**
+   * Track image by ID
+   *
+   * @param index
+   * @param site
+   */
+  trackById(index: number, site: GallerySiteModel): string {
+
+    return site.getId();
   }
 }

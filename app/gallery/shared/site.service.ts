@@ -4,8 +4,6 @@ import { Promise } from 'firebase';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { GallerySiteModel } from './site.model';
 import * as firebase from 'firebase/app';
-import { GallerySitePopularInterface } from './site-popular.interface';
-import { GallerySiteNewInterface } from './site-new.interface';
 
 @Injectable()
 export class GallerySiteService {
@@ -32,8 +30,9 @@ export class GallerySiteService {
           orderByChild: 'loadCount',
           limitToLast: count
         }
-      }
-    );
+      })
+      .map(sites => sites.map(this.getGallerySiteModel).reverse())
+      ;
   }
 
   /**
@@ -50,8 +49,9 @@ export class GallerySiteService {
           orderByChild: 'createDate',
           limitToLast: count
         }
-      }
-    );
+      })
+      .map(sites => sites.map(this.getGallerySiteModel).reverse())
+      ;
   }
 
   /**

@@ -92,6 +92,14 @@
   -webkit-filter: blur(5px);
 }
 
+.home {
+  display: none;
+}
+
+.site-list {
+  padding: 10px;
+}
+
 ul {
   display: flex;
   flex-wrap: wrap;
@@ -108,6 +116,11 @@ li a {
   display: block;
   width: 100%;
   height: 100%;
+  line-height: 100%;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-size: 32px;
 }
 
 .image {

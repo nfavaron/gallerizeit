@@ -9,15 +9,15 @@
 </div>
 <div class="site-list most-popular">
   <ul>
-    <li *ngFor="let site of siteMostPopular$ | async">
-      <a [routerLink]="['/browse']" [queryParams]="{ url: site.url }" class="image" [style.background-image]="'url(' + site.coverUrl + ')' | trustCss"></a>
+    <li *ngFor="let site of siteMostPopular$ | async; trackBy: trackById;">
+      <a [routerLink]="['/browse']" [queryParams]="{ url: site.url }" class="image" [style.background-image]="'url(' + site.coverUrl + ')' | trustCss">{{site.loadCount}}</a>
     </li>
   </ul>
 </div>
 <div class="site-list most-recent">
   <ul>
-    <li *ngFor="let site of siteMostRecent$ | async">
-      <a [routerLink]="['/browse']" [queryParams]="{ url: site.url }" class="image" [style.background-image]="'url(' + site.coverUrl + ')' | trustCss"></a>
+    <li *ngFor="let site of siteMostRecent$ | async; trackBy: trackById;">
+      <a [routerLink]="['/browse']" [queryParams]="{ url: site.url }" class="image" [style.background-image]="'url(' + site.coverUrl + ')' | trustCss">{{site.createDate}}</a>
     </li>
   </ul>
 </div>
