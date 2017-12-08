@@ -4,6 +4,7 @@ import { Promise } from 'firebase';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { GallerySiteModel } from './site.model';
 import * as firebase from 'firebase/app';
+import { SiteListByType } from './types';
 
 @Injectable()
 export class GallerySiteService {
@@ -17,36 +18,20 @@ export class GallerySiteService {
   }
 
   /**
-   * List @count sites ordered by popularity
+   * List @count sites ordered by @fieldName
    *
+   * @param fieldName
    * @param count
    */
-  listSiteByMostPopular(count: number): Observable<GallerySiteModel[]> {
+  listSiteByMost(fieldName: SiteListByType, count: number): Observable<GallerySiteModel[]> {
+
+    console.log('listSiteByMost', arguments);
 
     return this
       .db
       .list('/site', {
         query: {
-          orderByChild: 'loadCount',
-          limitToLast: count
-        }
-      })
-      .map(sites => sites.map(this.getGallerySiteModel).reverse())
-      ;
-  }
-
-  /**
-   * List @count sites ordered by popularity
-   *
-   * @param count
-   */
-  listSiteByMostRecent(count: number): Observable<GallerySiteModel[]> {
-
-    return this
-      .db
-      .list('/site', {
-        query: {
-          orderByChild: 'createDate',
+          orderByChild: fieldName,
           limitToLast: count
         }
       })

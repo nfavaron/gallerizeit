@@ -1,37 +1,18 @@
-.home {
-  -webkit-transition: padding 300ms ease-out;
-  -o-transition: padding 300ms ease-out;
-  -moz-transition: padding 300ms ease-out;
-  transition: padding 300ms ease-out;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-     -moz-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-     -moz-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+.home .banner {
   text-align: center;
+  padding: 30px 0;
+  position: relative;
+  transition: padding 300ms ease-out;
 }
 
-.home strong {
+.home .banner strong {
   display: block;
   padding: 10px 0;
   font-size: 18px;
   text-transform: uppercase;
 }
 
-.home span {
+.home .banner span {
   display: inline-block;
   max-width: 90%;
   padding: 3px 13px;
@@ -43,31 +24,26 @@
   text-transform: uppercase;
   white-space: nowrap;
   overflow: hidden;
-  -o-text-overflow: ellipsis;
-     text-overflow: ellipsis;
+  text-overflow: ellipsis;
 }
 
-.home h1 {
+.home .banner h1 {
   display: block;
-  color: #333333;
+  color: #ffffff;
   font-size: 14px;
   font-weight: normal;
   margin: 0 auto 10px auto;
   max-width: 80%;
   white-space: nowrap;
   overflow: hidden;
-  -o-text-overflow: ellipsis;
-     text-overflow: ellipsis;
+  text-overflow: ellipsis;
 }
 
-.home strong, .home span, .home h1 {
-  -webkit-transition: font-size 300ms ease-out;
-  -o-transition: font-size 300ms ease-out;
-  -moz-transition: font-size 300ms ease-out;
+.home .banner strong, .home .banner span, .home .banner h1 {
   transition: font-size 300ms ease-out;
 }
 
-.home .btn {
+.home .banner .btn {
   padding: 15px;
   margin: 5px 0;
   font-size: 18px;
@@ -75,12 +51,12 @@
   display: none;
 }
 
-.home section {
+.home .banner > section {
   position: relative;
   z-index: 2;
 }
 
-.home div {
+.home .banner > div {
   width: 120%;
   height: 120%;
   position: absolute;
@@ -88,139 +64,98 @@
   top: -10%;
   z-index: 1;
   background: url(https://drscdn.500px.org/photo/142786755/q%3D80_m%3D2000_k%3D1/19ffbdefd04b10a4dbcc7b4b0fbfe145) center top no-repeat;
-  filter: blur(5px);
-  -webkit-filter: blur(5px);
-}
-
-.home {
-  display: none;
-}
-
-.site-list {
-  padding: 10px;
-}
-
-ul {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-li {
-  width: 33%;
-  height: 100px;
-}
-
-li a {
-  display: block;
-  width: 100%;
-  height: 100%;
-  line-height: 100%;
-  text-align: center;
-  color: white;
-  font-weight: bold;
-  font-size: 32px;
-}
-
-.image {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background-repeat: no-repeat;
-  background-position: center center;
-  -moz-background-size: cover;
   background-size: cover;
+  filter: blur(15px);
+  -webkit-filter: blur(15px);
+}
+
+.home .panel {
+  margin-bottom: 15px;
 }
 
 @media (min-width: 400px) {
 
-  .home h1 {
+  .home .banner h1 {
     font-size: 16px;
   }
 
-  .home span {
+  .home .banner span {
     font-size: 22px;
   }
 }
 
 @media (min-width: 500px) {
 
-  .home {
+  .home .banner {
     padding: 50px 0;
   }
 
-  .home strong {
+  .home .banner strong {
     font-size: 20px;
   }
 
-  .home h1 {
+  .home .banner h1 {
     max-width: 70%;
   }
 }
 
 @media (min-width: 580px) {
 
-  .home span {
+  .home .banner span {
     font-size: 24px;
   }
 }
 
 @media (min-width: 700px) {
 
-  .home strong {
+  .home .banner strong {
     font-size: 22px;
   }
 
-  .home span {
+  .home .banner span {
     font-size: 26px;
   }
 
-  .home h1 {
+  .home .banner h1 {
     font-size: 16px;
   }
 }
 
 @media (min-width: 800px) {
 
-  .home span {
+  .home .banner span {
     font-size: 28px;
   }
 }
 
 @media (min-width: 900px) {
 
-  .home {
+  .home .banner {
     padding: 65px 0;
   }
-  .home strong {
+  .home .banner strong {
     font-size: 24px;
   }
 
-  .home span {
+  .home .banner span {
     font-size: 30px;
   }
 
-  .home h1 {
+  .home .banner h1 {
     max-width: none;
   }
 }
 
 @media (min-width: 1024px) {
 
-  .home .btn {
+  .home .banner .btn {
     display: inline-block;
   }
 }
 
 @media (min-width: 1600px) {
 
-  .home {
+  .home .banner {
     padding: 130px 0;
-  }
-
-  .home div {
-    -moz-background-size: cover;
-         background-size: cover;
   }
 }

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { SharedModule } from '../shared/shared.module';
 import { GallerySerpComponent } from './serp/serp.component';
 import { GalleryFormComponent } from './form/form.component';
@@ -12,18 +11,21 @@ import { GalleryExtractorPageLinkPatternService } from './shared/extractor/page-
 import { GalleryExtractorUrlService } from './shared/extractor/url.service';
 import { GalleryExtractorImageSrcPatternService } from './shared/extractor/image-src-pattern.service';
 import { GallerySiteService } from './shared/site.service';
+import { GallerySiteListComponent } from './site-list/site-list.component';
 
 @NgModule({
   imports: [
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports: [
-    GalleryFormComponent
+    GalleryFormComponent,
+    GallerySiteListComponent,
   ],
   declarations: [
     GallerySerpComponent,
-    GalleryFormComponent
+    GalleryFormComponent,
+    GallerySiteListComponent,
   ],
   providers: [
     GalleryExtractorUrlService,

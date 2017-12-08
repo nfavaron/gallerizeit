@@ -18,7 +18,6 @@ export class GalleryExtractorPageLinkPatternService {
     const patternUrl: { [key: string]: string[] } = {};
     let pattern = '';
 
-
     // For each link
     links.forEach(link => {
 

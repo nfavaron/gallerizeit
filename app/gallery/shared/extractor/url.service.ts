@@ -30,6 +30,7 @@ export class GalleryExtractorUrlService {
       url = httpUrl.getOrigin() + '/' + url;
 
     }
+
     return url;
   }
 }
