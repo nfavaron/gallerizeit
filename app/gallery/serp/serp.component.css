@@ -1,4 +1,4 @@
-section {
+.serp {
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -15,6 +15,13 @@ section {
           flex-wrap: wrap;
   padding: 10px;
 }
+
+/* TODO: use if moving to boxed section */
+/*.serp.fullwidth {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 100%;
+}*/
 
 article {
   width: 100%;

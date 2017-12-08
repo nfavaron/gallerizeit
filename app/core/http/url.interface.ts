@@ -21,15 +21,8 @@ export interface HttpUrlInterface {
   getOrigin(): string;
 
   /**
-   * Returns the URL base path, example: /mypath/
+   * Returns the URL path, example: /mypath/
    */
-  getBase(): string;
-
-  /**
-   * Returns the absolute URL of the path
-   *
-   * @param path
-   */
-  getAbsoluteUrl(path: string): string;
+  getPath(): string;
 
 }

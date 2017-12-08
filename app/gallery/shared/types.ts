@@ -1,1 +1,1 @@
-export type SiteListByType = 'loadCount' | 'createDate';
+export type SiteListByType = 'likeCount' | 'loadCount' | 'createDate' | 'updateDate';

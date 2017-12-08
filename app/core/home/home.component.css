@@ -3,6 +3,7 @@
   padding: 30px 0;
   position: relative;
   transition: padding 300ms ease-out;
+  overflow: hidden;
 }
 
 .home .banner strong {

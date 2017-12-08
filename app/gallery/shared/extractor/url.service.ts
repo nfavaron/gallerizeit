@@ -27,7 +27,7 @@ export class GalleryExtractorUrlService {
       // Missing protocol & domain but is relative link
     } else if (!url.match(/^https?:\/\//gi)) {
 
-      url = httpUrl.getOrigin() + '/' + url;
+      url = httpUrl.getOrigin() + httpUrl.getPath() + url;
 
     }
 

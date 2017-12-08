@@ -31,6 +31,11 @@ export class GallerySiteListComponent implements OnInit, OnDestroy {
   isLoading: boolean = false;
 
   /**
+   * Total number of sites
+   */
+  total: number = 0;
+
+  /**
    * Observable subscriptions
    */
   private subscriptions: Subscription[] = [];
@@ -51,7 +56,7 @@ export class GallerySiteListComponent implements OnInit, OnDestroy {
     // Subscribe to sites list
     this.site$ = this.gallerySiteService.listSiteByMost(this.sort, this.limit);
     this.subscriptions.push(
-      this.site$.subscribe()
+      this.site$.subscribe(sites => this.onListSite(sites))
     );
   }
 
@@ -72,6 +77,16 @@ export class GallerySiteListComponent implements OnInit, OnDestroy {
   trackById(index: number, site: GallerySiteModel): string {
 
     return site.getId();
+  }
+
+  /**
+   * Listed sites
+   *
+   * @param sites
+   */
+  onListSite(sites: GallerySiteModel[]): void {
+
+    this.total = sites.length;
   }
 
   /**

@@ -12,6 +12,7 @@ import { GalleryExtractorUrlService } from './shared/extractor/url.service';
 import { GalleryExtractorImageSrcPatternService } from './shared/extractor/image-src-pattern.service';
 import { GallerySiteService } from './shared/site.service';
 import { GallerySiteListComponent } from './site-list/site-list.component';
+import { GalleryExtractorTitleService } from './shared/extractor/title.service';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { GallerySiteListComponent } from './site-list/site-list.component';
     GalleryExtractorUrlService,
     GalleryExtractorImageService,
     GalleryExtractorLinkService,
+    GalleryExtractorTitleService,
     GalleryExtractorImageLinkPatternService,
     GalleryExtractorPageLinkPatternService,
     GalleryExtractorImageSrcPatternService,

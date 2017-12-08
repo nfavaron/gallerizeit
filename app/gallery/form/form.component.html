@@ -1,5 +1,5 @@
 <button class="btn start" (click)="onClickStart()">Start</button>
-<section [class.is-open]="isOpen">
+<div class="container" [class.is-open]="isOpen">
   <div class="overlay" (click)="onClickOverlay()"></div>
   <div class="modal">
     <div class="form">
@@ -18,4 +18,4 @@
       </div>
     </div>
   </div>
-</section>
+</div>

@@ -41,7 +41,7 @@ export class GalleryExtractorImageService {
         let url = match[1] || match[2];
 
         // URL is not a gif or a logo
-        if (url && url.match(/\.gif$/gi) === null && url.match(/[^a-z]+logo[^a-z]+$/gi) === null) {
+        if (url && url.match(/\.gif$/gi) === null && url.match(/[^a-z]+logo[^a-z]+/gi) === null) {
 
           // Make URL absolute
           src = this.galleryExtractorUrlService.extract(source, url);
@@ -59,7 +59,7 @@ export class GalleryExtractorImageService {
     return Object
       .keys(image)
       .filter(src => image[src].length === 1)
-      .map(src => new GalleryImageModel(src, image[src][0]))
+      .map(src => new GalleryImageModel(src, image[src][0], source))
     ;
   }
 }

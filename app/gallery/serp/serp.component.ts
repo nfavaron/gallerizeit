@@ -7,6 +7,7 @@ import { GallerySiteModel } from '../shared/site.model';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Params } from '@angular/router';
+import { GallerySiteService } from '../shared/site.service';
 
 @Component({
   moduleId: module.id,
@@ -36,14 +37,21 @@ export class GallerySerpComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
 
   /**
+   * Site IDs that have been liked on this SERP
+   */
+  private likeSiteId: string[] = [];
+
+  /**
    *
    * @param router
    * @param route
    * @param galleryImageService
+   * @param gallerySiteService
    */
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private galleryImageService: GalleryImageService) {
+              private galleryImageService: GalleryImageService,
+              private gallerySiteService: GallerySiteService) {
 
   }
 
@@ -143,7 +151,7 @@ export class GallerySerpComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Loaded image
+   * Loaded an image
    *
    * @param image
    */
@@ -157,6 +165,39 @@ export class GallerySerpComponent implements OnInit, OnDestroy {
 
     // Load more images
     this.autoload();
+  }
+
+  /**
+   * Clicked an image
+   */
+  onClickImage(image: GalleryImageModel): void {
+
+    const site = image.getSite();
+
+    // Site already liked
+    if (this.likeSiteId.indexOf(site.getId()) > -1) {
+      return;
+    }
+
+    // Consider site liked within this SERP
+    this.likeSiteId.push(site.getId());
+
+    // Load from DB // TODO: improve into "subscribe once"
+    const subscription = this
+      .gallerySiteService
+      .getSite(site.getId())
+      .subscribe((siteDb: GallerySiteModel) => {
+
+        // Unsubscribe from getSite() observable
+        subscription.unsubscribe();
+
+        // Increment like count
+        siteDb.likeCount++;
+
+        // Update site
+        this.gallerySiteService.updateSite(siteDb);
+      })
+    ;
   }
 
   /**

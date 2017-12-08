@@ -5,7 +5,7 @@ button.start {
   z-index: 1335;
 }
 
-section {
+.container {
   position: fixed;
   display: flex;
   align-items: center;
@@ -19,7 +19,7 @@ section {
   opacity: 0;
 }
 
-section.is-open {
+.container.is-open {
   top: 0;
   opacity: 1;
 }

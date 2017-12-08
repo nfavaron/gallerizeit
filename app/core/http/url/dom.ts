@@ -61,66 +61,8 @@ export class CoreHttpUrlDom implements HttpUrlInterface {
   /**
    * @inheritdoc
    */
-  getBase(): string {
+  getPath(): string {
 
-    /*if (empty(this.base)) {
-
-      request = parse_url(this.url);
-
-      // Make sure the path has a value
-      path = empty(request['path']) ? '/' : request['path'];
-
-      // Remove eventual file at the end of the path
-      path = preg_replace('/\/[a-z0-9_\-.]+\.[a-z0-9]+/i', '/', path);
-
-      // Path must end with slash
-      if (!preg_match('/\//', path)) {
-        path .= '/';
-      }
-
-      this.base = sprintf('%s%s', this.getOrigin(), path);
-
-    }
-
-    return this.base;*/
-
-    return 'TODO';
-
+    return this.parser.pathname;
   }
-
-  /**
-   * @inheritdoc
-   */
-  getAbsoluteUrl(path: string): string {
-
-    /*// By default, consider the path as an URL
-    path = html_entity_decode(urldecode(path));
-    url  = path;
-
-    // Does not start by 'http'
-    if (!preg_match('/^http/', path)) {
-
-      // Starts by double slash
-      if (mb_strpos(path, '//') === 0) {
-
-        url = sprintf('%s:%s', this.getMethod(), path);
-
-        // Starts by slash
-      } elseif (mb_substr(path, 0, 1) === '/') {
-
-        url = this.getOrigin() . path;
-
-      } else {
-
-        url = this.getBase() . path;
-
-      }
-
-    }
-
-    return url;*/
-
-    return 'TODO';
-  }
-
 }

@@ -7,7 +7,7 @@
     "site": {
       ".read": "true",
       ".write": "true",
-      ".indexOn": ["loadCount", "createDate"]
+      ".indexOn": ["likeCount", "updateDate"]
     }
   }
 }

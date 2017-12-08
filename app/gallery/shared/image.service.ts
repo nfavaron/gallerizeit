@@ -12,6 +12,7 @@ import { Subject } from 'rxjs/Subject';
 import { CoreUtilRegExp } from '../../core/util/reg-exp';
 import { GalleryExtractorImageSrcPatternService } from './extractor/image-src-pattern.service';
 import { GallerySiteService } from './site.service';
+import { GalleryExtractorTitleService } from './extractor/title.service';
 
 @Injectable()
 export class GalleryImageService {
@@ -28,6 +29,7 @@ export class GalleryImageService {
    * @param siteService
    * @param imageExtractor
    * @param linkExtractor
+   * @param titleExtractor
    * @param imageLinkPatternExtractor
    * @param pageLinkPatternExtractor
    * @param imageSrcPatternExtractor
@@ -37,6 +39,7 @@ export class GalleryImageService {
               private siteService: GallerySiteService,
               private imageExtractor: GalleryExtractorImageService,
               private linkExtractor: GalleryExtractorLinkService,
+              private titleExtractor: GalleryExtractorTitleService,
               private imageLinkPatternExtractor: GalleryExtractorImageLinkPatternService,
               private pageLinkPatternExtractor: GalleryExtractorPageLinkPatternService,
               private imageSrcPatternExtractor: GalleryExtractorImageSrcPatternService) {
@@ -164,6 +167,9 @@ export class GalleryImageService {
                   // Set cover URL
                   site.coverUrl = image.getSrc();
 
+                  // Set title
+                  site.title = this.titleExtractor.extract(site, content);
+
                   // Load from DB
                   const subscription = this
                     .siteService
@@ -173,6 +179,12 @@ export class GalleryImageService {
 
                         // Unsubscribe from getSite() observable
                         subscription.unsubscribe();
+
+                        // Update existing cover URL
+                        siteDb.coverUrl = site.coverUrl;
+
+                        // Update existing title
+                        siteDb.title = site.title;
 
                         // Update load count
                         siteDb.loadCount++;

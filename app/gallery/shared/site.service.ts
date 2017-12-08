@@ -5,6 +5,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { GallerySiteModel } from './site.model';
 import * as firebase from 'firebase/app';
 import { SiteListByType } from './types';
+import { GallerySiteFirebaseInterface } from './site.firebase.interface';
 
 @Injectable()
 export class GallerySiteService {
@@ -18,21 +19,19 @@ export class GallerySiteService {
   }
 
   /**
-   * List @count sites ordered by @fieldName
+   * Lists @limit sites ordered by @fieldName
    *
    * @param fieldName
-   * @param count
+   * @param limit
    */
-  listSiteByMost(fieldName: SiteListByType, count: number): Observable<GallerySiteModel[]> {
-
-    console.log('listSiteByMost', arguments);
+  listSiteByMost(fieldName: SiteListByType, limit: number): Observable<GallerySiteModel[]> {
 
     return this
       .db
       .list('/site', {
         query: {
           orderByChild: fieldName,
-          limitToLast: count
+          limitToLast: limit
         }
       })
       .map(sites => sites.map(this.getGallerySiteModel).reverse())
@@ -96,10 +95,12 @@ export class GallerySiteService {
    */
   private storeSite(site: GallerySiteModel): Promise<void> {
 
+    site.updateDate = <string>firebase.database['ServerValue'].TIMESTAMP;
+
     return this
       .db
       .object('/site/' + site.getId())
-      .update(this.getSiteObject(site))
+      .update(this.getGallerySiteObject(site))
       ;
   }
 
@@ -108,19 +109,21 @@ export class GallerySiteService {
    *
    * @param data
    */
-  private getGallerySiteModel(data: any): GallerySiteModel {
+  private getGallerySiteModel(data: GallerySiteFirebaseInterface): GallerySiteModel {
 
     if (data.$exists() === false) {
 
       throw new Error('Site does not exist');
     }
 
-    let site = new GallerySiteModel(data.$key);
+    let site = new GallerySiteModel(data.url);
 
-    site.url = data.url;
     site.loadCount = data.loadCount;
+    site.likeCount = data.likeCount;
     site.createDate = data.createDate;
+    site.updateDate = data.updateDate;
     site.coverUrl = data.coverUrl;
+    site.title = data.title;
 
     return site;
   }
@@ -130,13 +133,16 @@ export class GallerySiteService {
    *
    * @param site
    */
-  private getSiteObject(site: GallerySiteModel): {[key: string]: string|number} {
+  private getGallerySiteObject(site: GallerySiteModel): GallerySiteFirebaseInterface {
 
     return {
       url: site.url,
       loadCount: site.loadCount,
+      likeCount: site.likeCount,
       createDate: site.createDate,
-      coverUrl: site.coverUrl
+      updateDate: site.updateDate,
+      coverUrl: site.coverUrl,
+      title: site.title,
     };
   }
 }

@@ -37,3 +37,49 @@ a {
 main {
   padding-top: 50px;
 }
+
+section {
+  display: block;
+  width: 100%;
+  transition: padding 300ms ease-out;
+}
+
+@media (min-width: 1024px) {
+
+  section {
+    padding: 0 10px;
+  }
+
+  section.content {
+    padding-top: 15px;
+  }
+}
+
+@media (min-width: 1220px) {
+
+  section {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  section.content {
+    padding-top: 15px;
+  }
+}
+
+@media (min-width: 1200px) {
+
+  section {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.mask {
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+}

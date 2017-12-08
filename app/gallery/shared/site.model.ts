@@ -2,9 +2,20 @@ import { CoreHttpUrlDom } from '../../core/http/url/dom';
 
 export class GallerySiteModel {
 
-  public url: string = ''; // acts as ID
+  /**
+   * Site loaded in a SERP
+   */
   public loadCount: number = 0;
+
+  /**
+   * At least one image was clicked in a SERP
+   */
+  public likeCount: number = 0;
+
+  public url: string = ''; // acts as ID
+  public title: string = '';
   public createDate: string = '';
+  public updateDate: string = '';
   public coverUrl: string = '';
   public imageLinkPattern: RegExp;
   public imageSrcPattern: RegExp;
@@ -58,5 +69,16 @@ export class GallerySiteModel {
   getHttpUrl(): CoreHttpUrlDom {
 
     return this.httpUrl;
+  }
+
+  /**
+   * Returns source name
+   */
+  getSourceName(): string {
+
+    return (this.getHttpUrl().getHost() + this.getHttpUrl().getPath())
+      .replace(/^www\./gi, '')
+      .replace(/\/$/gi, '')
+      ;
   }
 }

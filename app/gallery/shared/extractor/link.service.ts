@@ -28,7 +28,7 @@ export class GalleryExtractorLinkService {
     html = html.replace(/\n|\r/gi, '');
 
     // Regular expression to identify a link
-    const regExp = new RegExp(/(<([a]+)[^>]*href=["']?([^"'\s>]+)[^>]*>)(.*?)(<\/\2>)/gi);
+    const regExp = new RegExp(/(<(a)[^>]*href=["']?([^"'\s>]+)[^>]*>)(.*?)(<\/\2>)/gi);
     let match: string[]|null;
 
     while (match = regExp.exec(html)) {

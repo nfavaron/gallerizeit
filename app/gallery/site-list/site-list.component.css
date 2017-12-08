@@ -77,7 +77,7 @@
   position: relative;
   border-radius: 10px;
   transition: height 300ms ease-out, border-color 300ms ease-out;
-  background: #f9f9f9 url('/img/loader-blue.gif') center center no-repeat;
+  background: #f9f9f9 url('/assets/loader/blue.gif') center center no-repeat;
 }
 
 .site-list li > a:hover {

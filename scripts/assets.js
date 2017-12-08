@@ -18,15 +18,10 @@ Object.keys(directories).forEach(function (source) {
     .readdirSync(source)
     .forEach(function (file, index) {
 
-      // PNG files only
-      if (file.substr(-4) === '.png') {
-
-        fs
-          .createReadStream(source + '/' + file)
-          .pipe(fs.createWriteStream(destination + '/' + file))
-        ;
-      }
+      fs
+        .createReadStream(source + '/' + file)
+        .pipe(fs.createWriteStream(destination + '/' + file))
+      ;
     })
   ;
-
 });
