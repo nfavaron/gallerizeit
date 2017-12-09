@@ -27,8 +27,18 @@ export class GalleryExtractorUrlService {
       // Missing protocol & domain but is relative link
     } else if (!url.match(/^https?:\/\//gi)) {
 
-      url = httpUrl.getOrigin() + httpUrl.getPath() + url;
+      // Starts with '?' or './'
+      if (url.indexOf('?') === 0 || url.indexOf('./') === 0) {
 
+        url = httpUrl.getOrigin() + httpUrl.getPath() + url.replace(/^\.\//, '/');
+
+      } else {
+
+        // TODO: improve link parsing, if ends by file or directory
+
+        url = httpUrl.getOrigin() + '/' + url;
+
+      }
     }
 
     return url;

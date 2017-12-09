@@ -180,6 +180,9 @@ export class GalleryImageService {
                         // Unsubscribe from getSite() observable
                         subscription.unsubscribe();
 
+                        // Is the site considered updated ?
+                        const updated = siteDb.coverUrl !== site.coverUrl;
+
                         // Update existing cover URL
                         siteDb.coverUrl = site.coverUrl;
 
@@ -192,7 +195,7 @@ export class GalleryImageService {
                         // Update in DB
                         this
                           .siteService
-                          .updateSite(siteDb)
+                          .updateSite(siteDb, updated)
                         ;
                       },
                       () => {

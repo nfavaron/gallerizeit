@@ -1,23 +1,34 @@
-<div class="panel site-list {{sort}}">
+<div class="panel site-list">
   <div class="header">
     <div>
-      <h2><i></i>{{title}}</h2>
-      <span class="info">{{total}} {{total == 1 ? 'site' : 'sites'}}</span>
+      <h2>
+        <span class="i i-{{sort}}"></span>
+        <span>{{title}}</span>
+      </h2>
+      <span class="label">{{total}} {{total == 1 ? 'site' : 'sites'}}</span>
     </div>
   </div>
   <div class="body">
-    <ol>
-      <li *ngFor="let site of site$ | async; trackBy: trackById;">
+    <ol class="list">
+      <li class="site" *ngFor="let site of site$ | async; trackBy: trackById;">
         <a [routerLink]="['/browse']" [queryParams]="{ url: site.url }" class="mask" title="{{site.title}}">
-          <div class="loaded" [style.background-image]="'url(' + site.coverUrl + ')' | trustCss"></div>
-          <span><i class="fa fa-heart"></i>{{site.likeCount | number}}</span>
+          <div class="cover loaded" [style.background-image]="'url(' + site.coverUrl + ')' | trustCss"></div>
+          <div class="likes">
+            <span class="i i-like"></span>
+            <span>{{site.likeCount | number}}</span>
+          </div>
         </a>
-        <div>
+        <div class="info">
           <h3>
-            <a [routerLink]="['/browse']" [queryParams]="{ url: site.url }" title="{{site.title}}">{{site.title}}</a>
+            <a
+              [routerLink]="['/browse']"
+              [queryParams]="{ url: site.url }"
+              title="{{site.title}}"
+              class="title"
+            >{{site.title}}</a>
           </h3>
-          <p>{{site.loadCount | number}} {{site.loadCount == 1 ? 'view' : 'views'}} &bull; 1 month ago</p><!-- TODO date -->
-          <a [routerLink]="['/browse']" [queryParams]="{ url: site.url }">{{site.getSourceName()}}</a>
+          <div class="info-line">{{site.loadCount | number}} {{site.loadCount == 1 ? 'view' : 'views'}} &bull; 1 month ago</div><!-- TODO date -->
+          <a [routerLink]="['/browse']" [queryParams]="{ url: site.url }" class="info-line">{{site.getSourceName()}}</a>
         </div>
       </li>
     </ol>

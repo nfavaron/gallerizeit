@@ -60,6 +60,7 @@ export class GallerySiteService {
   addSite(site: GallerySiteModel): Promise<void> {
 
     site.createDate = <string>firebase.database['ServerValue'].TIMESTAMP;
+    site.updateDate = <string>firebase.database['ServerValue'].TIMESTAMP;
 
     return this.storeSite(site);
   }
@@ -68,8 +69,14 @@ export class GallerySiteService {
    * Updates @site in database
    *
    * @param site
+   * @param updated
    */
-  updateSite(site: GallerySiteModel): Promise<void> {
+  updateSite(site: GallerySiteModel, updated?: boolean): Promise<void> {
+
+    if (updated === true) {
+
+      site.updateDate = <string>firebase.database['ServerValue'].TIMESTAMP;
+    }
 
     return this.storeSite(site);
   }
@@ -94,8 +101,6 @@ export class GallerySiteService {
    * @param site
    */
   private storeSite(site: GallerySiteModel): Promise<void> {
-
-    site.updateDate = <string>firebase.database['ServerValue'].TIMESTAMP;
 
     return this
       .db
