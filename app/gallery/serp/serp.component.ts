@@ -61,10 +61,6 @@ export class GallerySerpComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.subscriptions.push(
-      this.route.params.subscribe(params => this.onChangeRoute())
-    );
-
-    this.subscriptions.push(
       this.route.queryParams.subscribe(params => this.onChangeRoute())
     );
 
@@ -182,14 +178,12 @@ export class GallerySerpComponent implements OnInit, OnDestroy {
     // Consider site liked within this SERP
     this.likeSiteId.push(site.getId());
 
-    // Load from DB // TODO: improve into "subscribe once"
-    const subscription = this
+    // Load from DB
+    this
       .gallerySiteService
       .getSite(site.getId())
+      .first()
       .subscribe((siteDb: GallerySiteModel) => {
-
-        // Unsubscribe from getSite() observable
-        subscription.unsubscribe();
 
         // Increment like count
         siteDb.likeCount++;

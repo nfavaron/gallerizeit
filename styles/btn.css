@@ -16,3 +16,11 @@
 .btn:hover, .btn:focus, .btn.isLoading {
   background-color: #55bbff;
 }
+
+.btn.isLoading {
+  background-image: url('/assets/loader/white.gif');
+}
+
+.btn.isLoading span {
+  visibility: hidden;
+}

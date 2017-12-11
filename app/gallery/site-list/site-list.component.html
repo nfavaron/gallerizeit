@@ -31,6 +31,9 @@
           <a [routerLink]="['/browse']" [queryParams]="{ url: site.url }" class="info-line">{{site.getSourceName()}}</a>
         </div>
       </li>
+      <li *ngFor="let i of placeholders" class="placeholder">
+        <div>Placeholder #{{i}}</div>
+      </li>
     </ol>
   </div>
   <div class="footer">

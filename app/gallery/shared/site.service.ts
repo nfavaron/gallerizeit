@@ -4,11 +4,17 @@ import { Promise } from 'firebase';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { GallerySiteModel } from './site.model';
 import * as firebase from 'firebase/app';
-import { SiteListByType } from './types';
 import { GallerySiteFirebaseInterface } from './site.firebase.interface';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class GallerySiteService {
+
+  listByPopularity$: Observable<GallerySiteModel[]>;
+  listByPopularity: Subject<GallerySiteModel[]>;
+
+  listByUpdate$: Observable<GallerySiteModel[]>;
+  listByUpdate: Subject<GallerySiteModel[]>;
 
   /**
    *
@@ -16,26 +22,65 @@ export class GallerySiteService {
    */
   constructor(private db: AngularFireDatabase) {
 
+    this.listByPopularity = new Subject<GallerySiteModel[]>();
+    this.listByPopularity$ = this.listByPopularity.asObservable();
+
+    this.listByUpdate = new Subject<GallerySiteModel[]>();
+    this.listByUpdate$ = this.listByUpdate.asObservable();
   }
 
   /**
-   * Lists @limit sites ordered by @fieldName
+   * Lists @limit sites ordered by popularity score
    *
-   * @param fieldName
    * @param limit
    */
-  listSiteByMost(fieldName: SiteListByType, limit: number): Observable<GallerySiteModel[]> {
+  listSiteByPopularity(limit: number): Observable<GallerySiteModel[]> {
 
-    return this
+    // Get records from DB
+    this
       .db
       .list('/site', {
         query: {
-          orderByChild: fieldName,
+          orderByChild: 'likeCount',
           limitToLast: limit
         }
       })
       .map(sites => sites.map(this.getGallerySiteModel).reverse())
+      .subscribe(sites => {
+
+        this.listByPopularity.next(sites);
+
+      })
       ;
+
+    return this.listByPopularity$;
+  }
+
+  /**
+   * Lists @limit sites ordered by update date
+   *
+   * @param limit
+   */
+  listSiteByUpdate(limit: number): Observable<GallerySiteModel[]> {
+
+    // Get records from DB
+    this
+      .db
+      .list('/site', {
+        query: {
+          orderByChild: 'updateDate',
+          limitToLast: limit
+        }
+      })
+      .map(sites => sites.map(this.getGallerySiteModel).reverse())
+      .subscribe(sites => {
+
+        this.listByUpdate.next(sites);
+
+      })
+    ;
+
+    return this.listByUpdate$;
   }
 
   /**

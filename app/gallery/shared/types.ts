@@ -1,1 +1,1 @@
-export type SiteListByType = 'likeCount' | 'loadCount' | 'createDate' | 'updateDate';
+export type SiteSortType = 'popularity' | 'update';

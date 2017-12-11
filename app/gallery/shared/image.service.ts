@@ -174,11 +174,9 @@ export class GalleryImageService {
                   const subscription = this
                     .siteService
                     .getSite(site.getId())
+                    .first()
                     .subscribe(
                       (siteDb: GallerySiteModel) => {
-
-                        // Unsubscribe from getSite() observable
-                        subscription.unsubscribe();
 
                         // Is the site considered updated ?
                         const updated = siteDb.coverUrl !== site.coverUrl;
@@ -199,9 +197,6 @@ export class GalleryImageService {
                         ;
                       },
                       () => {
-
-                        // Unsubscribe from getSite() observable
-                        subscription.unsubscribe();
 
                         // Set load count
                         site.loadCount = 1;

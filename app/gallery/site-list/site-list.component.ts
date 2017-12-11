@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { GallerySiteModel } from '../shared/site.model';
 import { Input } from '@angular/core';
-import { SiteListByType } from '../shared/types';
+import { SiteSortType } from '../shared/types';
 import { GallerySiteService } from '../shared/site.service';
 import { Observable } from 'rxjs';
 
@@ -15,7 +15,7 @@ import { Observable } from 'rxjs';
 export class GallerySiteListComponent implements OnInit, OnDestroy {
 
   @Input() title: string;
-  @Input() sort: SiteListByType;
+  @Input() sort: SiteSortType;
   @Input() limit: number;
 
   /**
@@ -24,9 +24,7 @@ export class GallerySiteListComponent implements OnInit, OnDestroy {
   site$: Observable<GallerySiteModel[]>;
 
   /**
-   * Is the list loading more sites ?
-   *
-   * @type {boolean}
+   * Is the component loading more sites ?
    */
   isLoading: boolean = false;
 
@@ -34,6 +32,16 @@ export class GallerySiteListComponent implements OnInit, OnDestroy {
    * Total number of sites
    */
   total: number = 0;
+
+  /**
+   * List of placeholders to display while loading
+   */
+  placeholders: number[] = [];
+
+  /**
+   * Number of times the site list has been loaded
+   */
+  private loadCount: number = 0;
 
   /**
    * Observable subscriptions
@@ -53,10 +61,9 @@ export class GallerySiteListComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
 
-    // Subscribe to sites list
-    this.site$ = this.gallerySiteService.listSiteByMost(this.sort, this.limit);
+    // Load sites
     this.subscriptions.push(
-      this.site$.subscribe(sites => this.onListSite(sites))
+      this.loadSites().subscribe(sites => this.onLoadSites(sites))
     );
   }
 
@@ -80,13 +87,48 @@ export class GallerySiteListComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Load more sites
+   */
+  loadSites(): Observable<GallerySiteModel[]> {
+
+    // Increment load count
+    this.loadCount++;
+
+    // Generate placeholders
+    this.placeholders = new Array(this.limit);
+
+    if (this.sort === 'popularity') {
+
+      this.site$ = this.gallerySiteService.listSiteByPopularity(this.limit * this.loadCount);
+    }
+
+    if (this.sort === 'update') {
+
+
+      this.site$ = this.gallerySiteService.listSiteByUpdate(this.limit * this.loadCount);
+    }
+
+    // Load sites
+    return this.site$;
+  }
+
+  /**
    * Listed sites
    *
    * @param sites
    */
-  onListSite(sites: GallerySiteModel[]): void {
+  onLoadSites(sites: GallerySiteModel[]): void {
 
+    setTimeout(() => {
+        // Empty placeholders
+        this.placeholders = [];
+    }, 2000);
+
+    // Update count
     this.total = sites.length;
+
+    // Set component not loading
+    this.isLoading = false;
   }
 
   /**
@@ -94,6 +136,13 @@ export class GallerySiteListComponent implements OnInit, OnDestroy {
    */
   onClickLoadMore(): void {
 
-    console.log('onClickLoadMore');
+    if (this.isLoading === false) {
+
+      // Set component loading
+      this.isLoading = true;
+
+      // Load more sites
+      this.loadSites();
+    }
   }
 }
