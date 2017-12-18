@@ -1,0 +1,1093 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c3640b96-bb8e-4500-9fa9-7d424cf87d75" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/public/apple-touch-icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.firebaserc" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/TODO.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/core/authentication-not.guard.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/core/authentication.guard.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/core/authentication.service.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/core/invite.guard.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/core/message.model.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/core/message.service.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/core/message/message.component.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/core/message/message.component.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/core/message/message.component.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/invite/card/card.component.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/invite/card/card.component.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/invite/card/card.component.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/invite/form/form.component.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/invite/form/form.component.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/invite/form/form.component.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/invite/invite.module.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/invite/shared/invite.model.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/invite/shared/invite.service.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/league/form/form.component.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/league/form/form.component.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/league/form/form.component.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/league/leaderboard/leaderboard.component.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/league/leaderboard/leaderboard.component.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/league/leaderboard/leaderboard.component.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/league/league.module.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/league/shared/league.model.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/league/shared/league.service.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/match/form/form.component.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/match/form/form.component.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/match/form/form.component.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/match/match.module.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/match/shared/match.model.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/match/shared/match.service.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/match/shared/rating/elo.rating.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/match/shared/rating/rating.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/player/form/form.component.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/player/form/form.component.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/player/form/form.component.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/player/player.module.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/player/profile-match/profile-match.component.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/player/profile-match/profile-match.component.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/player/profile-match/profile-match.component.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/player/profile/profile.component.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/player/profile/profile.component.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/player/profile/profile.component.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/player/shared/player.model.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/player/shared/player.service.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/shared/date-format.pipe.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/shared/list-item-height-css.pipe.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/shared/menu/menu.component.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/shared/menu/menu.component.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/shared/menu/menu.component.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/shared/rank.pipe.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/user/dashboard/dashboard.component.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/user/dashboard/dashboard.component.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/user/shared/user.model.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/user/shared/user.service.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/user/user.module.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apple-touch-icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/icon/facebook.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/icon/google-plus.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/icon/ic_add_white_24px.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/icon/ic_arrow_back_black_24px.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/icon/ic_done_white_24px.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/icon/ic_games_white_24px.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/icon/ic_mode_edit_white_24px.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/icon/ic_more_vert_black_24px.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/icon/ic_search_black_24px.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/icon/linkedin.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/icon/logo-128x128.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/icon/logo-144x144.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/icon/logo-152x152.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/icon/logo-192x192.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/icon/logo-256x256.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/icon/logo-96x96.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/icon/logo.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/icon/twitter.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/000.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/001.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/002.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/003.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/004.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/005.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/006.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/007.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/008.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/009.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/010.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/011.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/012.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/013.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/014.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/015.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/016.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/017.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/018.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/019.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/020.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/021.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/022.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/023.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/024.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/025.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/026.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/027.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/028.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/029.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/030.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/031.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/032.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/033.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/034.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/035.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/036.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/037.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/038.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/039.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/040.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/041.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/042.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/043.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/044.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/045.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/league/046.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/base.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/coverage.lcov" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/prettify.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/prettify.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/sort-arrow-sprite.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/sorter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/src/app/app.component.ts.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/src/app/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/src/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/src/polyfills.ts.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/src/test.ts.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/e2e/app.e2e-spec.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protractor.config.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/styles/buttons.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/styles/fab.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/styles/form.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/styles/icon.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/styles/keyframes.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/styles/league.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/styles/list.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/styles/loader.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/styles/player.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/styles/presentation.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/styles/social.css" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/gallerizeit.css" afterPath="$PROJECT_DIR$/gallerizeit.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/gallerizeit.js" afterPath="$PROJECT_DIR$/gallerizeit.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/favicon.ico" afterPath="$PROJECT_DIR$/favicon.ico" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app-routing.module.ts" afterPath="$PROJECT_DIR$/app/app-routing.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.component.css" afterPath="$PROJECT_DIR$/app/app.component.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.component.html" afterPath="$PROJECT_DIR$/app/app.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.component.ts" afterPath="$PROJECT_DIR$/app/app.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.module.ts" afterPath="$PROJECT_DIR$/app/app.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.service.ts" afterPath="$PROJECT_DIR$/app/app.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/core/confirm/confirm.component.css" afterPath="$PROJECT_DIR$/app/core/confirm/confirm.component.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/core/confirm/confirm.component.html" afterPath="$PROJECT_DIR$/app/core/confirm/confirm.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/core/confirm/confirm.component.ts" afterPath="$PROJECT_DIR$/app/core/confirm/confirm.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/core/core.module.ts" afterPath="$PROJECT_DIR$/app/core/core.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/core/home/home.component.css" afterPath="$PROJECT_DIR$/app/core/home/home.component.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/core/home/home.component.html" afterPath="$PROJECT_DIR$/app/core/home/home.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/core/home/home.component.ts" afterPath="$PROJECT_DIR$/app/core/home/home.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/environments/environment.local.ts" afterPath="$PROJECT_DIR$/app/environments/environment.local.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/environments/environment.prod.ts" afterPath="$PROJECT_DIR$/app/environments/environment.prod.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/main.js" afterPath="$PROJECT_DIR$/app/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/shared/shared.module.ts" afterPath="$PROJECT_DIR$/app/shared/shared.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/firebase.json" afterPath="$PROJECT_DIR$/firebase.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/firebase.rules.json" afterPath="$PROJECT_DIR$/firebase.rules.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manifest.json" afterPath="$PROJECT_DIR$/manifest.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rollup-config.js" afterPath="$PROJECT_DIR$/rollup-config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/assets.js" afterPath="$PROJECT_DIR$/scripts/assets.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/css.js" afterPath="$PROJECT_DIR$/scripts/css.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/files.js" afterPath="$PROJECT_DIR$/scripts/files.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/html.js" afterPath="$PROJECT_DIR$/scripts/html.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/javascript.js" afterPath="$PROJECT_DIR$/scripts/javascript.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service-worker.js" afterPath="$PROJECT_DIR$/service-worker.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/main.css" afterPath="$PROJECT_DIR$/styles/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/systemjs.config.js" afterPath="$PROJECT_DIR$/systemjs.config.js" />
+    </list>
+    <ignored path="gallerizeit.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/dist/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="gallerizeit" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="468">
+              <caret line="127" column="32" lean-forward="false" selection-start-line="127" selection-start-column="32" selection-end-line="127" selection-end-column="32" />
+              <folding>
+                <element signature="e#2162#10635#1" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="firebase.rules.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/firebase.rules.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="4" column="21" lean-forward="false" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>--re</find>
+      <find>--res</find>
+      <find>--restore</find>
+      <find>~4.3.4</find>
+      <find>&quot;~4.3.4&quot;,</find>
+      <find>mo</find>
+      <find>modu</find>
+      <find>module</find>
+      <find>module.o</find>
+      <find>module.</find>
+      <find>module.id</find>
+      <find>'</find>
+      <find>'angu</find>
+      <find>'angula</find>
+      <find>'angular</find>
+      <find>'angularf</find>
+      <find>'angularfire</find>
+      <find>angularfire2/database</find>
+      <find>gallerizeit-d04f2</find>
+      <find>FirebaseServiceConfig</find>
+      <find>minil</find>
+      <find>gallerizeit-</find>
+      <find>gallerizeit-prod</find>
+      <find>gallerizeit-production</find>
+      <find>m</find>
+      <find>mini</find>
+      <find>minile</find>
+      <find>minilea</find>
+      <find>minileagu</find>
+      <find>gallerizeit</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>InviteService</replace>
+      <replace>inviteService</replace>
+      <replace>email</replace>
+      <replace>card</replace>
+      <replace>LeagueCardComponent</replace>
+      <replace>isLoadingLeagues</replace>
+      <replace>UserDashboardComponent</replace>
+      <replace>store</replace>
+      <replace>User</replace>
+      <replace>userKey</replace>
+      <replace>root.child('leagues_users/'+$leagueKey+'/'+auth.uid).exists()</replace>
+      <replace>getUserKeysSearch</replace>
+      <replace>root.child('leagues_users/'+$leagueKey+'/'+auth.uid).val() === 1</replace>
+      <replace>2.4.9</replace>
+      <replace>leagueSubscription</replace>
+      <replace>utf-8</replace>
+      <replace>Confirm</replace>
+      <replace>confirm</replace>
+      <replace>cssTopPlayerKey</replace>
+      <replace>player</replace>
+      <replace>playerList</replace>
+      <replace>playersIndex</replace>
+      <replace>playersOrder</replace>
+      <replace>invite</replace>
+      <replace>invites</replace>
+      <replace>invite.leagueKey</replace>
+      <replace>4.3.</replace>
+      <replace>&quot;^4.3.6&quot;,</replace>
+      <replace>gallerizeit-development</replace>
+      <replace>gallerizeit</replace>
+    </replaceStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$</dir>
+      <dir>$PROJECT_DIR$/node_modules</dir>
+      <dir>$PROJECT_DIR$/app</dir>
+      <dir>$PROJECT_DIR$/node_modules/angularfire2</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/app/shared/trust-css.pipe.ts" />
+        <option value="$PROJECT_DIR$/app/shared/list-item-height-css.pipe.ts" />
+        <option value="$PROJECT_DIR$/app/invite/card/card.component.html" />
+        <option value="$PROJECT_DIR$/app/invite/card/card.component.ts" />
+        <option value="$PROJECT_DIR$/app/league/leaderboard/leaderboard.component.ts" />
+        <option value="$PROJECT_DIR$/app/user/dashboard/dashboard.component.ts" />
+        <option value="$PROJECT_DIR$/app/match/form/form.component.html" />
+        <option value="$PROJECT_DIR$/app/match/form/form.component.ts" />
+        <option value="$PROJECT_DIR$/app/league/leaderboard/leaderboard.component.html" />
+        <option value="$PROJECT_DIR$/app/invite/form/form.component.html" />
+        <option value="$PROJECT_DIR$/app/user/shared/user.service.ts" />
+        <option value="$PROJECT_DIR$/app/invite/form/form.component.ts" />
+        <option value="$PROJECT_DIR$/styles/presentation.css" />
+        <option value="$PROJECT_DIR$/app/invite/form/form.component.css" />
+        <option value="$PROJECT_DIR$/TODO.md" />
+        <option value="$PROJECT_DIR$/app/player/profile/profile.component.ts" />
+        <option value="$PROJECT_DIR$/firebase-debug.log" />
+        <option value="$PROJECT_DIR$/app/core/authentication.service.ts" />
+        <option value="$PROJECT_DIR$/scripts/css.js" />
+        <option value="$PROJECT_DIR$/scripts/html.js" />
+        <option value="$PROJECT_DIR$/scripts/assets.js" />
+        <option value="$PROJECT_DIR$/scripts/files.js" />
+        <option value="$PROJECT_DIR$/gallerizeit.css" />
+        <option value="$PROJECT_DIR$/styles/main.css" />
+        <option value="$PROJECT_DIR$/app/app-routing.module.ts" />
+        <option value="$PROJECT_DIR$/app/app.module.ts" />
+        <option value="$PROJECT_DIR$/app/app.component.html" />
+        <option value="$PROJECT_DIR$/app/core/home/home.component.html" />
+        <option value="$PROJECT_DIR$/app/core/home/home.component.css" />
+        <option value="$PROJECT_DIR$/app/shared/shared.module.ts" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/app/core/core.module.ts" />
+        <option value="$PROJECT_DIR$/systemjs.config.js" />
+        <option value="$PROJECT_DIR$/app/shared/image/image.component.ts" />
+        <option value="$PROJECT_DIR$/app/core/header/header.component.ts" />
+        <option value="$PROJECT_DIR$/tsconfig.json" />
+        <option value="$PROJECT_DIR$/tsconfig-aot.json" />
+        <option value="$PROJECT_DIR$/app/core/confirm/confirm.component.ts" />
+        <option value="$PROJECT_DIR$/app/core/home/home.component.ts" />
+        <option value="$PROJECT_DIR$/app/app.service.ts" />
+        <option value="$PROJECT_DIR$/app/app.component.ts" />
+        <option value="$PROJECT_DIR$/app/app.component.css" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/firebase.json" />
+        <option value="$PROJECT_DIR$/.firebaserc" />
+        <option value="$PROJECT_DIR$/app/environments/environment.prod.ts" />
+        <option value="$PROJECT_DIR$/app/environments/environment.local.ts" />
+        <option value="$PROJECT_DIR$/rollup-config.js" />
+        <option value="$PROJECT_DIR$/service-worker.js" />
+        <option value="$PROJECT_DIR$/scripts/javascript.js" />
+        <option value="$PROJECT_DIR$/firebase.rules.json" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>true</other-services-enabled>
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NamedScopeManager">
+    <scope name="src" pattern="file[gallerizeit]:src//*" />
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/aot/node_modules" />
+    <handled-path value="$PROJECT_DIR$/functions/node_modules" />
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-1" />
+    <option name="y" value="-11" />
+    <option name="width" value="1922" />
+    <option name="height" value="1029" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>CSS</id>
+          </State>
+          <State>
+            <id>Code style issuesCSS</id>
+          </State>
+          <State>
+            <id>HTML</id>
+          </State>
+          <State>
+            <id>Invalid elementsCSS</id>
+          </State>
+          <State>
+            <id>Probable bugsCSS</id>
+          </State>
+          <State>
+            <id>Sass/SCSS</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>CssInvalidPseudoSelector</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gallerizeit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gallerizeit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../gallerizeit" />
+    <property name="editor.config.accepted" value="true" />
+    <property name="prop_add_unversioned_files" value="true" />
+    <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
+    <property name="nodejs_interpreter_path" value="/usr/bin/node" />
+    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
+    <property name="typescript-compiler-editor-notification" value="false" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="473" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="472" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="473" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="472" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="203" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="208" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="311" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="1168" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+    <property name="js.eslint.eslintPackage" value="" />
+    <property name="JavaScriptPreferStrict" value="false" />
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets" />
+      <recent name="$PROJECT_DIR$/public" />
+      <recent name="$PROJECT_DIR$/assets/icon" />
+      <recent name="$PROJECT_DIR$/app/user" />
+      <recent name="$PROJECT_DIR$/app/league" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/icon" />
+      <recent name="$PROJECT_DIR$/app/shared" />
+      <recent name="$PROJECT_DIR$/app" />
+      <recent name="$PROJECT_DIR$/app/core" />
+      <recent name="$PROJECT_DIR$/assets" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Node.js.angularfire2.js">
+    <configuration default="false" name="angularfire2.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="angularfire2.js" working-dir="$PROJECT_DIR$/scripts">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
+      <node-interpreter value="project" />
+      <working-dir value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="Node.js.angularfire2.js" />
+    </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Node.js.angularfire2.js" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value=",ALPHA_COMPARATOR" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-1" y="-11" width="1922" height="1029" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32897604" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.165625" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32897604" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32570806" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.175" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39978212" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23965141" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/app/environments/environment.js" />
+        <option value="$PROJECT_DIR$/app/app.service.js.map" />
+        <option value="$PROJECT_DIR$/app/app.service.config.js.map" />
+        <option value="$PROJECT_DIR$/app/main-aot.js.map" />
+        <option value="$PROJECT_DIR$/app/app-routing.module.js.map" />
+        <option value="$PROJECT_DIR$/app/main.js.map" />
+        <option value="$PROJECT_DIR$/app/app.module.js.map" />
+        <option value="$PROJECT_DIR$/app/app.component.js.map" />
+        <option value="$PROJECT_DIR$/app/core/core.module.js.map" />
+        <option value="$PROJECT_DIR$/app/core/page.service.js.map" />
+        <option value="$PROJECT_DIR$/app/shared/shared.module.js.map" />
+        <option value="$PROJECT_DIR$/app/shared/trust-css.pipe.js.map" />
+        <option value="$PROJECT_DIR$/app/environments/environment.prod.js.map" />
+        <option value="$PROJECT_DIR$/app/environments/environment.local.js.map" />
+        <option value="$PROJECT_DIR$/app/environments/environment.js.map" />
+        <option value="$PROJECT_DIR$/app/core/header/header.component.js.map" />
+        <option value="$PROJECT_DIR$/app/shared/image/image.component.js.map" />
+        <option value="$PROJECT_DIR$/app/core/model.js.map" />
+        <option value="$PROJECT_DIR$/app/core/model.js" />
+        <option value="$PROJECT_DIR$/app/app.component.js" />
+        <option value="$PROJECT_DIR$/app/app-routing.module.js" />
+        <option value="$PROJECT_DIR$/app/core/home/home.component.js" />
+        <option value="$PROJECT_DIR$/app/core/home/home.component.js.map" />
+        <option value="$PROJECT_DIR$/app/app.module.js" />
+        <option value="$PROJECT_DIR$/app/main-aot.js" />
+        <option value="$PROJECT_DIR$/app/app.service.js" />
+        <option value="$PROJECT_DIR$/app/app.service.config.js" />
+        <option value="$PROJECT_DIR$/app/core/core.module.js" />
+        <option value="$PROJECT_DIR$/app/core/page.service.js" />
+        <option value="$PROJECT_DIR$/app/shared/trust-css.pipe.js" />
+        <option value="$PROJECT_DIR$/app/shared/shared.module.js" />
+        <option value="$PROJECT_DIR$/app/core/header/header.component.js" />
+        <option value="$PROJECT_DIR$/app/shared/image/image.component.js" />
+        <option value="$PROJECT_DIR$/app/environments/environment.local.js" />
+        <option value="$PROJECT_DIR$/app/environments/environment.prod.js" />
+        <option value="$PROJECT_DIR$/app/core/confirm.model.js.map" />
+        <option value="$PROJECT_DIR$/app/core/confirm.service.js.map" />
+        <option value="$PROJECT_DIR$/app/core/confirm.model.js" />
+        <option value="$PROJECT_DIR$/app/core/confirm.service.js" />
+        <option value="$PROJECT_DIR$/app/core/confirm/confirm.component.js.map" />
+        <option value="$PROJECT_DIR$/app/core/confirm/confirm.component.js" />
+        <option value="$PROJECT_DIR$/aot/node_modules/@angular/core/core.ngfactory.js" />
+        <option value="$PROJECT_DIR$/aot/node_modules/@angular/core/core.ngfactory.js.map" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="Review all 404 scenarios" />
+    <MESSAGE value="Improve page header setting" />
+    <MESSAGE value="Debug invite message success/failure" />
+    <MESSAGE value="WIP emoji presentation page" />
+    <MESSAGE value="Fix top menu scroll iOS" />
+    <MESSAGE value="Improved no data explanations" />
+    <MESSAGE value="Updated TODO" />
+    <MESSAGE value="Menu positioning" />
+    <MESSAGE value="Google Analytics" />
+    <MESSAGE value="Removed safari cache manifest" />
+    <MESSAGE value="CSS update" />
+    <MESSAGE value="Confirm + Leave league" />
+    <MESSAGE value="League ACL route guard" />
+    <MESSAGE value="Invite card style improvement" />
+    <MESSAGE value="Delete match" />
+    <MESSAGE value="Delete league if last" />
+    <MESSAGE value="Delete player" />
+    <MESSAGE value="Confirm on decline invite" />
+    <MESSAGE value="Version number" />
+    <MESSAGE value="Prevent text selection" />
+    <MESSAGE value="Leaderboard movement on update" />
+    <MESSAGE value="Dashboard movement on update" />
+    <MESSAGE value="Debug invite accept/refuse redirect + harmonise list-item class usage" />
+    <MESSAGE value="Debug user search + release" />
+    <MESSAGE value="Firebase hosting" />
+    <option name="LAST_COMMIT_MESSAGE" value="Firebase hosting" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/scripts/css.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="25" column="30" lean-forward="false" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/icon/twitter.svg" />
+    <entry file="file://$PROJECT_DIR$/scripts/assets.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="36" lean-forward="false" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/directories.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/loader.css" />
+    <entry file="file://$PROJECT_DIR$/styles/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/files.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/environment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/angularfire2/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/shared/rank.pipe.ts" />
+    <entry file="file://$PROJECT_DIR$/app/shared/trust-css.pipe.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/shared/menu/menu.component.html" />
+    <entry file="file://$PROJECT_DIR$/app/core/model.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/core/home/home.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browserconfig.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/shared/shared.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="23" column="18" lean-forward="false" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/angularfire2/database/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/angularfire2/angularfire2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/angularfire2/database/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/core/core.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="55" lean-forward="false" selection-start-line="3" selection-start-column="55" selection-end-line="3" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/main.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="24" lean-forward="false" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/core/confirm/confirm.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="22" lean-forward="false" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsconfig-aot.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="5" lean-forward="false" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsconfig.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="5" lean-forward="false" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/main-aot.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/core/header/header.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="22" lean-forward="false" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/systemjs.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="43" column="7" lean-forward="false" selection-start-line="43" selection-start-column="7" selection-end-line="43" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/core/header/header.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/core/home/home.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/shared/image/image.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="12" lean-forward="true" selection-start-line="2" selection-start-column="12" selection-end-line="3" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/app-routing.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="33" lean-forward="false" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/core/home/home.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="25" column="4" lean-forward="false" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/app.service.config.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="29" lean-forward="false" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/app.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="39" column="23" lean-forward="true" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/app.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="21" column="6" lean-forward="false" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/app.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/app.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="35" column="29" lean-forward="false" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gallerizeit.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="26" lean-forward="false" selection-start-line="0" selection-start-column="26" selection-end-line="0" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.firebaserc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="38" lean-forward="false" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/firebase.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.editorconfig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/environments/environment.local.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="24" lean-forward="false" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rollup-config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="23" lean-forward="false" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service-worker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="15" lean-forward="false" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/javascript.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="18" lean-forward="false" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bs-config-dist.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/environments/environment.prod.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="24" lean-forward="false" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="127" column="32" lean-forward="false" selection-start-line="127" selection-start-column="32" selection-end-line="127" selection-end-column="32" />
+          <folding>
+            <element signature="e#2162#10635#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/firebase.rules.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="21" lean-forward="false" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <last-edited>src</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+          <order>
+            <scope name="src" />
+          </order>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
