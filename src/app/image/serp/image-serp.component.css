@@ -1,8 +1,4 @@
-.body {
-
-}
-
-.list {
+.images {
   display: flex;
   justify-content: flex-start;
   width: 100%;
@@ -21,13 +17,34 @@ article {
   height: 100%;
   background-repeat: no-repeat;
   background-position: center center;
-  -moz-background-size: cover;
   background-size: cover;
 }
 
-.placeholder {
+.image-placeholder {
   background: #55bbff;
   opacity: 0.1;
+}
+
+.label {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+a.url {
+  color: #55bbff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 8px;
+  line-height: 24px;
+  border-radius: 12px;
+  background: transparent;
+  transition: background 300ms ease-out, color 300ms ease-out;
+}
+
+a.url:hover {
+  background: #ededed;
+  color: #444444;
 }
 
 @media (min-width: 1000px) {

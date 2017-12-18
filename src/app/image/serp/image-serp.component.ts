@@ -25,9 +25,9 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
   images: ImageModel[] = [];
 
   /**
-   * Number of sites loaded
+   * List of URL to crawl
    */
-  siteCount: number = 0;
+  urlList: string[] = [];
 
   /**
    * Site IDs that have been liked on this SERP
@@ -125,25 +125,27 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
     this.images = [];
     this.imageService.reset();
 
+    // Reset URL list
+    this.urlList = [];
+
     // Get URL list from query params
     const urlQueryParam = (<BehaviorSubject<Params>>this.route.queryParams).value['url'];
-    let urlList: string[];
 
     // Make sure URL list is an array
-    urlList = Array.isArray(urlQueryParam) ? urlQueryParam : [urlQueryParam];
+    this.urlList = Array.isArray(urlQueryParam) ? urlQueryParam : [urlQueryParam];
 
     // Keep only valid URLs
-    urlList = urlList.filter((url) => url.match(/^https?:\/\/([a-z0-9\-]+\.)?[a-z0-9\-]+\.[a-z]+/gi));
+    this.urlList = this.urlList.filter((url) => url.match(/^https?:\/\/([a-z0-9\-]+\.)?[a-z0-9\-]+\.[a-z]+/gi));
 
     // Invalid URL list
-    if (!urlList || urlList.length === 0) {
+    if (!this.urlList || this.urlList.length === 0) {
 
       // Navigate home
       this.router.navigate(['']);
     }
 
     // Add each URL as image source
-    urlList.forEach((url: string) => this.imageService.addSite(new SiteModel(url)));
+    this.urlList.forEach((url: string) => this.imageService.addSite(new SiteModel(url)));
 
     // Auto load more images if needed (after DOM updated)
     setTimeout(() => this.autoload());
@@ -155,9 +157,6 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
    * @param site
    */
   onLoadSite(site: SiteModel): void {
-
-    // Increment site count
-    this.siteCount++;
 
     // Load from DB
     this

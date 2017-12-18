@@ -3,13 +3,15 @@
     <div class="header">
       <div>
         <h2>
-          <span>Browsing {{siteCount}} {{siteCount == 1 ? 'site' : 'sites'}}</span>
+          <span>Browsing {{urlList.length}} {{urlList.length == 1 ? 'site only' : 'sites at a time'}}</span>
         </h2>
-        <span class="label">{{siteCount}} {{siteCount == 1 ? 'site' : 'sites'}}</span>
+        <div class="label">
+          <a *ngFor="let url of urlList;" href="{{url}}" target="_blank" class="url">{{url.replace('^https?://', '')}}</a>
+        </div>
       </div>
     </div>
     <div class="body">
-      <div class="list">
+      <div class="images">
         <article *ngFor="let image of images; trackBy: trackByIndex;">
           <a
             href="{{image.getImageLink().getUrl()}}"
@@ -19,6 +21,14 @@
             (click)="onClickImage(image)"
           ></a>
         </article>
+        <article><div class="image image-placeholder"></div></article>
+        <article><div class="image image-placeholder"></div></article>
+        <article><div class="image image-placeholder"></div></article>
+        <article><div class="image image-placeholder"></div></article>
+        <article><div class="image image-placeholder"></div></article>
+        <article><div class="image image-placeholder"></div></article>
+        <article><div class="image image-placeholder"></div></article>
+        <article><div class="image image-placeholder"></div></article>
       </div>
     </div>
   </div>
