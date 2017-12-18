@@ -1,0 +1,13 @@
+main {
+  min-height: 100%;
+  padding-top: 50px;
+  padding-bottom: 300px;
+  transition: padding-top 300ms ease-out;
+}
+
+@media (min-width: 800px) {
+
+  main {
+    padding-top: 80px;
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "rules": {
+    "app": {
+      ".read": "true",
+      ".write": "false"
+    },
+    "site": {
+      ".read": "true",
+      ".write": "true",
+      ".indexOn": ["likeCount", "updateDate"]
+    }
+  }
+}

@@ -1,0 +1,25 @@
+<section class="content">
+  <div class="panel">
+    <div class="header">
+      <div>
+        <h2>
+          <span>Browsing {{siteCount}} {{siteCount == 1 ? 'site' : 'sites'}}</span>
+        </h2>
+        <span class="label">{{siteCount}} {{siteCount == 1 ? 'site' : 'sites'}}</span>
+      </div>
+    </div>
+    <div class="body">
+      <div class="list">
+        <article *ngFor="let image of images; trackBy: trackByIndex;">
+          <a
+            href="{{image.getImageLink().getUrl()}}"
+            target="_blank"
+            class="image"
+            [style.background-image]="'url(' + image.getSrc() + ')' | trustCss"
+            (click)="onClickImage(image)"
+          ></a>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>

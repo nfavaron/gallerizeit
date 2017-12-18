@@ -1,0 +1,73 @@
+html {
+  height: 100%;
+}
+
+html * {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  border: none;
+  box-sizing: border-box;
+}
+
+*:not(input):not(textarea) {
+  user-select: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+form {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+section {
+  display: block;
+  width: 100%;
+  transition: padding 300ms ease-out, max-width 300ms ease-out;
+}
+
+@media (min-width: 1024px) {
+
+  section {
+    padding: 0 10px;
+  }
+
+  section.content {
+    padding-top: 15px;
+  }
+}
+
+@media (min-width: 1200px) {
+
+  section {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 1220px) {
+
+  section {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  section.content {
+    padding-top: 15px;
+  }
+}
+
+@media (min-width: 1400px) {
+
+  section {
+    width: 85%;
+    max-width: 2000px;
+  }
+}

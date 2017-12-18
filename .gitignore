@@ -41,11 +41,18 @@ testem.log
 .DS_Store
 Thumbs.db
 
+# transpiled files
+src/**/*js
+
 # config
 src/environments/*.ts
 
+# firebase
+firebase-debug.log
+
 # firebase functions dependencies
 functions/node_modules
+functions/firebase-debug.log
 
 # firebase hosting
 dist

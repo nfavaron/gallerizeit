@@ -1,0 +1,15 @@
+<div>
+  <div class="banner">
+    <section>
+      <strong>Animals, cars, anime...</strong>
+      <span>Collecting wallpapers ?</span>
+      <h1>What if you could browse all your favourite wallpaper websites simultaneously ?</h1>
+      <a [routerLink]="['/browse']" [queryParams]="{ url: demoUrl }" class="btn">Try now!</a>
+    </section>
+    <div></div>
+  </div>
+  <section class="content">
+    <app-site-list title="Most popular sites" sort="popularity" [limit]="8"></app-site-list>
+    <app-site-list title="Recently updated sites" sort="update" [limit]="8"></app-site-list>
+  </section>
+</div>
