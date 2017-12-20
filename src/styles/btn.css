@@ -13,7 +13,7 @@
   transition: background-color 300ms ease-out, color 300ms ease-out;
 }
 
-.btn:hover, .btn:focus, .btn.isLoading {
+.btn:hover, .btn.isLoading {
   background-color: #55bbff;
 }
 

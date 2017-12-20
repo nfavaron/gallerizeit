@@ -46,12 +46,11 @@ export class SiteService {
         }
       })
       .map(sites => sites.map(this.getSiteModel).reverse())
-      .subscribe(sites => {
-
-        this.listByPopularity.next(sites);
-
-      })
-      ;
+      .subscribe(
+        sites => this.listByPopularity.next(sites),
+        e => this.listByPopularity.next([])
+      )
+    ;
 
     return this.listByPopularity$;
   }
@@ -73,11 +72,10 @@ export class SiteService {
         }
       })
       .map(sites => sites.map(this.getSiteModel).reverse())
-      .subscribe(sites => {
-
-        this.listByUpdate.next(sites);
-
-      })
+      .subscribe(
+        sites => this.listByUpdate.next(sites),
+        e => this.listByUpdate.next([])
+      )
     ;
 
     return this.listByUpdate$;

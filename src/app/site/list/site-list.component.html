@@ -38,7 +38,14 @@
   </div>
   <div class="footer">
     <div>
-      <button class="btn" (click)="onClickLoadMore()" [class.isLoading]="isLoading"><span>Load more</span></button>
+      <button
+        *ngIf="hasMore"
+        class="btn"
+        [class.isLoading]="isLoading"
+        (click)="onClickLoadMore()"
+      >
+        <span>Load more</span>
+      </button>
     </div>
   </div>
 </div>

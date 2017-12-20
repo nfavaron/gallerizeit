@@ -26,6 +26,11 @@ export class SiteListComponent implements OnInit, OnDestroy {
   isLoading: boolean = false;
 
   /**
+   * Has more sites to load
+   */
+  hasMore: boolean = true;
+
+  /**
    * Total number of sites
    */
   total: number = 0;
@@ -116,16 +121,17 @@ export class SiteListComponent implements OnInit, OnDestroy {
    */
   onLoadSites(sites: SiteModel[]): void {
 
-    setTimeout(() => {
-      // Empty placeholders
-      this.placeholders = [];
-    }, 2000);
+    // Empty placeholders
+    this.placeholders = [];
 
-    // Update count
-    this.total = sites.length;
+    // Has more sites to load
+    this.hasMore = this.total !== sites.length;
 
     // Set component not loading
     this.isLoading = false;
+
+    // Update count
+    this.total = sites.length;
   }
 
   /**
