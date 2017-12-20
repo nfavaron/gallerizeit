@@ -11,7 +11,7 @@ import { SiteService } from '../../core/site/site.service';
 })
 export class SiteListComponent implements OnInit, OnDestroy {
 
-  @Input() title: string;
+  @Input() heading: string;
   @Input() sort: 'popularity' | 'update';
   @Input() limit: number;
 
