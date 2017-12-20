@@ -14,7 +14,7 @@
         <a [routerLink]="['/browse']" [queryParams]="{ url: site.url }" class="mask" title="{{site.title}}">
           <div
             class="cover"
-            [class.loaded]="coverUrlLoaded.indexOf(site.coverUrl) > -1"
+            [class.is-loaded]="coverUrlLoaded.indexOf(site.coverUrl) > -1"
             [style.background-image]="'url(' + site.coverUrl + ')' | trustCss"
           ></div>
           <div class="likes">
@@ -35,8 +35,15 @@
           <div class="info-line">{{site.loadCount | number}} {{site.loadCount == 1 ? 'view' : 'views'}} &bull; 1 month ago</div><!-- TODO date -->
         </div>
       </li>
-      <li *ngFor="let i of placeholders" class="site placeholder">
-        <div>Placeholder #{{i}}</div>
+      <li *ngFor="let i of placeholders" class="site">
+        <div class="mask">
+          <div class="cover"></div>
+        </div>
+        <div class="info">
+          <div class="title is-placeholder"></div>
+          <div class="info-line is-placeholder"></div>
+          <div class="info-line is-placeholder"></div>
+        </div>
       </li>
     </ol>
   </div>
