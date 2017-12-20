@@ -41,6 +41,11 @@ export class SiteListComponent implements OnInit, OnDestroy {
   placeholders: number[] = [];
 
   /**
+   * List of cover URL images loaded
+   */
+  coverUrlLoaded: string[] = [];
+
+  /**
    * Number of times the site list has been loaded
    */
   private loadCount: number = 0;
@@ -132,6 +137,18 @@ export class SiteListComponent implements OnInit, OnDestroy {
 
     // Update count
     this.total = sites.length;
+
+    // Load cover URL
+    sites
+      .filter(site => this.coverUrlLoaded.indexOf(site.coverUrl) === -1)
+      .forEach(site => {
+
+        const img = new Image();
+
+        img.onload = () => this.coverUrlLoaded.push(site.coverUrl);
+        img.src = site.coverUrl;
+      })
+    ;
   }
 
   /**

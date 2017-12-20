@@ -12,7 +12,11 @@
     <ol class="list">
       <li class="site" *ngFor="let site of site$ | async; trackBy: trackById;">
         <a [routerLink]="['/browse']" [queryParams]="{ url: site.url }" class="mask" title="{{site.title}}">
-          <div class="cover loaded" [style.background-image]="'url(' + site.coverUrl + ')' | trustCss"></div>
+          <div
+            class="cover"
+            [class.loaded]="coverUrlLoaded.indexOf(site.coverUrl) > -1"
+            [style.background-image]="'url(' + site.coverUrl + ')' | trustCss"
+          ></div>
           <div class="likes">
             <span class="i i-like"></span>
             <span>{{site.likeCount | number}}</span>
@@ -27,11 +31,11 @@
               class="title"
             >{{site.title}}</a>
           </h3>
-          <div class="info-line">{{site.loadCount | number}} {{site.loadCount == 1 ? 'view' : 'views'}} &bull; 1 month ago</div><!-- TODO date -->
           <a [routerLink]="['/browse']" [queryParams]="{ url: site.url }" class="info-line">{{site.getSourceName()}}</a>
+          <div class="info-line">{{site.loadCount | number}} {{site.loadCount == 1 ? 'view' : 'views'}} &bull; 1 month ago</div><!-- TODO date -->
         </div>
       </li>
-      <li *ngFor="let i of placeholders" class="placeholder">
+      <li *ngFor="let i of placeholders" class="site placeholder">
         <div>Placeholder #{{i}}</div>
       </li>
     </ol>
