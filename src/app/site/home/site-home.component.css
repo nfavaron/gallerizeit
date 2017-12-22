@@ -134,6 +134,7 @@
   .banner {
     padding: 65px 0;
   }
+
   .banner strong {
     font-size: 24px;
   }
@@ -158,5 +159,17 @@
 
   .banner {
     padding: 130px 0;
+  }
+
+  .banner strong {
+    font-size: 24px;
+  }
+
+  .banner span {
+    font-size: 32px;
+  }
+
+  .banner h1 {
+    font-size: 20px;
   }
 }

@@ -28,6 +28,7 @@ export class SiteModel {
   public isInitialized: boolean = false;
   public isLoaded: boolean = false;
   public isLoading: boolean = false;
+  public crawlCount: number = 0;
 
   private id: string = '';
   private urlParser: UrlParser;
@@ -82,6 +83,18 @@ export class SiteModel {
     return (this.getUrlParser().getHost() + this.getUrlParser().getPath())
       .replace(/^www\./gi, '')
       .replace(/\/$/gi, '')
+      ;
+  }
+
+  /**
+   * Returns the "site name", the trimmed down version of the URL
+   */
+  getSiteName(): string {
+
+    return this
+      .getUrl()
+      .split('?')[0]
+      .replace(/^https?:\/\//, '')
       ;
   }
 }

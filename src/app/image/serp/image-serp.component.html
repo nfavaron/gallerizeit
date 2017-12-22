@@ -3,32 +3,34 @@
     <div class="header">
       <div>
         <h2>
-          <span>Browsing {{urlList.length}} {{urlList.length == 1 ? 'site only' : 'sites at a time'}}</span>
+          <span>You are browsing photos from {{sites.length}} {{sites.length == 1 ? 'site only' : 'sites'}}:</span>
         </h2>
         <div class="label">
-          <a *ngFor="let url of urlList;" href="{{url}}" target="_blank" class="url">{{url.replace('^https?://', '')}}</a>
+          <a *ngFor="let site of sites;" href="{{site.getUrl()}}" target="_blank" class="site">{{site.getSiteName()}}</a>
         </div>
       </div>
     </div>
     <div class="body">
-      <div class="images">
-        <article *ngFor="let image of images; trackBy: trackByIndex;">
+      <div class="results">
+        <article
+          *ngFor="let result of results; trackBy: trackByIndex;"
+          [class.is-error]="!!result.error"
+          [class.is-image]="!result.error"
+        >
           <a
-            href="{{image.getImageLink().getUrl()}}"
+            *ngIf="!result.error"
+            href="{{result.image.getImageLink().getUrl()}}"
             target="_blank"
             class="image"
-            [style.background-image]="'url(' + image.getSrc() + ')' | trustCss"
-            (click)="onClickImage(image)"
+            [style.background-image]="'url(' + result.image.getSrc() + ')' | trustCss"
+            (click)="onClickImage(result.image)"
           ></a>
+          <div *ngIf="!!result.error" class="error">
+            <div class="error-line"></div>
+            <span class="error-text">{{result.error.getMessage()}}</span>
+            <div class="error-line"></div>
+          </div>
         </article>
-        <article><div class="image image-placeholder"></div></article>
-        <article><div class="image image-placeholder"></div></article>
-        <article><div class="image image-placeholder"></div></article>
-        <article><div class="image image-placeholder"></div></article>
-        <article><div class="image image-placeholder"></div></article>
-        <article><div class="image image-placeholder"></div></article>
-        <article><div class="image image-placeholder"></div></article>
-        <article><div class="image image-placeholder"></div></article>
       </div>
     </div>
   </div>

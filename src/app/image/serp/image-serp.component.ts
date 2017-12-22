@@ -2,10 +2,11 @@ import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { ImageModel } from '../shared/image.model';
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ImageService } from '../shared/image.service';
+import { CrawlerService } from '../shared/crawler.service';
 import { SiteService } from '../../core/site/site.service';
 import { SiteModel } from '../../core/site/site.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { ErrorModel } from '../shared/error.model';
 
 @Component({
   selector: 'app-image-serp',
@@ -20,14 +21,17 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
   static AUTOLOAD_THRESHOLD: number = 2;
 
   /**
-   * List of images
+   * List of results
    */
-  images: ImageModel[] = [];
+  results: Array<{
+    image?: ImageModel,
+    error?: ErrorModel
+  }> = [];
 
   /**
-   * List of URL to crawl
+   * List of sites
    */
-  urlList: string[] = [];
+  sites: SiteModel[] = [];
 
   /**
    * Site IDs that have been liked on this SERP
@@ -43,12 +47,12 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
    *
    * @param router
    * @param route
-   * @param imageService
+   * @param crawlerService
    * @param siteService
    */
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private imageService: ImageService,
+              private crawlerService: CrawlerService,
               private siteService: SiteService) {
 
   }
@@ -63,11 +67,15 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
     );
 
     this.subscriptions.push(
-      this.imageService.image$.subscribe((image: ImageModel) => this.onLoadImage(image))
+      this.crawlerService.image$.subscribe((image: ImageModel) => this.onLoadImage(image))
     );
 
     this.subscriptions.push(
-      this.imageService.site$.subscribe((site: SiteModel) => this.onLoadSite(site))
+      this.crawlerService.site$.subscribe((site: SiteModel) => this.onLoadSite(site))
+    );
+
+    this.subscriptions.push(
+      this.crawlerService.error$.subscribe((error: ErrorModel) => this.onLoadError(error))
     );
   }
 
@@ -101,7 +109,7 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
     if (scrollable - scrollTop < window.innerHeight * ImageSerpComponent.AUTOLOAD_THRESHOLD) {
 
       // Load more images
-      this.imageService.loadImages();
+      this.crawlerService.load();
     }
   }
 
@@ -121,31 +129,39 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
    */
   onChangeRoute(): void {
 
-    // Reset images list & service
-    this.images = [];
-    this.imageService.reset();
+    // Reset results list
+    this.results = [];
 
-    // Reset URL list
-    this.urlList = [];
+    // Reset sites list
+    this.sites = [];
+
+    // Reset crawler
+    this.crawlerService.reset();
 
     // Get URL list from query params
     const urlQueryParam = (<BehaviorSubject<Params>>this.route.queryParams).value['url'];
 
-    // Make sure URL list is an array
-    this.urlList = Array.isArray(urlQueryParam) ? urlQueryParam : [urlQueryParam];
-
     // Keep only valid URLs
-    this.urlList = this.urlList.filter((url) => url.match(/^https?:\/\/([a-z0-9\-]+\.)?[a-z0-9\-]+\.[a-z]+/gi));
+    const urlList =
+      (Array.isArray(urlQueryParam) ? urlQueryParam : [urlQueryParam])
+      .filter((url) => url.match(/^https?:\/\/([a-z0-9\-]+\.)?[a-z0-9\-]+\.[a-z]+/gi))
+    ;
 
     // Invalid URL list
-    if (!this.urlList || this.urlList.length === 0) {
+    if (!urlList || urlList.length === 0) {
 
       // Navigate home
       this.router.navigate(['']);
     }
 
-    // Add each URL as image source
-    this.urlList.forEach((url: string) => this.imageService.addSite(new SiteModel(url)));
+    // Add each URL as crawler source
+    urlList.forEach((url: string) => {
+
+      const site = new SiteModel(url);
+
+      this.sites.push(site);
+      this.crawlerService.addSite(site);
+    });
 
     // Auto load more images if needed (after DOM updated)
     setTimeout(() => this.autoload());
@@ -208,12 +224,22 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
 
     const img = new Image();
 
-    img.onload = () => this.images.push(image);
+    img.onload = () => this.results.push({image: image});
 
     img.src = image.getSrc();
 
     // Load more images
     this.autoload();
+  }
+
+  /**
+   * Loaded an error
+   *
+   * @param error
+   */
+  onLoadError(error: ErrorModel): void {
+
+    this.results.push({error: error});
   }
 
   /**

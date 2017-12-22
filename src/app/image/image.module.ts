@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 import { ImageRoutingModule } from './image-routing.module';
 import { ImageSerpComponent } from './serp/image-serp.component';
-import { ImageService } from './shared/image.service';
+import { CrawlerService } from './shared/crawler.service';
 
 @NgModule({
   imports: [
@@ -14,7 +14,7 @@ import { ImageService } from './shared/image.service';
     ImageSerpComponent
   ],
   providers: [
-    ImageService
+    CrawlerService
   ]
 })
 export class ImageModule { }

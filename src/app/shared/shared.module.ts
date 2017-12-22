@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TrustCssPipe } from './trust-css.pipe';
-import { ImageComponent } from './image/image.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CensorshipKeyword } from './censorship/censorship-keyword';
 
@@ -13,14 +12,12 @@ import { CensorshipKeyword } from './censorship/censorship-keyword';
     HttpClientModule
   ],
   declarations: [
-    TrustCssPipe,
-    ImageComponent
+    TrustCssPipe
   ],
   exports: [
     CommonModule,
     RouterModule,
-    TrustCssPipe,
-    ImageComponent
+    TrustCssPipe
   ],
   providers: [
     CensorshipKeyword

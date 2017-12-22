@@ -145,6 +145,7 @@ export class SiteListComponent implements OnInit, OnDestroy {
 
         const img = new Image();
 
+        // Async image loading
         img.onload = () => this.coverUrlLoaded.push(site.coverUrl);
         img.src = site.coverUrl;
       })
