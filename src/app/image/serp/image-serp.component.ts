@@ -72,9 +72,6 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
 
-    // Generate placeholders
-    this.placeholders = new Array(5);
-
     this.subscriptions.push(
       this.route.queryParams.subscribe(params => this.onChangeRoute())
     );
@@ -154,6 +151,9 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
    * Changed route
    */
   onChangeRoute(): void {
+
+    // Generate placeholders
+    this.placeholders = new Array(5);
 
     // Reset results list
     this.results = [];

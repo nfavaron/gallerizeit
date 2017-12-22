@@ -47,6 +47,11 @@ export class CrawlerService {
   private srcLoaded: { [key: string]: boolean } = {};
 
   /**
+   * Last reset timestamp, acting as unique identifier
+   */
+  private id: number;
+
+  /**
    *
    * @param httpDownloaderService
    * @param censorshipKeyword
@@ -58,9 +63,19 @@ export class CrawlerService {
   }
 
   /**
+   * Returns crawler ID
+   */
+  getId(): number {
+
+    return this.id;
+  }
+
+  /**
    * Reset the crawler
    */
   reset(): void {
+
+    this.id = Date.now();
 
     this.sites = [];
     this.srcLoaded = {};
@@ -194,6 +209,17 @@ export class CrawlerService {
 
         } else {
 
+          // Prevent more image loadings
+          site.hasMorePages = false;
+
+          // No links detected
+          if (links.length === 0) {
+
+            // Emit an error
+            this.error.next(new ErrorModel(site, ErrorModel.MSG_NO_LOAD));
+            return;
+          }
+
           // Emit an error
           this.error.next(
             new ErrorModel(
@@ -201,9 +227,6 @@ export class CrawlerService {
               site.crawlCount === 1 ? ErrorModel.MSG_NO_IMAGE : ErrorModel.MSG_NO_MORE_IMAGE
             )
           );
-
-          // Prevent more image loadings
-          site.hasMorePages = false;
         }
       })
       .catch(e => {

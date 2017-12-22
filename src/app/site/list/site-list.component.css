@@ -55,7 +55,7 @@ h2 {
   width: 100%;
   height: inherit;
   background-size: cover;
-  background-position: center center;
+  background-position: center top;
   background-repeat: no-repeat;
   opacity: 0.0;
   transition: opacity 300ms ease-out;

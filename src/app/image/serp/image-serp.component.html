@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="body">
-      <div *ngIf="this.crawledSites.length > 0 && this.placeholders.length > 0" class="results">
+      <div *ngIf="this.placeholders.length > 0" class="results">
         <article *ngFor="let placeholder of placeholders;" class="is-image is-placeholder">
           <div class="image"></div>
         </article>
@@ -43,9 +43,6 @@
             <div class="error-line"></div>
           </div>
         </article>
-      </div>
-      <div *ngIf="this.crawledSites.length === 0" class="no-results">
-        <div class="emoticon"></div>
       </div>
       <div class="no-results">
         <a *ngIf="this.crawledSites.length === 0" [routerLink]="['']" class="btn">Back to homepage</a>
