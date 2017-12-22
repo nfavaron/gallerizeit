@@ -34,6 +34,11 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
   sites: SiteModel[] = [];
 
   /**
+   * Sites currently crawled
+   */
+  crawledSites: SiteModel[] = [];
+
+  /**
    * Site IDs that have been liked on this SERP
    */
   private siteIdLiked: string[] = [];
@@ -92,6 +97,11 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
    */
   autoload(): void {
 
+    // No more crawled sites
+    if (this.crawledSites.length === 0) {
+      return;
+    }
+
     // TODO: Find out how to get reference on window, without creating a dummy WindowService...
 
     const documentHeight = Math.max(
@@ -111,6 +121,14 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
       // Load more images
       this.crawlerService.load();
     }
+  }
+
+  /**
+   * Update crawled sites list
+   */
+  updateCrawledSites(): void {
+
+    this.crawledSites = this.crawlerService.getCrawledSites();
   }
 
   /**
@@ -160,6 +178,7 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
       const site = new SiteModel(url);
 
       this.sites.push(site);
+      this.crawledSites.push(site);
       this.crawlerService.addSite(site);
     });
 
@@ -173,6 +192,9 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
    * @param site
    */
   onLoadSite(site: SiteModel): void {
+
+    // Check if more results to load
+    this.updateCrawledSites();
 
     // Load from DB
     this
@@ -222,10 +244,15 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
    */
   onLoadImage(image: ImageModel): void {
 
+    // Check if more results to load
+    this.updateCrawledSites();
+
     const img = new Image();
 
+    // On image load, add result
     img.onload = () => this.results.push({image: image});
 
+    // Load image async
     img.src = image.getSrc();
 
     // Load more images
@@ -239,6 +266,10 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
    */
   onLoadError(error: ErrorModel): void {
 
+    // Check if more results to load
+    this.updateCrawledSites();
+
+    // Add result
     this.results.push({error: error});
   }
 

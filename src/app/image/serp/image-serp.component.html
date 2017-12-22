@@ -11,6 +11,9 @@
       </div>
     </div>
     <div class="body">
+      <div *ngIf="this.crawledSites.length === 0" class="no-results">
+        <div class="emoticon"></div>
+      </div>
       <div class="results">
         <article
           *ngFor="let result of results; trackBy: trackByIndex;"
@@ -31,6 +34,16 @@
             <div class="error-line"></div>
           </div>
         </article>
+        <article *ngFor="let site of crawledSites;" class="is-error">
+          <div class="error">
+            <div class="error-line"></div>
+            <span class="error-text">Loading photos from {{site.getSiteName()}}</span>
+            <div class="error-line"></div>
+          </div>
+        </article>
+      </div>
+      <div class="no-results">
+        <a *ngIf="this.crawledSites.length === 0" [routerLink]="['']" class="btn">Back to homepage</a>
       </div>
     </div>
   </div>

@@ -39,7 +39,7 @@ export class CrawlerService {
   /**
    * Added site model as source
    */
-  private siteModels: SiteModel[] = [];
+  private sites: SiteModel[] = [];
 
   /**
    * Loaded image "src" values
@@ -69,7 +69,7 @@ export class CrawlerService {
    */
   reset(): void {
 
-    this.siteModels = [];
+    this.sites = [];
     this.srcLoaded = {};
   }
 
@@ -80,7 +80,7 @@ export class CrawlerService {
    */
   addSite(site: SiteModel): void {
 
-    this.siteModels.push(site);
+    this.sites.push(site);
   }
 
   /**
@@ -90,10 +90,18 @@ export class CrawlerService {
 
     // Only consider sites that are not loading and that have more pages to load
     this
-      .siteModels
+      .sites
       .filter(site => !site.isLoading && site.hasMorePages)
       .forEach(site => this.crawl(site))
     ;
+  }
+
+  /**
+   * Returns list of sites being crawled
+   */
+  getCrawledSites(): SiteModel[] {
+
+    return this.sites.filter(site => site.hasMorePages);
   }
 
   /**
