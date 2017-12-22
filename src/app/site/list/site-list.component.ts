@@ -36,7 +36,7 @@ export class SiteListComponent implements OnInit, OnDestroy {
   total: number = 0;
 
   /**
-   * List of placeholders to display while loading
+   * List of placeholders to display while loading the first time
    */
   placeholders: number[] = [];
 

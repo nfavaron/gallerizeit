@@ -54,6 +54,17 @@ export class CrawlerService {
   constructor(private httpDownloaderService: HttpDownloaderService,
               private censorshipKeyword: CensorshipKeyword) {
 
+    this.reset();
+  }
+
+  /**
+   * Reset the crawler
+   */
+  reset(): void {
+
+    this.sites = [];
+    this.srcLoaded = {};
+
     this.image = new Subject<ImageModel>();
     this.image$ = this.image.asObservable();
 
@@ -62,15 +73,6 @@ export class CrawlerService {
 
     this.error = new Subject<ErrorModel>();
     this.error$ = this.error.asObservable();
-  }
-
-  /**
-   * Reset the service
-   */
-  reset(): void {
-
-    this.sites = [];
-    this.srcLoaded = {};
   }
 
   /**

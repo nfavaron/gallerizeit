@@ -151,7 +151,7 @@ a:hover {
   }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 550px) {
 
   .list {
     display: flex;

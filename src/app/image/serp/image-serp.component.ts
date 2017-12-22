@@ -39,6 +39,11 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
   crawledSites: SiteModel[] = [];
 
   /**
+   * List of placeholders to display while loading the first time
+   */
+  placeholders: number[] = [];
+
+  /**
    * Site IDs that have been liked on this SERP
    */
   private siteIdLiked: string[] = [];
@@ -66,6 +71,9 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
    * Component init
    */
   ngOnInit() {
+
+    // Generate placeholders
+    this.placeholders = new Array(5);
 
     this.subscriptions.push(
       this.route.queryParams.subscribe(params => this.onChangeRoute())
@@ -250,7 +258,14 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
     const img = new Image();
 
     // On image load, add result
-    img.onload = () => this.results.push({image: image});
+    img.onload = () => {
+
+      // Remove placeholders
+      this.placeholders = [];
+
+      // Add result
+      this.results.push({image: image});
+    };
 
     // Load image async
     img.src = image.getSrc();
