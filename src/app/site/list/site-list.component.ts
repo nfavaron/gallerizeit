@@ -68,6 +68,9 @@ export class SiteListComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
 
+    // Generate placeholders
+    this.placeholders = new Array(this.limit);
+
     // Load sites
     this.subscriptions.push(
       this.loadSites().subscribe(sites => this.onLoadSites(sites))
@@ -100,9 +103,6 @@ export class SiteListComponent implements OnInit, OnDestroy {
 
     // Increment load count
     this.loadCount++;
-
-    // Generate placeholders
-    this.placeholders = new Array(this.limit);
 
     if (this.sort === 'popularity') {
 
