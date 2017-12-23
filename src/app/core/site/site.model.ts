@@ -15,23 +15,27 @@ export class SiteModel {
   /**
    * URL acting as unique identifier
    */
-  public url: string = '';
+  public url: string;
   public title: string = '';
-  public createDate: string = '';
-  public updateDate: string = '';
+  public createDate: number = 0;
+  public updateDate: number = 0;
   public coverUrl: string = '';
   public imageLinkPattern: RegExp;
   public imageSrcPattern: RegExp;
   public pageLinkPattern: string = '';
+
+  private id: string = '';
+  private urlParser: UrlParser;
+
+  /**
+   * State variables
+   */
   public page: number = 1;
   public hasMorePages: boolean = true;
   public isInitialized: boolean = false;
   public isLoaded: boolean = false;
   public isLoading: boolean = false;
   public crawlCount: number = 0;
-
-  private id: string = '';
-  private urlParser: UrlParser;
 
   /**
    *

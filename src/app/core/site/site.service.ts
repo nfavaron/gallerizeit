@@ -102,8 +102,8 @@ export class SiteService {
    */
   addSite(site: SiteModel): Promise<void> {
 
-    site.createDate = <string>firebase.database['ServerValue'].TIMESTAMP;
-    site.updateDate = <string>firebase.database['ServerValue'].TIMESTAMP;
+    site.createDate = Date.now();
+    site.updateDate = Date.now();
 
     return this.storeSite(site);
   }
@@ -118,7 +118,7 @@ export class SiteService {
 
     if (updated === true) {
 
-      site.updateDate = <string>firebase.database['ServerValue'].TIMESTAMP;
+      site.updateDate = Date.now();
     }
 
     return this.storeSite(site);

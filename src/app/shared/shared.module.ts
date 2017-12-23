@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TrustCssPipe } from './trust-css.pipe';
+import { SocialDatePipe } from './social-date.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { CensorshipKeyword } from './censorship/censorship-keyword';
 
@@ -12,12 +13,14 @@ import { CensorshipKeyword } from './censorship/censorship-keyword';
     HttpClientModule
   ],
   declarations: [
-    TrustCssPipe
+    TrustCssPipe,
+    SocialDatePipe
   ],
   exports: [
     CommonModule,
     RouterModule,
-    TrustCssPipe
+    TrustCssPipe,
+    SocialDatePipe
   ],
   providers: [
     CensorshipKeyword
