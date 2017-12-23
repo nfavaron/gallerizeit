@@ -14,6 +14,7 @@ import { extractPatternImageSrc } from './extract/extract-pattern-image-src';
 import { extractPatternPageLink } from './extract/extract-pattern-page-link';
 import { extractTitle } from './extract/extract-title';
 import { ImageLinkModel } from './image-link.model';
+import { Subscription } from 'rxjs/Subscription';
 
 @Injectable()
 export class CrawlerService {
@@ -47,9 +48,9 @@ export class CrawlerService {
   private srcLoaded: { [key: string]: boolean } = {};
 
   /**
-   * Last reset timestamp, acting as unique identifier
+   * Observable subscriptions
    */
-  private id: number;
+  private subscriptions: Subscription[] = [];
 
   /**
    *
@@ -63,19 +64,11 @@ export class CrawlerService {
   }
 
   /**
-   * Returns crawler ID
-   */
-  getId(): number {
-
-    return this.id;
-  }
-
-  /**
    * Reset the crawler
    */
   reset(): void {
 
-    this.id = Date.now();
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
 
     this.sites = [];
     this.srcLoaded = {};
@@ -134,119 +127,6 @@ export class CrawlerService {
     // Increment crawl count
     site.crawlCount++;
 
-    // Get URL to crawl
-    const url = this.getUrl(site);
-
-    // Download content
-    this
-      .httpDownloaderService
-      .getContent(url)
-      .then((content: string) => {
-
-        // Set site as not loading
-        site.isLoading = false;
-
-        // Extract links
-        const links = extractListImageLink(site, content);
-
-        // Extract images
-        const images = extractListImage(site, links);
-
-        // Initialize site
-        this.initializeSite(site, url, links, images);
-
-        // Filtered images
-        const filtered = images
-        // Prevent duplicated src
-          .filter(image => !this.srcLoaded[image.getSrc()])
-          // Apply censorshipKeyword
-          .filter(image => this.censorshipKeyword.isSafe(image.getImageLink().getHtml()))
-          // Match image link pattern
-          .filter(image => {
-
-            const linkMatch = image.getImageLink().getUrl().match(site.imageLinkPattern);
-            const srcMatch = image.getSrc().match(site.imageSrcPattern);
-
-            return linkMatch || srcMatch;
-          })
-        ;
-
-        // Images found
-        if (filtered.length > 0) {
-
-          // For each filtered image
-          filtered.forEach(image => {
-
-            // Site not loaded yet
-            if (!site.isLoaded) {
-
-              // Set site as loaded
-              site.isLoaded = true;
-
-              // Set cover URL
-              site.coverUrl = image.getSrc();
-
-              // Set title
-              site.title = extractTitle(site, content);
-
-              // Site loaded
-              this.site.next(site);
-            }
-
-            // Keep src as loaded
-            this.srcLoaded[image.getSrc()] = true;
-
-            // Image loaded
-            this.image.next(image);
-          });
-
-          // No more pages to load
-          if (site.hasMorePages === false) {
-
-            // Emit an error
-            this.error.next(new ErrorModel(site, ErrorModel.MSG_HINT));
-          }
-
-        } else {
-
-          // Prevent more image loadings
-          site.hasMorePages = false;
-
-          // No links detected
-          if (links.length === 0) {
-
-            // Emit an error
-            this.error.next(new ErrorModel(site, ErrorModel.MSG_NO_LOAD));
-            return;
-          }
-
-          // Emit an error
-          this.error.next(
-            new ErrorModel(
-              site,
-              site.crawlCount === 1 ? ErrorModel.MSG_NO_IMAGE : ErrorModel.MSG_NO_MORE_IMAGE
-            )
-          );
-        }
-      })
-      .catch(e => {
-
-        // Set site as not loading
-        site.isLoading = false;
-
-        // Emit an error
-        this.error.next(new ErrorModel(site, ErrorModel.MSG_NO_LOAD));
-      })
-    ;
-  }
-
-  /**
-   * Returns the URL to crawl
-   *
-   * @param site
-   */
-  private getUrl(site: SiteModel): string {
-
     // Default URL to download content from
     let url: string = site.getUrlParser().getUrl();
 
@@ -260,7 +140,17 @@ export class CrawlerService {
       url = site.pageLinkPattern.replace(/@page@/gi, String(site.page));
     }
 
-    return url;
+    // Download content
+    this.subscriptions.push(
+      this
+      .httpDownloaderService
+      .getContent(url)
+      .first()
+      .subscribe(
+        content => this.onLoadContent(site, url, content),
+        e => this.onErrorContent(site)
+      )
+    );
   }
 
   /**
@@ -324,5 +214,113 @@ export class CrawlerService {
     ;
 
     return new RegExp('^' + pattern + '$');
+  }
+
+  /**
+   * Loaded content from site's current page URL
+   *
+   * @param site
+   * @param url
+   * @param content
+   */
+  private onLoadContent(site: SiteModel, url: string, content: string): void {
+
+    // Set site as not loading
+    site.isLoading = false;
+
+    // Extract links
+    const links = extractListImageLink(site, content);
+
+    // Extract images
+    const images = extractListImage(site, links);
+
+    // Initialize site
+    this.initializeSite(site, url, links, images);
+
+    // Filtered images
+    const filtered = images
+      // Prevent duplicated src
+        .filter(image => !this.srcLoaded[image.getSrc()])
+        // Apply censorshipKeyword
+        .filter(image => this.censorshipKeyword.isSafe(image.getImageLink().getHtml()))
+        // Match image link pattern
+        .filter(image => {
+
+          const linkMatch = image.getImageLink().getUrl().match(site.imageLinkPattern);
+          const srcMatch = image.getSrc().match(site.imageSrcPattern);
+
+          return linkMatch || srcMatch;
+        })
+    ;
+
+    // Images found
+    if (filtered.length > 0) {
+
+      // For each filtered image
+      filtered.forEach(image => {
+
+        // Site not loaded yet
+        if (!site.isLoaded) {
+
+          // Set site as loaded
+          site.isLoaded = true;
+
+          // Set cover URL
+          site.coverUrl = image.getSrc();
+
+          // Set title
+          site.title = extractTitle(site, content);
+
+          // Site loaded
+          this.site.next(site);
+        }
+
+        // Keep src as loaded
+        this.srcLoaded[image.getSrc()] = true;
+
+        // Image loaded
+        this.image.next(image);
+      });
+
+      // No more pages to load
+      if (site.hasMorePages === false) {
+
+        // Emit an error
+        this.error.next(new ErrorModel(site, ErrorModel.MSG_HINT));
+      }
+
+    } else {
+
+      // Prevent more image loadings
+      site.hasMorePages = false;
+
+      // No links detected
+      if (links.length === 0) {
+
+        // Emit an error
+        this.error.next(new ErrorModel(site, ErrorModel.MSG_NO_LOAD));
+        return;
+      }
+
+      // Emit an error
+      this.error.next(
+        new ErrorModel(
+          site,
+          site.crawlCount === 1 ? ErrorModel.MSG_NO_IMAGE : ErrorModel.MSG_NO_MORE_IMAGE
+        )
+      );
+    }
+  }
+
+  /**
+   * Error happened while loading content
+   */
+  onErrorContent(site: SiteModel): void {
+
+    // Set site as not loading
+    site.isLoading = false;
+
+    // Emit an error
+    this.error.next(new ErrorModel(site, ErrorModel.MSG_NO_LOAD));
   }
 }

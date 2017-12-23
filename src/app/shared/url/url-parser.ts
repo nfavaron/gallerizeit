@@ -14,7 +14,7 @@ export class UrlParser {
    * parser.hash;     // => "#hash"
    * parser.host;     // => "example.com:3000"
    */
-  protected parser: HTMLAnchorElement = document.createElement('a');
+  private parser: HTMLAnchorElement = document.createElement('a');
 
   /**
    *

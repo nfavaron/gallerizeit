@@ -6,7 +6,7 @@ export class CensorshipKeyword {
   /**
    * List of blacklisted keywords, welcome to the worst of the Web...
    */
-  protected blacklist: string[] = [
+  private blacklist: string[] = [
     'porn',
     'sex',
     'fuck',

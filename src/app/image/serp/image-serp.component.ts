@@ -44,9 +44,25 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
   placeholders: number[] = [];
 
   /**
+   * Screen min-width => number of images per row
+   */
+  private screenWidthImageCount: {[key: number]: number} = {
+    0: 1,
+    480: 2,
+    800: 3,
+    1100: 4,
+    1280: 5
+  };
+
+  /**
    * Site IDs that have been liked on this SERP
    */
   private siteIdLiked: string[] = [];
+
+  /**
+   * Number of images loaded
+   */
+  private imageLoadedCount: number = 0;
 
   /**
    * Observable subscriptions
@@ -137,6 +153,18 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Update placeholders
+   */
+  updatePlaceholders(): void {
+
+    // Get number of images per row
+    const imagePerRowCount = this.getImagePerRowCount();
+
+    // Update number of placeholders
+    this.placeholders = new Array(imagePerRowCount - (this.imageLoadedCount % imagePerRowCount));
+  }
+
+  /**
    * Track image by src
    *
    * @param index
@@ -148,12 +176,36 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Returns the number of images to display per row for the current screen width
+   */
+  getImagePerRowCount(): number {
+
+    let count = 0;
+    let breakpoint;
+
+    // Get list of breakpoints sorted by descending order
+    const breakpoints = Object
+      .keys(this.screenWidthImageCount)
+      .map(k => parseInt(k, 10))
+    ;
+
+    // Until a count has been found or there are no more breakpoints
+    while(count === 0 && (breakpoint = breakpoints.pop())) {
+
+      // TODO: use window service to get native object
+      if (window.innerWidth >= breakpoint) {
+
+        count = this.screenWidthImageCount[breakpoint];
+      }
+    }
+
+    return count;
+  }
+
+  /**
    * Changed route
    */
   onChangeRoute(): void {
-
-    // Generate placeholders
-    this.placeholders = new Array(5);
 
     // Reset results list
     this.results = [];
@@ -161,8 +213,14 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
     // Reset sites list
     this.sites = [];
 
+    // Reset number of images loaded
+    this.imageLoadedCount = 0;
+
     // Reset crawler
     this.crawlerService.reset();
+
+    // Update placeholders
+    this.updatePlaceholders();
 
     // Get URL list from query params
     const urlQueryParam = (<BehaviorSubject<Params>>this.route.queryParams).value['url'];
@@ -260,8 +318,11 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
     // On image load, add result
     img.onload = () => {
 
-      // Remove placeholders
-      this.placeholders = [];
+      // Increment number of images
+      this.imageLoadedCount++;
+
+      // Update placeholders
+      this.updatePlaceholders();
 
       // Add result
       this.results.push({image: image});
@@ -337,6 +398,9 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
    * @param event
    */
   @HostListener('window:resize') onResizeWindow(event: Event) {
+
+    // Update placeholders
+    this.updatePlaceholders();
 
     this.autoload();
   }

@@ -28,14 +28,6 @@ article.is-image {
   background: #f9f9f9 url('/assets/loader/blue.gif') center center no-repeat;
 }
 
-.is-placeholder {
-  display: none;
-}
-
-.is-placeholder:nth-child(1) {
-  display: block;
-}
-
 .label {
   display: flex;
   flex-wrap: wrap;
@@ -113,15 +105,12 @@ a.site:hover {
   }
 }
 
+/* IMPORTANT: add breakpoint in ImageSerpComponent */
 @media (min-width: 480px) {
 
   article.is-image {
     width: 50%;
     height: 175px;
-  }
-
-  .is-placeholder:nth-child(2) {
-    display: block;
   }
 
 }
@@ -140,26 +129,20 @@ a.site:hover {
   }
 }
 
+/* IMPORTANT: add breakpoint in ImageSerpComponent */
 @media (min-width: 800px) {
 
   article.is-image {
     width: 33%;
     height: 200px;
   }
-
-  .is-placeholder:nth-child(3) {
-    display: block;
-  }
 }
 
+/* IMPORTANT: add breakpoint in ImageSerpComponent */
 @media (min-width: 1100px) {
 
   article.is-image {
     width: 25%;
-  }
-
-  .is-placeholder:nth-child(4) {
-    display: block;
   }
 }
 
@@ -167,10 +150,6 @@ a.site:hover {
 
   article.is-image {
     width: 20%;
-  }
-
-  .is-placeholder:nth-child(5) {
-    display: block;
   }
 }
 

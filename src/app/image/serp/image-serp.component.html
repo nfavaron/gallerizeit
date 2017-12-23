@@ -11,11 +11,6 @@
       </div>
     </div>
     <div class="body">
-      <div *ngIf="this.placeholders.length > 0" class="results">
-        <article *ngFor="let placeholder of placeholders;" class="is-image is-placeholder">
-          <div class="image"></div>
-        </article>
-      </div>
       <div class="results">
         <article
           *ngFor="let result of results; trackBy: trackByIndex;"
@@ -35,6 +30,9 @@
             <span class="error-text">{{result.error.getMessage()}}</span>
             <div class="error-line"></div>
           </div>
+        </article>
+        <article *ngFor="let placeholder of placeholders;" class="is-image is-placeholder">
+          <div class="image"></div>
         </article>
         <article *ngFor="let site of crawledSites;" class="is-error">
           <div class="error">

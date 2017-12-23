@@ -4,7 +4,7 @@ export class ImageLinkModel {
    * @param url
    * @param html
    */
-  constructor(protected url: string, protected html: string) {
+  constructor(private url: string, private html: string) {
 
   }
 

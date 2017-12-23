@@ -9,9 +9,9 @@ export class ImageModel {
    * @param imageLink
    * @param site
    */
-  constructor(protected src: string,
-              protected imageLink: ImageLinkModel,
-              protected site: SiteModel) {
+  constructor(private src: string,
+              private imageLink: ImageLinkModel,
+              private site: SiteModel) {
 
   }
 
