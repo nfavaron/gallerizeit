@@ -20,7 +20,6 @@ export function extractPatternPageLink(links: ImageLinkModel[], imageLinkPattern
     // Extraction based on the link URL
     let p = link.getUrl();
 
-    // TODO: improve and use a list of condition instances to attach on runtime
     // Link has at least one number prepended by NOT an alphanumeric or is prepend by 'p' or 'page'
     if (p.match(/[^a-z0-9][0-9]+/gi) || p.match(/p(age)?[0-9]+/gi)) {
 

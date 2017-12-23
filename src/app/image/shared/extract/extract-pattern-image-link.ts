@@ -17,8 +17,6 @@ export function extractPatternImageLink(images: ImageModel[]): string {
     // Extraction based on the image's href
     let p = image.getImageLink().getUrl();
 
-    // TODO extract logic to prevent duplication
-
     // Generalizes subdomain
     p = p.replace(/\/\/[a-z0-9]+\./gi, '//@subdomain@.');
 
@@ -29,7 +27,6 @@ export function extractPatternImageLink(images: ImageModel[]): string {
     const req = p.split('?'); // query params // TODO: advanced query params
     const node = req[0].replace(/^.+(\/[^\/]+\/?)$/gi, '$1');
 
-    // TODO: review this logic, and check why not shared with page-link-pattern
     // Last node has a none alphanumeric character or slash, and does not contain the subdomain
     if (node.match(/[^a-z0-9\/]/gi) && node.indexOf('@subdomain@') === -1) {
 

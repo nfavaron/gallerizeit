@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import 'rxjs/add/operator/map';
-// TODO: remove import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/first';
 
 import { AppComponent } from './app.component';
