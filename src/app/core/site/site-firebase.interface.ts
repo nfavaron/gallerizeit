@@ -5,8 +5,8 @@ export interface SiteFirebaseInterface {
   url: string;
   loadCount: number;
   likeCount: number;
-  createDate: string;
-  updateDate: string;
+  createDate: number;
+  updateDate: number;
   coverUrl: string;
   title: string;
 }
