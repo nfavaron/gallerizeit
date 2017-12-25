@@ -30,7 +30,12 @@ h2 {
 .site {
   display: block;
   border-radius: 10px;
-  margin-bottom: 15px;
+  width: 100%;
+  padding: 8px;
+}
+
+.panel .body {
+  padding: 8px;
 }
 
 .site.is-placeholder {
@@ -156,11 +161,11 @@ a:hover {
   .list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
   }
 
   .site {
-    width: 49%;
+    width: 50%;
   }
 }
 
@@ -174,7 +179,7 @@ a:hover {
 @media (min-width: 1000px) {
 
   .site {
-    width: 24%;
+    width: 25%;
   }
 }
 

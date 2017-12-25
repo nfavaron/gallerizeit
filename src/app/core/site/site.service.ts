@@ -45,6 +45,7 @@ export class SiteService {
           limitToLast: limit
         }
       })
+      .map(sites => sites.filter(site => !site.blocked))
       .map(sites => sites.map(this.getSiteModel).reverse())
       .subscribe(
         sites => this.listByPopularity.next(sites),
@@ -71,6 +72,7 @@ export class SiteService {
           limitToLast: limit
         }
       })
+      .map(sites => sites.filter(site => !site.blocked))
       .map(sites => sites.map(this.getSiteModel).reverse())
       .subscribe(
         sites => this.listByUpdate.next(sites),

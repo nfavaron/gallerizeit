@@ -190,7 +190,9 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
     ;
 
     // Until a count has been found or there are no more breakpoints
-    while(count === 0 && (breakpoint = breakpoints.pop())) {
+    while(count === 0 && breakpoints.length) {
+
+      breakpoint = breakpoints.pop();
 
       // TODO: use window service to get native object
       if (window.innerWidth >= breakpoint) {

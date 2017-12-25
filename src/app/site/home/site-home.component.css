@@ -18,7 +18,7 @@
   max-width: 90%;
   padding: 3px 13px;
   margin: 0 auto 10px auto;
-  font-size: 20px;
+  font-size: 18px;
   background: #55bbff;
   color: #ffffff;
   font-weight: bold;
@@ -31,13 +31,10 @@
 .banner h1 {
   display: block;
   color: #ffffff;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: normal;
   margin: 0 auto 10px auto;
   max-width: 80%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .banner strong, .banner span, .banner h1 {
@@ -45,11 +42,8 @@
 }
 
 .banner .btn {
-  padding: 15px;
   margin: 5px 0;
-  font-size: 18px;
   color: #ffffff;
-  display: none;
 }
 
 .banner > section {
@@ -72,6 +66,13 @@
 
 .panel {
   margin-bottom: 15px;
+}
+
+@media (min-width: 350px) {
+
+  .banner span {
+    font-size: 20px;
+  }
 }
 
 @media (min-width: 400px) {
@@ -120,6 +121,10 @@
   .banner h1 {
     font-size: 16px;
   }
+
+  .banner .btn {
+    font-size: 16px;
+  }
 }
 
 @media (min-width: 800px) {
@@ -152,6 +157,10 @@
 
   .banner .btn {
     display: inline-block;
+  }
+
+  .banner .btn {
+    font-size: 18px;
   }
 }
 
