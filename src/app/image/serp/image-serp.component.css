@@ -1,3 +1,9 @@
+.panel .header h2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .results {
   display: flex;
   justify-content: flex-start;

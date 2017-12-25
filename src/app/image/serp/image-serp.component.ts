@@ -232,9 +232,6 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
     // Reset crawler
     this.crawlerService.reset();
 
-    // Update placeholders
-    this.updatePlaceholders();
-
     // Get URL list from query params
     const urlQueryParam = (<BehaviorSubject<Params>>this.route.queryParams).value['url'];
 
@@ -260,6 +257,9 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
       this.crawledSites.push(site);
       this.crawlerService.addSite(site);
     });
+
+    // Update placeholders
+    this.updatePlaceholders();
 
     // Auto load more images if needed (after DOM updated)
     setTimeout(() => this.autoload());
