@@ -10,6 +10,7 @@ import { FirebaseConfig } from './firebase/firebase-config';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { HttpDownloaderService } from './http/http-downloader.service';
+import { CoreFormComponent } from './form/core-form.component';
 
 @NgModule({
   imports: [
@@ -19,11 +20,13 @@ import { HttpDownloaderService } from './http/http-downloader.service';
   ],
   declarations: [
     CoreHeaderComponent,
-    CoreFooterComponent
+    CoreFooterComponent,
+    CoreFormComponent,
   ],
   exports: [
     CoreHeaderComponent,
-    CoreFooterComponent
+    CoreFooterComponent,
+    CoreFormComponent,
   ]
 })
 export class CoreModule {
