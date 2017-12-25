@@ -3,7 +3,7 @@
     <div class="header">
       <div>
         <h2>
-          <span>You are browsing photos from {{sites.length}} {{sites.length == 1 ? 'site only' : 'sites'}}:</span>
+          <span>You are browsing photos from:</span>
         </h2>
         <div class="label">
           <a *ngFor="let site of sites;" href="{{site.getUrl()}}" target="_blank" class="site">{{site.getSiteName()}}</a>
@@ -34,10 +34,10 @@
         <article *ngFor="let placeholder of placeholders;" class="is-image is-placeholder">
           <div class="image"></div>
         </article>
-        <article *ngFor="let site of crawledSites;" class="is-error">
+        <article *ngIf="crawledSites.length > 0" class="is-error">
           <div class="error">
             <div class="error-line"></div>
-            <span class="error-text">Loading photos from {{site.getSiteName()}}</span>
+            <span class="error-text">Loading photos from {{crawledSites.length == 1 ? crawledSites[0].getSiteName() : crawledSites.length + ' sites'}}</span>
             <div class="error-line"></div>
           </div>
         </article>

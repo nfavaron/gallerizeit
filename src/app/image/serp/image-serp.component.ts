@@ -51,7 +51,7 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
     480: 2,
     800: 3,
     1100: 4,
-    1280: 5
+    1600: 5
   };
 
   /**
@@ -150,12 +150,23 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
   updateCrawledSites(): void {
 
     this.crawledSites = this.crawlerService.getCrawledSites();
+
+    // Update placeholders
+    this.updatePlaceholders();
   }
 
   /**
    * Update placeholders
    */
   updatePlaceholders(): void {
+
+    // No ite crawled
+    if (this.crawledSites.length === 0) {
+
+      // Empty placeholders
+      this.placeholders = [];
+      return;
+    }
 
     // Get number of images per row
     const imagePerRowCount = this.getImagePerRowCount();
