@@ -3,11 +3,14 @@ main {
   padding-top: 50px;
   padding-bottom: 300px;
   transition: padding-top 300ms ease-out;
+  background: url(/assets/loader/blue.gif) no-repeat;
+  background-position: center calc(50% + 25px - 150px);
 }
 
 @media (min-width: 800px) {
 
   main {
     padding-top: 80px;
+    background-position: center calc(50% + 40px - 150px);
   }
 }
