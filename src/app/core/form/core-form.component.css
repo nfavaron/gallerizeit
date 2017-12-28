@@ -83,24 +83,12 @@ li {
   align-items: center;
 }
 
-.start {
-  padding: 8px;
-  font-size: 12px;
-  margin-right: 10px;
-}
-
 @media (min-width: 800px) {
 
   .modal {
     max-width: 500px;
     width: 80%;
     border-radius: 10px;
-  }
-
-  .start {
-    padding: 10px;
-    font-size: 14px;
-    margin-right: 15px;
   }
 }
 
@@ -115,10 +103,5 @@ li {
 
   .modal {
     width: 40%;
-  }
-
-  .start {
-    padding: 12px;
-    font-size: 14px;
   }
 }

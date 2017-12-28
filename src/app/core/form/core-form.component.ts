@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
+import { HeaderService } from '../header/header.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-core-form',
   styleUrls: ['./core-form.component.css'],
   templateUrl: './core-form.component.html'
 })
-export class CoreFormComponent implements OnInit {
+export class CoreFormComponent implements OnInit, OnDestroy {
 
   /**
    * Form definition
@@ -30,18 +32,25 @@ export class CoreFormComponent implements OnInit {
   maxUrlInput: number = 3;
 
   /**
+   * Observable subscriptions
+   */
+  private subscriptions: Subscription[] = [];
+
+  /**
    *
    * @param router
    * @param formBuilder
+   * @param headerService
    */
   constructor(private router: Router,
-              private formBuilder: FormBuilder
+              private formBuilder: FormBuilder,
+              private headerService: HeaderService
   ) {
 
   }
 
   /**
-   * Initialized the component
+   * Initialize the component
    */
   ngOnInit() {
 
@@ -54,6 +63,16 @@ export class CoreFormComponent implements OnInit {
 
     // Add one URL input by default
     this.addUrlInput();
+
+    // Open the form on request from header
+    this.subscriptions.push(
+      this.headerService.siteSettings$.subscribe(() => this.open())
+    );
+  }
+
+  ngOnDestroy() {
+
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   /**
@@ -96,14 +115,6 @@ export class CoreFormComponent implements OnInit {
           url: this.form.get('url').value
         }});
     }
-  }
-
-  /**
-   * Clicked the start button
-   */
-  onClickStart() {
-
-    this.open();
   }
 
   /**

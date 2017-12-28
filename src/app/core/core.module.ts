@@ -11,6 +11,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { HttpDownloaderService } from './http/http-downloader.service';
 import { CoreFormComponent } from './form/core-form.component';
+import { HeaderService } from './header/header.service';
 
 @NgModule({
   imports: [
@@ -31,11 +32,16 @@ import { CoreFormComponent } from './form/core-form.component';
 })
 export class CoreModule {
 
+  /**
+   * Returns providers for root usage only
+   */
   static forRoot(): ModuleWithProviders {
+
     return {
       ngModule: CoreModule,
       providers: [
         SiteService,
+        HeaderService,
         HttpDownloaderService,
         { provide: FirebaseConfig, useValue: environment.firebase },
         { provide: HttpDownloader, useClass: FirebaseDownloader },
@@ -43,7 +49,12 @@ export class CoreModule {
     };
   }
 
+  /**
+   *
+   * @param parentModule
+   */
   constructor (@Optional() @SkipSelf() parentModule: CoreModule) {
+
     if (parentModule) {
       throw new Error(
         'CoreModule is already loaded. Import it in the AppModule only');

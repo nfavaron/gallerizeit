@@ -10,11 +10,11 @@ import { Subject } from 'rxjs/Subject';
 @Injectable()
 export class SiteService {
 
-  listByPopularity$: Observable<SiteModel[]>;
-  listByPopularity: Subject<SiteModel[]>;
+  public listByPopularity$: Observable<SiteModel[]>;
+  private listByPopularity: Subject<SiteModel[]>;
 
-  listByUpdate$: Observable<SiteModel[]>;
-  listByUpdate: Subject<SiteModel[]>;
+  public listByUpdate$: Observable<SiteModel[]>;
+  private listByUpdate: Subject<SiteModel[]>;
 
   /**
    *

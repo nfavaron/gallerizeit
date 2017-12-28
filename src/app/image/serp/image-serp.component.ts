@@ -7,6 +7,7 @@ import { SiteService } from '../../core/site/site.service';
 import { SiteModel } from '../../core/site/site.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ErrorModel } from '../shared/error.model';
+import { HeaderService } from '../../core/header/header.service';
 
 @Component({
   selector: 'app-image-serp',
@@ -75,11 +76,13 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
    * @param route
    * @param crawlerService
    * @param siteService
+   * @param headerService
    */
   constructor(private router: Router,
               private route: ActivatedRoute,
               private crawlerService: CrawlerService,
-              private siteService: SiteService) {
+              private siteService: SiteService,
+              private headerService: HeaderService) {
 
   }
 
@@ -110,7 +113,29 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
    */
   ngOnDestroy() {
 
+    // Update header site count
+    this.headerService.setSiteCount(0);
+
+    // Unsubscribe observables
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
+  /**
+   * Reset the component state
+   */
+  reset(): void {
+
+    // Reset results list
+    this.results = [];
+
+    // Reset sites list
+    this.sites = [];
+
+    // Reset number of images loaded
+    this.imageLoadedCount = 0;
+
+    // Reset crawler
+    this.crawlerService.reset();
   }
 
   /**
@@ -220,17 +245,8 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
    */
   onChangeRoute(): void {
 
-    // Reset results list
-    this.results = [];
-
-    // Reset sites list
-    this.sites = [];
-
-    // Reset number of images loaded
-    this.imageLoadedCount = 0;
-
-    // Reset crawler
-    this.crawlerService.reset();
+    // Reset component state
+    this.reset();
 
     // Get URL list from query params
     const urlQueryParam = (<BehaviorSubject<Params>>this.route.queryParams).value['url'];
@@ -257,6 +273,9 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
       this.crawledSites.push(site);
       this.crawlerService.addSite(site);
     });
+
+    // Update header site count
+    this.headerService.setSiteCount(urlList.length);
 
     // Update placeholders
     this.updatePlaceholders();

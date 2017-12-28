@@ -60,6 +60,47 @@ p {
   transition: width 300ms ease-out, height 300ms ease-out;
 }
 
+.icon {
+  min-width: 40px;
+  width: 40px;
+  height: 40px;
+  margin: 0 10px;
+  flex-shrink: 0;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  transition: background-color 200ms ease-out;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: visible;
+}
+
+.icon:hover {
+  background-color: #f6f6f6;
+}
+
+.icon.settings {
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgIHZpZXdCb3g9IjAgMCA1NiA1NiI+CjxnPgoJPHBhdGggZD0iTTIyLjY2LDBIMy4zNEMxLjQ5OCwwLDAsMS40OTgsMCwzLjM0djE5LjMyQzAsMjQuNTAyLDEuNDk4LDI2LDMuMzQsMjZoMTkuMzJjMS44NDIsMCwzLjM0LTEuNDk4LDMuMzQtMy4zNFYzLjM0CgkJQzI2LDEuNDk4LDI0LjUwMiwwLDIyLjY2LDB6IE0yNCwyMi42NmMwLDAuNzM5LTAuNjAxLDEuMzQtMS4zNCwxLjM0SDMuMzRDMi42MDEsMjQsMiwyMy4zOTksMiwyMi42NlYzLjM0QzIsMi42MDEsMi42MDEsMiwzLjM0LDIKCQloMTkuMzJDMjMuMzk5LDIsMjQsMi42MDEsMjQsMy4zNFYyMi42NnoiLz4KCTxwYXRoIGQ9Ik01Mi42NiwwSDMzLjM0QzMxLjQ5OCwwLDMwLDEuNDk4LDMwLDMuMzR2MTkuMzJjMCwxLjg0MiwxLjQ5OCwzLjM0LDMuMzQsMy4zNGgxOS4zMmMxLjg0MiwwLDMuMzQtMS40OTgsMy4zNC0zLjM0VjMuMzQKCQlDNTYsMS40OTgsNTQuNTAyLDAsNTIuNjYsMHogTTU0LDIyLjY2YzAsMC43MzktMC42MDEsMS4zNC0xLjM0LDEuMzRIMzMuMzRDMzIuNjAxLDI0LDMyLDIzLjM5OSwzMiwyMi42NlYzLjM0CgkJQzMyLDIuNjAxLDMyLjYwMSwyLDMzLjM0LDJoMTkuMzJDNTMuMzk5LDIsNTQsMi42MDEsNTQsMy4zNFYyMi42NnoiLz4KCTxwYXRoIGQ9Ik0yMi42NiwzMEgzLjM0QzEuNDk4LDMwLDAsMzEuNDk4LDAsMzMuMzR2MTkuMzJDMCw1NC41MDIsMS40OTgsNTYsMy4zNCw1NmgxOS4zMmMxLjg0MiwwLDMuMzQtMS40OTgsMy4zNC0zLjM0VjMzLjM0CgkJQzI2LDMxLjQ5OCwyNC41MDIsMzAsMjIuNjYsMzB6IE0yNCw1Mi42NmMwLDAuNzM5LTAuNjAxLDEuMzQtMS4zNCwxLjM0SDMuMzRDMi42MDEsNTQsMiw1My4zOTksMiw1Mi42NlYzMy4zNAoJCUMyLDMyLjYwMSwyLjYwMSwzMiwzLjM0LDMyaDE5LjMyYzAuNzM5LDAsMS4zNCwwLjYwMSwxLjM0LDEuMzRWNTIuNjZ6Ii8+Cgk8cGF0aCBkPSJNNTUsNDJINDRWMzFjMC0wLjU1My0wLjQ0Ny0xLTEtMXMtMSwwLjQ0Ny0xLDF2MTFIMzFjLTAuNTUzLDAtMSwwLjQ0Ny0xLDFzMC40NDcsMSwxLDFoMTF2MTFjMCwwLjU1MywwLjQ0NywxLDEsMQoJCXMxLTAuNDQ3LDEtMVY0NGgxMWMwLjU1MywwLDEtMC40NDcsMS0xUzU1LjU1Myw0Miw1NSw0MnoiLz4KPC9nPgo8L3N2Zz4K);
+  background-size: 50% 50%;
+}
+
+.icon .count {
+  border-radius: 50%;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: #cc0000;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: bold;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  text-align: center;
+}
+
 @media (min-width: 800px) {
 
   header {
@@ -69,6 +110,17 @@ p {
   .logo {
     width: 60px;
     height: 60px;
+  }
+
+  .icon {
+    min-width: 50px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .icon .count {
+    right: 3px;
+    top: 3px;
   }
 
   .name {
