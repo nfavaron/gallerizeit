@@ -1,15 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
-import { HeaderService } from '../header/header.service';
 import { Subscription } from 'rxjs/Subscription';
+import { SettingsService } from './settings.service';
+import { SettingsStateEnum } from './settings-state.enum';
 
 @Component({
-  selector: 'app-core-form',
-  styleUrls: ['./core-form.component.css'],
-  templateUrl: './core-form.component.html'
+  selector: 'app-core-settings',
+  styleUrls: ['./core-settings.component.css'],
+  templateUrl: './core-settings.component.html'
 })
-export class CoreFormComponent implements OnInit, OnDestroy {
+export class CoreSettingsComponent implements OnInit, OnDestroy {
 
   /**
    * Form definition
@@ -40,12 +41,11 @@ export class CoreFormComponent implements OnInit, OnDestroy {
    *
    * @param router
    * @param formBuilder
-   * @param headerService
+   * @param settingsService
    */
   constructor(private router: Router,
               private formBuilder: FormBuilder,
-              private headerService: HeaderService
-  ) {
+              private settingsService: SettingsService) {
 
   }
 
@@ -64,9 +64,9 @@ export class CoreFormComponent implements OnInit, OnDestroy {
     // Add one URL input by default
     this.addUrlInput();
 
-    // Open the form on request from header
+    // Set settings state
     this.subscriptions.push(
-      this.headerService.siteSettings$.subscribe(() => this.open())
+      this.settingsService.setState$.subscribe(state => this.onSetStateSettings(state))
     );
   }
 
@@ -114,6 +114,19 @@ export class CoreFormComponent implements OnInit, OnDestroy {
       this.router.navigate(['/browse'], { queryParams: {
           url: this.form.get('url').value
         }});
+    }
+  }
+
+  /**
+   * Set settings state
+   *
+   * @param state
+   */
+  onSetStateSettings(state: SettingsStateEnum) {
+
+    if (state === SettingsStateEnum.open) {
+
+      return this.open();
     }
   }
 

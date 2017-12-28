@@ -1,6 +1,8 @@
-<app-core-header></app-core-header>
-<main>
-  <router-outlet></router-outlet>
-</main>
-<app-core-footer></app-core-footer>
-<app-core-form></app-core-form>
+<div [class.noscroll]="noScroll === true">
+  <app-core-header></app-core-header>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+  <app-core-footer></app-core-footer>
+</div>
+<app-core-settings></app-core-settings>

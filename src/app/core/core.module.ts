@@ -10,8 +10,8 @@ import { FirebaseConfig } from './firebase/firebase-config';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { HttpDownloaderService } from './http/http-downloader.service';
-import { CoreFormComponent } from './form/core-form.component';
-import { HeaderService } from './header/header.service';
+import { CoreSettingsComponent } from './settings/core-settings.component';
+import { SettingsService } from './settings/settings.service';
 
 @NgModule({
   imports: [
@@ -22,12 +22,12 @@ import { HeaderService } from './header/header.service';
   declarations: [
     CoreHeaderComponent,
     CoreFooterComponent,
-    CoreFormComponent,
+    CoreSettingsComponent,
   ],
   exports: [
     CoreHeaderComponent,
     CoreFooterComponent,
-    CoreFormComponent,
+    CoreSettingsComponent,
   ]
 })
 export class CoreModule {
@@ -41,7 +41,7 @@ export class CoreModule {
       ngModule: CoreModule,
       providers: [
         SiteService,
-        HeaderService,
+        SettingsService,
         HttpDownloaderService,
         { provide: FirebaseConfig, useValue: environment.firebase },
         { provide: HttpDownloader, useClass: FirebaseDownloader },

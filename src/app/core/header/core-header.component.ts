@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderService } from './header.service';
+import { SettingsService } from '../settings/settings.service';
+import { SettingsStateEnum } from '../settings/settings-state.enum';
 
 @Component({
   selector: 'app-core-header',
@@ -15,16 +16,15 @@ export class CoreHeaderComponent implements OnInit {
 
   /**
    *
-   * @param headerService
+   * @param settingsService
    */
-  constructor(private headerService: HeaderService) {
+  constructor(private settingsService: SettingsService) {
 
   }
 
   ngOnInit() {
 
-    this.headerService.siteCount$.subscribe(count => this.onUpdateSiteCount(count));
-
+    this.settingsService.setCount$.subscribe(count => this.onSetCountSettings(count));
   }
 
   /**
@@ -32,13 +32,13 @@ export class CoreHeaderComponent implements OnInit {
    */
   onClickSettings(): void {
 
-    this.headerService.openSiteSettings();
+    this.settingsService.setState(SettingsStateEnum.open);
   }
 
   /**
-   * Update site count
+   * Set count in settings
    */
-  onUpdateSiteCount(count: number): void {
+  onSetCountSettings(count: number): void {
 
     this.siteCount = count;
   }

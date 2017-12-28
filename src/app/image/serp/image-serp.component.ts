@@ -7,7 +7,7 @@ import { SiteService } from '../../core/site/site.service';
 import { SiteModel } from '../../core/site/site.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ErrorModel } from '../shared/error.model';
-import { HeaderService } from '../../core/header/header.service';
+import { SettingsService } from '../../core/settings/settings.service';
 
 @Component({
   selector: 'app-image-serp',
@@ -76,13 +76,13 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
    * @param route
    * @param crawlerService
    * @param siteService
-   * @param headerService
+   * @param settingsService
    */
   constructor(private router: Router,
               private route: ActivatedRoute,
               private crawlerService: CrawlerService,
               private siteService: SiteService,
-              private headerService: HeaderService) {
+              private settingsService: SettingsService) {
 
   }
 
@@ -114,7 +114,7 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
 
     // Update header site count
-    this.headerService.setSiteCount(0);
+    this.settingsService.setCount(0);
 
     // Unsubscribe observables
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
@@ -275,7 +275,7 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
     });
 
     // Update header site count
-    this.headerService.setSiteCount(urlList.length);
+    this.settingsService.setCount(urlList.length);
 
     // Update placeholders
     this.updatePlaceholders();

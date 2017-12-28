@@ -7,6 +7,11 @@ main {
   background-position: center calc(50% + 25px - 150px);
 }
 
+.noscroll {
+  position: fixed;
+  z-index: 1;
+}
+
 @media (min-width: 800px) {
 
   main {
