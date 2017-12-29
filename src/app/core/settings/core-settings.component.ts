@@ -23,6 +23,11 @@ export class CoreSettingsComponent implements OnInit, OnDestroy {
   urlInputList: FormArray;
 
   /**
+   * Original list of URLs before opening the settings
+   */
+  urlListOriginal: string[];
+
+  /**
    * Is the form open ?
    */
   isOpen: boolean = false;
@@ -78,6 +83,29 @@ export class CoreSettingsComponent implements OnInit, OnDestroy {
 
     // Unsubscribe from observables
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
+  /**
+   * Initialize form from URL list
+   *
+   * @param urlList
+   */
+  initForm(urlList: string[]) {
+
+    // Reset form
+    this.reset();
+
+    // No URL list
+    if (urlList.length === 0) {
+
+      // Add default input
+      this.add('');
+
+      return;
+    }
+
+    // Generate new list of URL inputs
+    urlList.forEach(url => this.add(url));
   }
 
   /**
@@ -149,10 +177,20 @@ export class CoreSettingsComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Cancel the form modifications
+   */
+  cancel() {
+
+    // Restore form to original URL list
+    this.initForm(this.urlListOriginal);
+  }
+
+  /**
    * Clicked the overlay
    */
   onClickOverlay() {
 
+    this.cancel();
     this.close();
   }
 
@@ -161,8 +199,7 @@ export class CoreSettingsComponent implements OnInit, OnDestroy {
    */
   onClickCancel() {
 
-    // TODO: restore original URL list
-
+    this.cancel();
     this.close();
   }
 
@@ -205,19 +242,10 @@ export class CoreSettingsComponent implements OnInit, OnDestroy {
    */
   onSetUrlListSettings(urlList: string[]): void {
 
-    // Reset form
-    this.reset();
+    // Backup original URL list
+    this.urlListOriginal = urlList;
 
-    // No URL list
-    if (urlList.length === 0) {
-
-      // Add default input
-      this.add('');
-
-      return;
-    }
-
-    // Generate new list of URL inputs
-    urlList.forEach(url => this.add(url));
+    // Initialize form
+    this.initForm(urlList);
   }
 }

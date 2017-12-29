@@ -48,7 +48,7 @@ h2 {
   height: 180px;
   position: relative;
   border-radius: 10px;
-  transition: height 300ms ease-out, border-color 300ms ease-out;
+  transition: height 300ms ease-out;
   background: #f9f9f9 url('/assets/loader/blue.gif') center center no-repeat;
 }
 
