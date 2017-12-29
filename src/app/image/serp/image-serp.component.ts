@@ -8,6 +8,7 @@ import { SiteModel } from '../../core/site/site.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ErrorModel } from '../shared/error.model';
 import { SettingsService } from '../../core/settings/settings.service';
+import { SettingsStateEnum } from '../../core/settings/settings-state.enum';
 
 @Component({
   selector: 'app-image-serp',
@@ -43,6 +44,16 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
    * List of placeholders to display while loading the first time
    */
   placeholders: number[] = [];
+
+  /**
+   * Window object // TODO: use window service to get native window object
+   */
+  private window: Window = window;
+
+  /**
+   * Can the component autoload results ?
+   */
+  private canAutoload: boolean = true;
 
   /**
    * Screen min-width => number of images per row
@@ -106,6 +117,10 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.crawlerService.error$.subscribe((error: ErrorModel) => this.onLoadError(error))
     );
+
+    this.subscriptions.push(
+      this.settingsService.setState$.subscribe(state => this.onSetStateSettings(state))
+    );
   }
 
   /**
@@ -140,26 +155,24 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
    */
   autoload(): void {
 
-    // No more crawled sites
-    if (this.crawledSites.length === 0) {
+    // Can't autoload or no more crawled sites
+    if (this.canAutoload === false || this.crawledSites.length === 0) {
       return;
     }
 
-    // TODO: Find out how to get reference on window, without creating a dummy WindowService...
-
     const documentHeight = Math.max(
-      window.document.documentElement.clientHeight,
-      window.document.body.scrollHeight,
-      window.document.documentElement.scrollHeight,
-      window.document.body.offsetHeight,
-      window.document.documentElement.offsetHeight
+      this.window.document.documentElement.clientHeight,
+      this.window.document.body.scrollHeight,
+      this.window.document.documentElement.scrollHeight,
+      this.window.document.body.offsetHeight,
+      this.window.document.documentElement.offsetHeight
     );
 
     const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-    const scrollable = documentHeight - window.innerHeight;
+    const scrollable = documentHeight - this.window.innerHeight;
 
     // Scroll threshold reached
-    if (scrollable - scrollTop < window.innerHeight * ImageSerpComponent.AUTOLOAD_THRESHOLD) {
+    if (scrollable - scrollTop < this.window.innerHeight * ImageSerpComponent.AUTOLOAD_THRESHOLD) {
 
       // Load more images
       this.crawlerService.load();
@@ -227,8 +240,8 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
 
       breakpoint = breakpoints.pop();
 
-      // TODO: use window service to get native object
-      if (window.innerWidth >= breakpoint) {
+      // TODO: use this.window service to get native object
+      if (this.window.innerWidth >= breakpoint) {
 
         count = this.screenWidthImageCount[breakpoint];
       }
@@ -279,6 +292,16 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
 
     // Auto load more images if needed (after DOM updated)
     setTimeout(() => this.autoload());
+  }
+
+  /**
+   * Set settings state
+   *
+   * @param state
+   */
+  onSetStateSettings(state: SettingsStateEnum): void {
+
+    this.canAutoload = state === SettingsStateEnum.close;
   }
 
   /**

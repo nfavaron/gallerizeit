@@ -24,7 +24,7 @@ export class AppComponent {
   /**
    * Window object // TODO: use window service to get native window object
    */
-  window: Window = window;
+  private window: Window = window;
 
   /**
    *
@@ -57,7 +57,7 @@ export class AppComponent {
 
     if (e instanceof NavigationEnd) {
 
-      window.scrollTo(0, 0);
+      this.window.scrollTo(0, 0);
     }
   }
 

@@ -157,12 +157,13 @@ export class CoreSettingsComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Clicked the add button
+   * Clicked the cancel button
    */
-  onClickAdd() {
+  onClickCancel() {
 
-    // Add empty URL input
-    this.add('');
+    // TODO: restore original URL list
+
+    this.close();
   }
 
   /**
@@ -206,6 +207,15 @@ export class CoreSettingsComponent implements OnInit, OnDestroy {
 
     // Reset form
     this.reset();
+
+    // No URL list
+    if (urlList.length === 0) {
+
+      // Add default input
+      this.add('');
+
+      return;
+    }
 
     // Generate new list of URL inputs
     urlList.forEach(url => this.add(url));

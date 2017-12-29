@@ -1,20 +1,23 @@
 <div class="container" [class.is-open]="isOpen">
   <div class="overlay" (click)="onClickOverlay()"></div>
   <div class="modal">
-    <div class="form">
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <h2>Let's gallerize websites!</h2>
-        <p>Copy & paste <strong>up to 3 URLs</strong> of photo galleries you want to <strong>browse simultaneously</strong>, then click the <strong>GallerizeIt!</strong> button:</p>
-        <ul formArrayName="url">
-          <li *ngFor="let control of urlInputList.controls; let i = index" >
-            <input type="text" placeholder="Example: https://wallpaperscraft.com/catalog/animals" [formControlName]="i">
-          </li>
-        </ul>
-      </form>
-      <div class="buttons">
-        <span><button class="btn add" (click)="onClickAdd()" *ngIf="urlInputList.length < maxUrlInput">+Add URL</button></span>
-        <span><button class="btn submit" (click)="onClickSubmit()">GallerizeIt!</button></span>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form">
+          <h2>
+            <div class="logo"></div>
+            <span class="title">Let's gallerize websites!</span>
+          </h2>
+          <p>Copy & paste <strong>up to 3 URLs</strong> of photo galleries you want to <strong>browse simultaneously</strong>, then click the <strong>submit</strong> button:</p>
+          <ul formArrayName="url">
+            <li *ngFor="let control of urlInputList.controls; let i = index" >
+              <input type="text" placeholder="Example: https://wallpaperscraft.com/catalog/animals" [formControlName]="i">
+            </li>
+          </ul>
       </div>
-    </div>
+      <div class="buttons">
+        <button class="btn cancel" (click)="onClickCancel()">Cancel</button>
+        <button class="btn submit" (click)="onClickSubmit()">Submit</button>
+      </div>
+    </form>
   </div>
 </div>
