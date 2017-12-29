@@ -20,7 +20,12 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
   /**
    * Number of "screen height" remaining to scroll before triggering an autoload
    */
-  static AUTOLOAD_THRESHOLD: number = 2;
+  static AUTOLOAD_SCREEN_HEIGHT: number = 2;
+
+  /**
+   * Maximum number of error allowed before removing a site
+   */
+  static IMAGE_LOAD_ERROR_MAX: number = 5;
 
   /**
    * List of results
@@ -74,7 +79,7 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
   /**
    * Number of images loaded
    */
-  private imageLoadedCount: number = 0;
+  private imageLoadCount: number = 0;
 
   /**
    * Observable subscriptions
@@ -127,7 +132,7 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
 
     this.results = [];
     this.sites = [];
-    this.imageLoadedCount = 0;
+    this.imageLoadCount = 0;
     this.crawledSites = [];
     this.crawlerService.reset();
 
@@ -166,7 +171,7 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
     const scrollable = documentHeight - this.window.innerHeight;
 
     // Scroll threshold reached
-    if (scrollable - scrollTop < this.window.innerHeight * ImageSerpComponent.AUTOLOAD_THRESHOLD) {
+    if (scrollable - scrollTop < this.window.innerHeight * ImageSerpComponent.AUTOLOAD_SCREEN_HEIGHT) {
 
       // Load more images
       this.crawlerService.load();
@@ -201,7 +206,7 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
     const imagePerRowCount = this.getImagePerRowCount();
 
     // Update number of placeholders
-    this.placeholders = new Array(imagePerRowCount - (this.imageLoadedCount % imagePerRowCount));
+    this.placeholders = new Array(imagePerRowCount - (this.imageLoadCount % imagePerRowCount));
   }
 
   /**
@@ -359,19 +364,47 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
     // Check if more results to load
     this.updateCrawledSites();
 
+    // Reached max number of errors
+    if (image.getSite().errorCount >= ImageSerpComponent.IMAGE_LOAD_ERROR_MAX) {
+      return;
+    }
+
+    // Standard image
     const img = new Image();
 
-    // On image load, add result
+    // On image load
     img.onload = () => {
 
       // Increment number of images
-      this.imageLoadedCount++;
+      this.imageLoadCount++;
 
       // Update placeholders
       this.updatePlaceholders();
 
       // Add result
       this.results.push({image: image});
+    };
+
+    // On image error
+    img.onerror = () => {
+
+      // Get image's site
+      const site = image.getSite();
+
+      // Increment error count
+      site.errorCount++;
+
+      // Reached max number of errors
+      if (site.errorCount === ImageSerpComponent.IMAGE_LOAD_ERROR_MAX) {
+
+        // Remove site from crawler
+        this.crawlerService.removeSite(site);
+
+        // Add error message
+        this.results.push({
+          error: new ErrorModel(site, ErrorModel.MSG_NO_HOTLINK)
+        });
+      }
     };
 
     // Load image async

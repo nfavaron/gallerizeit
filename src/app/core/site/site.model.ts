@@ -36,6 +36,7 @@ export class SiteModel {
   public isLoaded: boolean = false;
   public isLoading: boolean = false;
   public crawlCount: number = 0;
+  public errorCount: number = 0;
 
   /**
    *

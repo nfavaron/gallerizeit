@@ -95,6 +95,16 @@ export class CrawlerService {
   }
 
   /**
+   * Remove a site to crawl
+   *
+   * @param site
+   */
+  removeSite(site: SiteModel): void {
+
+    this.sites = this.sites.filter(s => s.getId() != site.getId());
+  }
+
+  /**
    * Load sites & crawl their content to find images
    */
   load(): void {
