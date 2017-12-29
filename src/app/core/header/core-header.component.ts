@@ -45,7 +45,7 @@ export class CoreHeaderComponent implements OnInit {
   }
 
   /**
-   * Set count in settings
+   * Set settings URL list
    *
    * @param urlList
    */

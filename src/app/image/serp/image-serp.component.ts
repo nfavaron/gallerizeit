@@ -113,7 +113,7 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
    */
   ngOnDestroy() {
 
-    // Unsubscribe observables
+    // Unsubscribe from observables
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 

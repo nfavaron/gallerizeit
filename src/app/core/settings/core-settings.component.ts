@@ -54,19 +54,20 @@ export class CoreSettingsComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
 
-    // Initialize form controls
-    this.form = this.formBuilder.group({
-      url: this.formBuilder.array([])
-    });
-
-    this.urlInputList = <FormArray>this.form.get('url');
+    // Reset form
+    this.reset();
 
     // Add one URL input by default
-    this.addUrlInput();
+    this.add('');
 
     // Set settings state
     this.subscriptions.push(
       this.settingsService.setState$.subscribe(state => this.onSetStateSettings(state))
+    );
+
+    // Set settings URL list
+    this.subscriptions.push(
+      this.settingsService.setUrlList$.subscribe(urlList => this.onSetUrlListSettings(urlList))
     );
   }
 
@@ -75,17 +76,37 @@ export class CoreSettingsComponent implements OnInit, OnDestroy {
    */
   ngOnDestroy() {
 
+    // Unsubscribe from observables
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   /**
-   * Add an URL input to the form
+   * Reset form
    */
-  addUrlInput() {
+  reset(): void {
+
+    // Initialize form controls
+    this.form = this.formBuilder.group({
+      url: this.formBuilder.array([])
+    });
+
+    this.urlInputList = <FormArray>this.form.get('url');
+  }
+
+  /**
+   * Add an URL input to the form
+   *
+   * @param url
+   */
+  add(url: string) {
 
     if (this.urlInputList.length < this.maxUrlInput) {
 
-      this.urlInputList.push(new FormControl());
+      const input = new FormControl();
+
+      input.setValue(url);
+
+      this.urlInputList.push(input);
     }
   }
 
@@ -118,23 +139,12 @@ export class CoreSettingsComponent implements OnInit, OnDestroy {
     if (this.form.valid) {
 
       // Redirect to SERP page
-      this.router.navigate(['/browse'], { queryParams: {
+      this
+        .router
+        .navigate(['/browse'], { queryParams: {
           url: this.form.get('url').value
-        }});
-    }
-  }
-
-  /**
-   * Set settings state
-   *
-   * @param state
-   */
-  onSetStateSettings(state: SettingsStateEnum) {
-
-    // Request for settings
-    if (state === SettingsStateEnum.request) {
-
-      return this.open();
+        }})
+      ;
     }
   }
 
@@ -151,7 +161,8 @@ export class CoreSettingsComponent implements OnInit, OnDestroy {
    */
   onClickAdd() {
 
-    this.addUrlInput();
+    // Add empty URL input
+    this.add('');
   }
 
   /**
@@ -170,5 +181,33 @@ export class CoreSettingsComponent implements OnInit, OnDestroy {
 
     this.submit();
     this.close();
+  }
+
+  /**
+   * Set settings state
+   *
+   * @param state
+   */
+  onSetStateSettings(state: SettingsStateEnum) {
+
+    // Request for settings
+    if (state === SettingsStateEnum.request) {
+
+      return this.open();
+    }
+  }
+
+  /**
+   * Set settings URL list
+   *
+   * @param urlList
+   */
+  onSetUrlListSettings(urlList: string[]): void {
+
+    // Reset form
+    this.reset();
+
+    // Generate new list of URL inputs
+    urlList.forEach(url => this.add(url));
   }
 }

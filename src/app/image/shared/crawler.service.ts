@@ -68,6 +68,7 @@ export class CrawlerService {
    */
   reset(): void {
 
+    // Unsubscribe from observables
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
 
     this.sites = [];

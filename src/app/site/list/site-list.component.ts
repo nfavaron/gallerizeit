@@ -82,6 +82,7 @@ export class SiteListComponent implements OnInit, OnDestroy {
    */
   ngOnDestroy() {
 
+    // Unsubscribe from observables
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
