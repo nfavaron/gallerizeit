@@ -10,6 +10,7 @@ main {
 .noscroll {
   position: fixed;
   z-index: 1;
+  width: 100%;
 }
 
 @media (min-width: 800px) {

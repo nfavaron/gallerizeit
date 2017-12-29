@@ -64,7 +64,7 @@ export class SiteListComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Component init
+   * Initialized component
    */
   ngOnInit() {
 
@@ -78,7 +78,7 @@ export class SiteListComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Component destroy
+   * Destroyed component
    */
   ngOnDestroy() {
 

@@ -8,7 +8,7 @@
       </div>
     </a>
     <button class="icon settings" (click)="onClickSettings()">
-      <span *ngIf="siteCount" class="count">{{siteCount}}</span>
+      <span *ngIf="hasSettingsCount && settingsCount" class="count">{{settingsCount}}</span>
     </button>
   </section>
 </header>

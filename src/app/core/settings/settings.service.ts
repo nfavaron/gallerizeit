@@ -13,18 +13,18 @@ export class SettingsService {
   private setStateSubject: Subject<SettingsStateEnum>;
 
   /**
-   * Count observable
+   * URL list observable
    */
-  public setCount$: Observable<number>;
-  private setCountSubject: Subject<number>;
+  public setUrlList$: Observable<string[]>;
+  private setUrlListSubject: Subject<string[]>;
 
   constructor() {
 
     this.setStateSubject = new Subject<SettingsStateEnum>();
     this.setState$ = this.setStateSubject.asObservable();
 
-    this.setCountSubject = new Subject<number>();
-    this.setCount$ = this.setCountSubject.asObservable();
+    this.setUrlListSubject = new Subject<string[]>();
+    this.setUrlList$ = this.setUrlListSubject.asObservable();
   }
 
   /**
@@ -38,12 +38,12 @@ export class SettingsService {
   }
 
   /**
-   * Update site count
+   * Update URL list
    *
-   * @param count
+   * @param urlList
    */
-  setCount(count: number): void {
+  setUrlList(urlList: string[]): void {
 
-    this.setCountSubject.next(count);
+    this.setUrlListSubject.next(urlList);
   }
 }

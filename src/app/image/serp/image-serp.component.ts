@@ -87,7 +87,7 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Component init
+   * Initialized component
    */
   ngOnInit() {
 
@@ -109,12 +109,9 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Component destroy
+   * Destroyed component
    */
   ngOnDestroy() {
-
-    // Update header site count
-    this.settingsService.setCount(0);
 
     // Unsubscribe observables
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
@@ -274,8 +271,8 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
       this.crawlerService.addSite(site);
     });
 
-    // Update header site count
-    this.settingsService.setCount(urlList.length);
+    // Update settings URL list
+    this.settingsService.setUrlList(urlList);
 
     // Update placeholders
     this.updatePlaceholders();

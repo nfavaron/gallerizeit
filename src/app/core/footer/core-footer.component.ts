@@ -11,6 +11,9 @@ export class CoreFooterComponent implements OnInit {
 
   }
 
+  /**
+   * Initialized component
+   */
   ngOnInit() {
 
   }

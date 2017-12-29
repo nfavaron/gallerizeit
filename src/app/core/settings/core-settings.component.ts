@@ -50,7 +50,7 @@ export class CoreSettingsComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Initialize the component
+   * Initialized component
    */
   ngOnInit() {
 
@@ -70,6 +70,9 @@ export class CoreSettingsComponent implements OnInit, OnDestroy {
     );
   }
 
+  /**
+   * Destroyed component
+   */
   ngOnDestroy() {
 
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
@@ -92,6 +95,8 @@ export class CoreSettingsComponent implements OnInit, OnDestroy {
   open() {
 
     this.isOpen = true;
+
+    this.settingsService.setState(SettingsStateEnum.open);
   }
 
   /**
@@ -100,6 +105,8 @@ export class CoreSettingsComponent implements OnInit, OnDestroy {
   close() {
 
     this.isOpen = false;
+
+    this.settingsService.setState(SettingsStateEnum.close);
   }
 
   /**
@@ -124,7 +131,8 @@ export class CoreSettingsComponent implements OnInit, OnDestroy {
    */
   onSetStateSettings(state: SettingsStateEnum) {
 
-    if (state === SettingsStateEnum.open) {
+    // Request for settings
+    if (state === SettingsStateEnum.request) {
 
       return this.open();
     }

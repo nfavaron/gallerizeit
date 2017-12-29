@@ -10,9 +10,14 @@ import { SettingsStateEnum } from '../settings/settings-state.enum';
 export class CoreHeaderComponent implements OnInit {
 
   /**
-   * Number of sites in settings
+   * Has the user a settings count ?
    */
-  siteCount: number = 0;
+  hasSettingsCount: boolean = false;
+
+  /**
+   * Number of URLs in settings
+   */
+  settingsCount: number = 0;
 
   /**
    *
@@ -22,9 +27,13 @@ export class CoreHeaderComponent implements OnInit {
 
   }
 
+  /**
+   * Initialized component
+   */
   ngOnInit() {
 
-    this.settingsService.setCount$.subscribe(count => this.onSetCountSettings(count));
+    this.settingsService.setUrlList$.subscribe(urlList => this.onSetUrlListSettings(urlList));
+    this.settingsService.setState$.subscribe(state => this.onSetStateSettings(state));
   }
 
   /**
@@ -32,14 +41,32 @@ export class CoreHeaderComponent implements OnInit {
    */
   onClickSettings(): void {
 
-    this.settingsService.setState(SettingsStateEnum.open);
+    this.settingsService.setState(SettingsStateEnum.request);
   }
 
   /**
    * Set count in settings
+   *
+   * @param urlList
    */
-  onSetCountSettings(count: number): void {
+  onSetUrlListSettings(urlList: string[]): void {
 
-    this.siteCount = count;
+    this.settingsCount = urlList.length;
+
+    this.hasSettingsCount = true;
+  }
+
+  /**
+   * Set settings state
+   *
+   * @param state
+   */
+  onSetStateSettings(state: SettingsStateEnum): void {
+
+    // Deactivate settings count if settings menu has been opened
+    if (state === SettingsStateEnum.open) {
+
+      this.hasSettingsCount = false;
+    }
   }
 }
