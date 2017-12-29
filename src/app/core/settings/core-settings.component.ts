@@ -25,7 +25,7 @@ export class CoreSettingsComponent implements OnInit, OnDestroy {
   /**
    * Original list of URLs before opening the settings
    */
-  urlListOriginal: string[];
+  urlListOriginal: string[] = [];
 
   /**
    * Is the form open ?
