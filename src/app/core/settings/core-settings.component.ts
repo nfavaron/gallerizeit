@@ -1,16 +1,16 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
-import { Subscription } from 'rxjs/Subscription';
 import { SettingsService } from './settings.service';
 import { SettingsStateEnum } from './settings-state.enum';
+import { SettingsFormInterface } from './settings-form.interface';
 
 @Component({
   selector: 'app-core-settings',
   styleUrls: ['./core-settings.component.css'],
   templateUrl: './core-settings.component.html'
 })
-export class CoreSettingsComponent implements OnInit, OnDestroy {
+export class CoreSettingsComponent implements OnInit {
 
   /**
    * Form definition
@@ -23,6 +23,16 @@ export class CoreSettingsComponent implements OnInit, OnDestroy {
   urlInputList: FormArray;
 
   /**
+   * Maximum number of URL inputs
+   */
+  urlInputMax: number = 3;
+
+  /**
+   * Number of active URL inputs
+   */
+  urlInputCount: number = 1;
+
+  /**
    * Original list of URLs before opening the settings
    */
   urlListOriginal: string[] = [];
@@ -31,16 +41,6 @@ export class CoreSettingsComponent implements OnInit, OnDestroy {
    * Is the form open ?
    */
   isOpen: boolean = false;
-
-  /**
-   * Maximum number of URL inputs
-   */
-  maxUrlInput: number = 3;
-
-  /**
-   * Observable subscriptions
-   */
-  private subscriptions: Subscription[] = [];
 
   /**
    *
@@ -59,82 +59,47 @@ export class CoreSettingsComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
 
-    // Reset form
-    this.reset();
-
-    // Add one URL input by default
-    this.add('');
-
-    // Set settings state
-    this.subscriptions.push(
-      this.settingsService.setState$.subscribe(state => this.onSetStateSettings(state))
-    );
-
-    // Set settings URL list
-    this.subscriptions.push(
-      this.settingsService.setUrlList$.subscribe(urlList => this.onSetUrlListSettings(urlList))
-    );
-  }
-
-  /**
-   * Destroyed component
-   */
-  ngOnDestroy() {
-
-    // Unsubscribe from observables
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
-  }
-
-  /**
-   * Initialize form from URL list
-   *
-   * @param urlList
-   */
-  initForm(urlList: string[]) {
-
-    // Reset form
-    this.reset();
-
-    // No URL list
-    if (urlList.length === 0) {
-
-      // Add default input
-      this.add('');
-
-      return;
-    }
-
-    // Generate new list of URL inputs
-    urlList.forEach(url => this.add(url));
-  }
-
-  /**
-   * Reset form
-   */
-  reset(): void {
-
     // Initialize form controls
     this.form = this.formBuilder.group({
       url: this.formBuilder.array([])
     });
 
     this.urlInputList = <FormArray>this.form.get('url');
+
+    for(let i=0; i<this.urlInputMax; i++) {
+
+      // Set default input values
+      const input = new FormControl();
+      input.setValue('');
+
+      this.urlInputList.push(input);
+    }
+
+    // Set settings state
+    this.settingsService.setState$.subscribe(state => this.onSetStateSettings(state));
+
+    // Set settings URL list
+    this.settingsService.setUrlList$.subscribe(urlList => this.onSetUrlListSettings(urlList));
+
+    // Change form value
+    this.form.valueChanges.subscribe(form => this.onChangeForm(form));
   }
 
   /**
-   * Add an URL input to the form
+   * Set URL input values
    *
-   * @param url
+   * @param urlList
    */
-  add(url: string) {
+  setInputValues(urlList: string[]) {
 
-    if (this.urlInputList.length < this.maxUrlInput) {
+    // Update input count (always counting one additional empty input)
+    this.urlInputCount = urlList.length + 1 < this.urlInputMax ? urlList.length + 1 : this.urlInputMax;
 
-      const input = new FormControl();
+    // Always set max number of inputs
+    for(let i=0; i<this.urlInputMax; i++) {
 
-      input.setValue(url);
-
-      this.urlInputList.push(input);
+      // Set input value if different
+      this.urlInputList.at(i).setValue(urlList[i] || '');
     }
   }
 
@@ -142,6 +107,9 @@ export class CoreSettingsComponent implements OnInit, OnDestroy {
    * Open the form
    */
   open() {
+
+    // Set URL input values
+    this.setInputValues(this.urlListOriginal);
 
     this.isOpen = true;
 
@@ -170,7 +138,7 @@ export class CoreSettingsComponent implements OnInit, OnDestroy {
       this
         .router
         .navigate(['/browse'], { queryParams: {
-          url: this.form.get('url').value
+          url: this.form.get('url').value.filter(url => !!url)
         }})
       ;
     }
@@ -182,7 +150,7 @@ export class CoreSettingsComponent implements OnInit, OnDestroy {
   cancel() {
 
     // Restore form to original URL list
-    this.initForm(this.urlListOriginal);
+    this.setInputValues(this.urlListOriginal);
   }
 
   /**
@@ -242,10 +210,29 @@ export class CoreSettingsComponent implements OnInit, OnDestroy {
    */
   onSetUrlListSettings(urlList: string[]): void {
 
-    // Backup original URL list
-    this.urlListOriginal = urlList;
+    // Backup original URL list (clone it)
+    this.urlListOriginal = urlList.slice(0);
+  }
 
-    // Initialize form
-    this.initForm(urlList);
+  /**
+   * Changed form value
+   *
+   * @param form
+   */
+  onChangeForm(form: SettingsFormInterface) {
+
+    // Input with value
+    const urlList = form.url
+      .map(url => (url || '').trim())
+      .filter(url => !!url)
+    ;
+
+    // Same amount of inputs or max reached
+    if (urlList.length + 1 === this.urlInputCount || urlList.length === this.urlInputMax) {
+      return;
+    }
+
+    // Set new URL input values
+    this.setInputValues(urlList);
   }
 }

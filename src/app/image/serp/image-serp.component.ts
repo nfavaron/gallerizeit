@@ -107,18 +107,6 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
     );
 
     this.subscriptions.push(
-      this.crawlerService.image$.subscribe((image: ImageModel) => this.onLoadImage(image))
-    );
-
-    this.subscriptions.push(
-      this.crawlerService.site$.subscribe((site: SiteModel) => this.onLoadSite(site))
-    );
-
-    this.subscriptions.push(
-      this.crawlerService.error$.subscribe((error: ErrorModel) => this.onLoadError(error))
-    );
-
-    this.subscriptions.push(
       this.settingsService.setState$.subscribe(state => this.onSetStateSettings(state))
     );
   }
@@ -137,17 +125,23 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
    */
   reset(): void {
 
-    // Reset results list
     this.results = [];
-
-    // Reset sites list
     this.sites = [];
-
-    // Reset number of images loaded
     this.imageLoadedCount = 0;
-
-    // Reset crawler
+    this.crawledSites = [];
     this.crawlerService.reset();
+
+    this.subscriptions.push(
+      this.crawlerService.image$.subscribe((image: ImageModel) => this.onLoadImage(image))
+    );
+
+    this.subscriptions.push(
+      this.crawlerService.site$.subscribe((site: SiteModel) => this.onLoadSite(site))
+    );
+
+    this.subscriptions.push(
+      this.crawlerService.error$.subscribe((error: ErrorModel) => this.onLoadError(error))
+    );
   }
 
   /**
