@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NavigationEnd, Event } from '@angular/router';
 import { SettingsService } from './core/settings/settings.service';
 import { SettingsStateEnum } from './core/settings/settings-state.enum';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -29,9 +30,11 @@ export class AppComponent {
   /**
    *
    * @param router
+   * @param route
    * @param settingsService
    */
   constructor(private router: Router,
+              private route: ActivatedRoute,
               private settingsService: SettingsService) {
 
   }
@@ -41,11 +44,22 @@ export class AppComponent {
    */
   ngOnInit() {
 
+    // Route query params
+    this.route.queryParams.subscribe(params => this.onChangeQueryParams())
+
     // Router events
     this.router.events.subscribe(e => this.onEventRouter(e));
 
     // Set settings state
     this.settingsService.setState$.subscribe(state => this.onSetStateSettings(state));
+  }
+
+  /**
+   * Changed query params
+   */
+  onChangeQueryParams() {
+
+    this.window.scrollTo(0, 0);
   }
 
   /**
