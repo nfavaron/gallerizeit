@@ -12,9 +12,19 @@ import { SettingsStateEnum } from './core/settings/settings-state.enum';
 export class AppComponent {
 
   /**
-   * Prevent main container from scrolling
+   * Can the app scroll ?
    */
-  noScroll: boolean = false;
+  canScroll: boolean = true;
+
+  /**
+   * App scroll Y value
+   */
+  scrollY: number = 0;
+
+  /**
+   * Window object // TODO: use window service to get native window object
+   */
+  window: Window = window;
 
   /**
    *
@@ -47,7 +57,6 @@ export class AppComponent {
 
     if (e instanceof NavigationEnd) {
 
-      // TODO: use window service to get native window object
       window.scrollTo(0, 0);
     }
   }
@@ -59,12 +68,28 @@ export class AppComponent {
    */
   onSetStateSettings(state: SettingsStateEnum) {
 
+    // Opened settings
     if (state === SettingsStateEnum.open) {
 
-      this.noScroll = true;
+      // Can't scroll anymore
+      this.canScroll = false;
+
+      // Keep window scroll Y
+      this.scrollY = this.window.scrollY;
+
       return;
     }
 
-    this.noScroll = false;
+    // Closed settings
+    if (state === SettingsStateEnum.close) {
+
+      // Can scroll again
+      this.canScroll = true;
+
+      // Restore window scroll Y on next cycle
+      setTimeout(() => this.window.scrollTo(0, this.scrollY));
+
+      return;
+    }
   }
 }
