@@ -45,7 +45,7 @@ export class SiteModel {
   constructor(url: string) {
 
     // Remove special last character that would cause duplicated URL
-    this.url = url.replace(/[#/?]$/gi, '');
+    this.url = url.replace(/[#?]$/gi, '');
 
     // URL parser
     this.urlParser = new UrlParser(url);

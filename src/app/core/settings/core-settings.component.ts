@@ -121,6 +121,9 @@ export class CoreSettingsComponent implements OnInit {
    */
   close() {
 
+    // Set URL input values
+    this.setInputValues([]);
+
     this.isOpen = false;
 
     this.settingsService.setState(SettingsStateEnum.close);
