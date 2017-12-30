@@ -1,4 +1,4 @@
-<div [class.noscroll]="canScroll === false" [style.top]="canScroll ? 0 : (-scrollY + 'px')">
+<div class="app" [class.noscroll]="canScroll === false" [style.top]="canScroll ? 0 : (-scrollY + 'px')">
   <app-core-header></app-core-header>
   <main>
     <router-outlet></router-outlet>
