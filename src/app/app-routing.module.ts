@@ -16,7 +16,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
 
-
   // Not found
   {
     path: '**',

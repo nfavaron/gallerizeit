@@ -4,13 +4,25 @@ import { NavigationEnd, Event } from '@angular/router';
 import { SettingsService } from './core/settings/settings.service';
 import { SettingsStateEnum } from './core/settings/settings-state.enum';
 import { ActivatedRoute } from '@angular/router';
+import { SwUpdate } from '@angular/service-worker';
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+  /**
+   * Does the app have an update available ?
+   */
+  hasUpdate: boolean = false;
+
+  /**
+   * Is the app currently updating ?
+   */
+  isUpdating: boolean = false;
 
   /**
    * Can the app scroll ?
@@ -32,10 +44,12 @@ export class AppComponent {
    * @param router
    * @param route
    * @param settingsService
+   * @param swUpdate
    */
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private settingsService: SettingsService) {
+              private settingsService: SettingsService,
+              private swUpdate: SwUpdate) {
 
   }
 
@@ -45,13 +59,16 @@ export class AppComponent {
   ngOnInit() {
 
     // Route query params
-    this.route.queryParams.subscribe(params => this.onChangeQueryParams())
+    this.route.queryParams.subscribe(params => this.onChangeQueryParams());
 
     // Router events
     this.router.events.subscribe(e => this.onEventRouter(e));
 
     // Set settings state
     this.settingsService.setState$.subscribe(state => this.onSetStateSettings(state));
+
+    // Service worker update available
+    this.swUpdate.available.subscribe(evt => this.onUpdateAvailable());
   }
 
   /**
@@ -105,5 +122,32 @@ export class AppComponent {
 
       return;
     }
+  }
+
+  /**
+   * Service worker update available
+   */
+  onUpdateAvailable() {
+
+    this.hasUpdate = true;
+  }
+
+  /**
+   * Clicked on the accept update button
+   */
+  onClickUpdateAccept() {
+
+    this.isUpdating = true;
+
+    // Delay the install so that the update screen can be rendered
+    setTimeout(() => this.window.location.reload(), 2000);
+  }
+
+  /**
+   * Clicked on the refuse update button
+   */
+  onClickUpdateRefuse() {
+
+    this.hasUpdate = false;
   }
 }

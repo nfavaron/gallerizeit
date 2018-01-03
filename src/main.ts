@@ -9,4 +9,12 @@ if (environment.production) {
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule)
+  .then(() => {
+
+    // TODO: Remove once fixed https://github.com/angular/angular-cli/issues/8779
+    if ('serviceWorker' in navigator && environment.production) {
+
+      navigator.serviceWorker.register('/ngsw-worker.js');
+    }
+  })
   .catch(err => console.log(err));

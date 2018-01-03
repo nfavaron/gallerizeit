@@ -6,3 +6,16 @@
   <app-core-footer></app-core-footer>
 </div>
 <app-core-settings></app-core-settings>
+<div [class.loading]="hasUpdate === false" [class.updating]="isUpdating === true" class="update">
+  <div class="logo"></div>
+  <div *ngIf="isUpdating === false" class="message">
+    <span>A new version is available!</span>
+    <div>
+      <button class="accept" (click)="onClickUpdateAccept()">Update</button>
+      <button class="refuse" (click)="onClickUpdateRefuse()">Dismiss</button>
+    </div>
+  </div>
+  <div *ngIf="isUpdating === true" class="message">
+    Updating application...
+  </div>
+</div>
