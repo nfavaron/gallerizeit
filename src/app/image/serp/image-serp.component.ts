@@ -263,7 +263,7 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
     // Keep only valid HTTPS URLs
     const urlList =
       (Array.isArray(urlQueryParam) ? urlQueryParam : [urlQueryParam])
-      .map(url => url.replace(/^(http:\/\/)?/gi, 'https://'))
+      .map(url => url.replace(/^(https?:\/\/)?/gi, 'https://'))
       .filter((url) => url.match(/^https:\/\/([a-z0-9\-]+\.)?[a-z0-9\-]+\.[a-z]+/gi))
     ;
 
