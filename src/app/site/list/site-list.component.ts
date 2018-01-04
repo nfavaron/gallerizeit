@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { SiteModel } from '../../core/site/site.model';
 import { Subscription } from 'rxjs/Subscription';
 import { SiteService } from '../../core/site/site.service';
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-site-list',
@@ -41,9 +42,9 @@ export class SiteListComponent implements OnInit, OnDestroy {
   placeholders: number[] = [];
 
   /**
-   * List of cover URL images loaded
+   * Window object // TODO: use window service to get native window object
    */
-  coverUrlLoaded: string[] = [];
+  private window: Window = window;
 
   /**
    * Number of times the site list has been loaded
@@ -121,6 +122,26 @@ export class SiteListComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Lazy load images
+   */
+  lazyLoadImages() {
+
+    [].forEach.call(this.window.document.querySelectorAll('[data-bg]'), (element: HTMLElement) => {
+
+      const position = element.getBoundingClientRect();
+
+      // Not in viewport
+      if (position.bottom < 0 || position.top > this.window.innerHeight) {
+        return;
+      }
+
+      // Replace data-bg by style background-image
+      element.style.backgroundImage = 'url(' + element.dataset.bg + ')';
+      element.removeAttribute('data-bg');
+    });
+  }
+
+  /**
    * Listed sites
    *
    * @param sites
@@ -139,18 +160,8 @@ export class SiteListComponent implements OnInit, OnDestroy {
     // Update count
     this.total = sites.length;
 
-    // Load cover URL
-    sites
-      .filter(site => this.coverUrlLoaded.indexOf(site.coverUrl) === -1)
-      .forEach(site => {
-
-        const img = new Image();
-
-        // Async image loading
-        img.onload = () => this.coverUrlLoaded.push(site.coverUrl);
-        img.src = site.coverUrl;
-      })
-    ;
+    // Lazy load images
+    setTimeout(() => this.lazyLoadImages());
   }
 
   /**
@@ -168,4 +179,13 @@ export class SiteListComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Scrolled window
+   *
+   * @param event
+   */
+  @HostListener('window:scroll') onScrollWindow(event: Event) {
+
+    requestAnimationFrame(() => this.lazyLoadImages());
+  }
 }

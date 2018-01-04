@@ -62,13 +62,13 @@ h2 {
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
-  opacity: 0.0;
+  opacity: 1.0;
   transition: opacity 300ms ease-out;
   overflow: hidden;
 }
 
-.cover.is-loaded {
-  opacity: 1.0;
+.cover[data-bg] {
+  opacity: 0.0;
 }
 
 .likes {

@@ -14,8 +14,7 @@
         <a [routerLink]="['/browse']" [queryParams]="{ url: site.url }" class="mask" title="{{site.title}}">
           <div
             class="cover"
-            [class.is-loaded]="coverUrlLoaded.indexOf(site.coverUrl) > -1"
-            [style.background-image]="'url(' + site.coverUrl + ')' | trustCss"
+            [attr.data-bg]="site.coverUrl"
           ></div>
           <div class="likes">
             <span class="i i-like"></span>

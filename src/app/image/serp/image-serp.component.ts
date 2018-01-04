@@ -9,6 +9,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ErrorModel } from '../shared/error.model';
 import { SettingsService } from '../../core/settings/settings.service';
 import { SettingsStateEnum } from '../../core/settings/settings-state.enum';
+import { ResultInterface } from '../shared/result.interface';
 
 @Component({
   selector: 'app-image-serp',
@@ -30,10 +31,7 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
   /**
    * List of results
    */
-  results: Array<{
-    image?: ImageModel,
-    error?: ErrorModel
-  }> = [];
+  results: ResultInterface[] = [];
 
   /**
    * List of sites
@@ -239,7 +237,6 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
 
       breakpoint = breakpoints.pop();
 
-      // TODO: use this.window service to get native object
       if (this.window.innerWidth >= breakpoint) {
 
         count = this.screenWidthImageCount[breakpoint];
@@ -469,7 +466,7 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
    */
   @HostListener('window:scroll') onScrollWindow(event: Event) {
 
-    this.autoload();
+    requestAnimationFrame(() => this.autoload());
   }
 
   /**
@@ -479,10 +476,11 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
    */
   @HostListener('window:resize') onResizeWindow(event: Event) {
 
-    // Update placeholders
-    this.updatePlaceholders();
 
-    this.autoload();
+    requestAnimationFrame(() => {
+
+      this.updatePlaceholders();
+      this.autoload();
+    });
   }
-
 }
