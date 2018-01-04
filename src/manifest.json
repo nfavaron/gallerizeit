@@ -1,0 +1,25 @@
+{
+  "name": "GallerizeIt!",
+  "short_name": "GallerizeIt!",
+  "icons": [{
+    "src": "assets/icon/logo-96x96.png",
+    "sizes": "96x96",
+    "type": "image/png"
+  }, {
+    "src": "assets/icon/logo-144x144.png",
+    "sizes": "144x144",
+    "type": "image/png"
+  }, {
+    "src": "assets/icon/logo-152x152.png",
+    "sizes": "152x152",
+    "type": "image/png"
+  }, {
+    "src": "assets/icon/logo-192x192.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }],
+  "start_url": "/index.html",
+  "display": "fullscreen",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff"
+}

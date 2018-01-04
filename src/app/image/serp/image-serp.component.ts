@@ -260,10 +260,11 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
     // Get URL list from query params
     const urlQueryParam = (<BehaviorSubject<Params>>this.route.queryParams).value['url'];
 
-    // Keep only valid URLs
+    // Keep only valid HTTPS URLs
     const urlList =
       (Array.isArray(urlQueryParam) ? urlQueryParam : [urlQueryParam])
-      .filter((url) => url.match(/^https?:\/\/([a-z0-9\-]+\.)?[a-z0-9\-]+\.[a-z]+/gi))
+      .map(url => url.replace(/^(http:\/\/)?/gi, 'https://'))
+      .filter((url) => url.match(/^https:\/\/([a-z0-9\-]+\.)?[a-z0-9\-]+\.[a-z]+/gi))
     ;
 
     // Invalid URL list

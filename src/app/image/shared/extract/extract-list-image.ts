@@ -26,13 +26,15 @@ export function extractListImage(site: SiteModel, links: ImageLinkModel[]): Imag
     // Found an img within a link
     while (match = regExp.exec(link.getHtml())) {
 
-      const url = match[1] || match[2];
+      // Make URL absolute
+      src = extractAbsoluteUrl(site, match[1] || match[2] || '');
 
-      // URL is not a gif or a logo
-      if (url && url.match(/\.gif$/gi) === null && url.match(/[^a-z]+logo[^a-z]+/gi) === null) {
+      const isHttps = src.match(/^https:\/\//gi) !== null;
+      const isGif = src.match(/\.gif$/gi) !== null;
+      const isLogo = src.match(/[^a-z]+logo[^a-z]+/gi) !== null;
 
-        // Make URL absolute
-        src = extractAbsoluteUrl(site, url);
+      // Valid image
+      if (isHttps && isGif === false && isLogo === false) {
 
         if (!image[src]) {
 
