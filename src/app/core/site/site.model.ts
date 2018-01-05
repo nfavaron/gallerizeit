@@ -58,7 +58,7 @@ export class SiteModel {
 
     if (!this.id) {
 
-      this.id = btoa(this.url);
+      this.id = btoa(this.url).replace('/', '_');
     }
 
     return this.id;
