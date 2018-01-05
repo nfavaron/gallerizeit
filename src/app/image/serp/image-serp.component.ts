@@ -381,6 +381,9 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
 
       // Add result
       this.results.push({image: image});
+
+      // Load more images
+      this.autoload();
     };
 
     // On image error
@@ -407,9 +410,6 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
 
     // Load image async
     img.src = image.getSrc();
-
-    // Load more images
-    this.autoload();
   }
 
   /**
@@ -475,7 +475,6 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
    * @param event
    */
   @HostListener('window:resize') onResizeWindow(event: Event) {
-
 
     requestAnimationFrame(() => {
 

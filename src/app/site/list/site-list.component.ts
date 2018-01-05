@@ -52,6 +52,11 @@ export class SiteListComponent implements OnInit, OnDestroy {
   private loadCount: number = 0;
 
   /**
+   * Are the images lazy loading ?
+   */
+  private isLazyLoadingImages: boolean = false;
+
+  /**
    * Observable subscriptions
    */
   private subscriptions: Subscription[] = [];
@@ -126,12 +131,23 @@ export class SiteListComponent implements OnInit, OnDestroy {
    */
   lazyLoadImages() {
 
+    // Already lazy loading
+    if (this.isLazyLoadingImages) {
+
+      return;
+    }
+
+    // Prevent spam
+    this.isLazyLoadingImages = true;
+
+    // Find all elements with [data-bg] attribute
     [].forEach.call(this.window.document.querySelectorAll('[data-bg]'), (element: HTMLElement) => {
 
       const position = element.getBoundingClientRect();
+      const distance = this.window.innerHeight * 0.1;
 
       // Not in viewport
-      if (position.bottom < 0 || position.top > this.window.innerHeight) {
+      if (position.bottom < -distance || position.top > this.window.innerHeight + distance) {
         return;
       }
 
@@ -139,6 +155,9 @@ export class SiteListComponent implements OnInit, OnDestroy {
       element.style.backgroundImage = 'url(' + element.dataset.bg + ')';
       element.removeAttribute('data-bg');
     });
+
+    // Unlock lazy loading delayed
+    setTimeout(() => this.isLazyLoadingImages = false, 500);
   }
 
   /**
@@ -160,7 +179,7 @@ export class SiteListComponent implements OnInit, OnDestroy {
     // Update count
     this.total = sites.length;
 
-    // Lazy load images
+    // Lazy load images (next cycle)
     setTimeout(() => this.lazyLoadImages());
   }
 
