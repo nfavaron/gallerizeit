@@ -7,10 +7,10 @@
             <div class="logo"></div>
             <span class="title">Let's gallerize websites!</span>
           </h2>
-          <p>Copy & paste <strong>up to 3 URLs</strong> of photo galleries you want to <strong>browse simultaneously</strong>, then click the <strong>submit</strong> button:</p>
+          <p>Copy & paste <strong>up to 3 photo gallery URLs</strong> you want to <strong>browse simultaneously</strong>, then click the <strong>submit</strong> button:</p>
           <ul formArrayName="url">
             <li *ngFor="let control of urlInputList.controls; let i = index" [class.is-active]="i < urlInputCount">
-              <input type="text" placeholder="Example: https://wallpaperscraft.com/catalog/animals" [formControlName]="i" />
+              <input type="text" aria-label="Photo gallery URL" placeholder="Example: https://wallpaperscraft.com/catalog/animals" [formControlName]="i" />
             </li>
           </ul>
       </div>

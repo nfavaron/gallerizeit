@@ -35,7 +35,7 @@ div {
 }
 
 .name {
-  font-size: 17px;
+  font-size: 18px;
   font-weight: bold;
   color: #444;
   transition: font-size 300ms ease-out;

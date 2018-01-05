@@ -7,7 +7,7 @@
         <p>any websites. one gallery.</p>
       </div>
     </a>
-    <button class="icon settings" (click)="onClickSettings()">
+    <button class="icon settings" aria-label="Open sites settings" (click)="onClickSettings()">
       <span *ngIf="hasSettingsCount && settingsCount" class="count">{{settingsCount}}</span>
     </button>
   </section>

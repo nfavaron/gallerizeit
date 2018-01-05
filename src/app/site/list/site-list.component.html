@@ -51,6 +51,7 @@
       <button
         *ngIf="hasMore"
         class="btn"
+        aria-label="Load more sites"
         [class.isLoading]="isLoading"
         (click)="onClickLoadMore()"
       >

@@ -11,8 +11,8 @@
   <div *ngIf="isUpdating === false" class="message">
     <span>A new version is available!</span>
     <div>
-      <button class="accept" (click)="onClickUpdateAccept()">Update</button>
-      <button class="refuse" (click)="onClickUpdateRefuse()">Dismiss</button>
+      <button class="accept" (click)="onClickUpdateAccept()" aria-label="Accept application update">Update</button>
+      <button class="refuse" (click)="onClickUpdateRefuse()" aria-label="Dismiss application update">Dismiss</button>
     </div>
   </div>
   <div *ngIf="isUpdating === true" class="message">
