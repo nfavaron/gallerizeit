@@ -21,7 +21,7 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
   /**
    * Number of "screen height" remaining to scroll before triggering an autoload
    */
-  static AUTOLOAD_SCREEN_HEIGHT: number = 2;
+  static AUTOLOAD_SCREEN_HEIGHT: number = 1.5;
 
   /**
    * Maximum number of error allowed before removing a site
@@ -381,9 +381,6 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
 
       // Add result
       this.results.push({image: image});
-
-      // Load more images
-      this.autoload();
     };
 
     // On image error
@@ -410,6 +407,9 @@ export class ImageSerpComponent implements OnInit, OnDestroy {
 
     // Load image async
     img.src = image.getSrc();
+
+    // Load more images
+    this.autoload();
   }
 
   /**
