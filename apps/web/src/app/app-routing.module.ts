@@ -6,13 +6,13 @@ const routes: Routes = [
   // SERP
   {
     path: 'browse',
-    loadChildren: 'app/image/image.module#ImageModule'
+    loadChildren: './image/image.module#ImageModule'
   },
 
   // Home
   {
     path: '',
-    loadChildren: 'app/site/site.module#SiteModule',
+    loadChildren: './site/site.module#SiteModule',
     pathMatch: 'full'
   },
 

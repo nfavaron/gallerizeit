@@ -1,15 +1,15 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-/dist
-/tmp
-/out-tsc
+dist
+tmp
+out-tsc
 
 # dependencies
-/node_modules
+node_modules
 
 # IDEs and editors
-/.idea
+.idea
 .project
 .classpath
 .c9/
@@ -25,27 +25,25 @@
 !.vscode/extensions.json
 
 # misc
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
+.sass-cache
+connect.lock
+coverage
+libpeerconnection.log
 npm-debug.log
 testem.log
-/typings
-
-# e2e
-/e2e/*.js
-/e2e/*.map
+typings
 
 # System Files
 .DS_Store
 Thumbs.db
 
-# transpiled files
-src/**/*js
+# e2e
+apps/*/e2e/*.js
+apps/*/e2e/*.map
 
-# config
-src/environments/*.ts
+
+# transpiled files
+apps/*/src/**/*js
 
 # firebase
 firebase-debug.log
@@ -53,6 +51,3 @@ firebase-debug.log
 # firebase functions dependencies
 functions/node_modules
 functions/firebase-debug.log
-
-# firebase hosting
-dist
