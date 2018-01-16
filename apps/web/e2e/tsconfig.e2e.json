@@ -1,7 +1,7 @@
 {
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../../dist/out-tsc/e2e/gallerizeit",
+    "outDir": "../../../dist/out-tsc/e2e/web",
     "baseUrl": "./",
     "module": "commonjs",
     "target": "es5",

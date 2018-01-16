@@ -1,7 +1,7 @@
 export class Common {
 
-  public static test() {
+  public static helloWorld() {
 
-    console.log('je suis le test!!');
+    console.log('Hello World!');
   }
 }

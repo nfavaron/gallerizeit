@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Common } from '@gallerizeit/common';
 
 @Component({
   selector: 'app-site-home',
@@ -7,11 +6,6 @@ import { Common } from '@gallerizeit/common';
   styleUrls: ['./site-home.component.css']
 })
 export class SiteHomeComponent {
-
-  constructor() {
-
-    Common.test();
-  }
 
   /**
    * URLs to load as a demo
