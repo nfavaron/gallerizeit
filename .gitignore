@@ -36,6 +36,7 @@ typings
 # System Files
 .DS_Store
 Thumbs.db
+$RECYCLE.BIN/
 
 # e2e
 apps/*/e2e/*.js
@@ -49,5 +50,20 @@ apps/*/src/**/*js
 firebase-debug.log
 
 # firebase functions dependencies
-functions/node_modules
 functions/firebase-debug.log
+
+# ionic
+apps/ionic/www
+
+# cordova
+.sourcemaps/
+.sass-cache/
+.tmp/
+.versions/
+hooks/
+platforms/
+plugins/
+plugins/android.json
+plugins/ios.json
+www/
+!/apps/ionic/src/service-worker.js

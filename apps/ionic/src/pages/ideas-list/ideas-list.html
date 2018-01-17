@@ -1,0 +1,32 @@
+<!--
+  Generated template for the IdeasListPageComponent page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Ideas</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form #ideaForm="ngForm" (ngSubmit)="createIdea(ideaForm)">
+    <ion-list>
+      <ion-item>
+        <ion-label>Title</ion-label>
+        <ion-input type="text" name="title" required placeholder="Title for your idea" ngModel></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Content</ion-label>
+        <ion-textarea type="text" name="content" required placeholder="Describe your idea in the simplest way possible" ngModel>
+        </ion-textarea>
+      </ion-item>
+    </ion-list>
+    <button ion-button type="submit" block [disabled]="!ideaForm.valid"> Create Idea </button>
+  </form>
+  <app-idea-card *ngFor="let idea of ideas; let i = index;" [index]="i" [idea]="idea"></app-idea-card>
+</ion-content>

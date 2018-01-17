@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Priorities</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-list>
+    <ion-item-sliding
+      *ngFor="let idea of priorityList; let i = index;">
+      <ion-item>
+        <h2>{{idea.title}}</h2>
+        <p>{{idea.content}}</p>
+      </ion-item>
+      <ion-item-options>
+        <button ion-button
+                color="danger"
+                (click)="removeFromPriorityList(idea)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
