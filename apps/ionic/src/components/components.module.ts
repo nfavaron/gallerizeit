@@ -1,12 +1,18 @@
 import { NgModule } from '@angular/core';
-import { SiteCardComponent } from './site-card/site-card';
+import { SiteListComponent } from './site-list/site-list';
 import { IonicModule } from 'ionic-angular';
+import { SharedModule } from '@gallerizeit/common';
 
 @NgModule({
-  declarations: [SiteCardComponent],
-  imports: [
-    IonicModule.forRoot(SiteCardComponent),
+  declarations: [
+    SiteListComponent
   ],
-  exports: [SiteCardComponent]
+  imports: [
+    IonicModule.forRoot(SiteListComponent),
+    SharedModule
+  ],
+  exports: [
+    SiteListComponent
+  ]
 })
 export class ComponentsModule {}

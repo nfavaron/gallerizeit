@@ -101,7 +101,7 @@ export class CrawlerService {
    */
   removeSite(site: SiteModel): void {
 
-    this.sites = this.sites.filter(s => s.getId() != site.getId());
+    this.sites = this.sites.filter(s => s.getId() !== site.getId());
   }
 
   /**

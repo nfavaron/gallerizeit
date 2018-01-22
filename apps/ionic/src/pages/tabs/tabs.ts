@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { IdeasListPageComponent } from '../ideas-list/ideas-list';
-import { PrioritiesListPageComponent } from '../priorities-list/priorities-list';
+import { HomePageComponent } from '../home/home';
+import { SitePopularPageComponent } from '../site-popular/site-popular';
+import { SiteUpdatePageComponent } from '../site-update/site-update';
 
 /**
  * Generated class for the TabsPageComponent page.
@@ -17,14 +18,16 @@ import { PrioritiesListPageComponent } from '../priorities-list/priorities-list'
 })
 export class TabsPageComponent {
 
-  ideasPage = IdeasListPageComponent;
-  prioritiesPage = PrioritiesListPageComponent;
+  homePage = HomePageComponent;
+  sitePopularPage = SitePopularPageComponent;
+  siteUpdatePage = SiteUpdatePageComponent;
 
+  /**
+   *
+   * @param navCtrl
+   * @param navParams
+   */
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TabsPageComponent');
   }
-
 }

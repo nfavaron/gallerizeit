@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SiteListComponent as CommonSiteListComponent } from '@gallerizeit/common';
+import { SiteListComponent as CommonSiteListComponent, SiteService } from '@gallerizeit/common';
 
 @Component({
   selector: 'app-site-list',
@@ -7,4 +7,12 @@ import { SiteListComponent as CommonSiteListComponent } from '@gallerizeit/commo
 })
 export class SiteListComponent extends CommonSiteListComponent {
 
+  /**
+   *
+   * @param siteService
+   */
+  constructor(siteService: SiteService) {
+
+    super(siteService);
+  }
 }

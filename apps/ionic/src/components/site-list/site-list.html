@@ -1,6 +1,6 @@
 <ol class="list">
   <li class="site" *ngFor="let site of site$ | async; trackBy: trackById;">
-    <a [routerLink]="['/browse']" [queryParams]="{ url: site.url }" class="mask" title="{{site.title}}">
+    <a class="mask" title="{{site.title}}">
       <div
         class="cover"
         [attr.data-bg]="site.coverUrl"
@@ -13,13 +13,11 @@
     <div class="info">
       <h3>
         <a
-          [routerLink]="['/browse']"
-          [queryParams]="{ url: site.url }"
           title="{{site.title}}"
           class="title"
         >{{site.title}}</a>
       </h3>
-      <a [routerLink]="['/browse']" [queryParams]="{ url: site.url }" class="info-line">{{site.getSourceName()}}</a>
+      <a class="info-line">{{site.getSourceName()}}</a>
       <div class="info-line">{{site.loadCount | number}} {{site.loadCount == 1 ? 'view' : 'views'}} &bull; {{site.updateDate | socialDate}}</div>
     </div>
   </li>
