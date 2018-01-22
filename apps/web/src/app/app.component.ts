@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavigationEnd, Event } from '@angular/router';
-import { SettingsService } from './core/settings/settings.service';
-import { SettingsStateEnum } from './core/settings/settings-state.enum';
 import { ActivatedRoute } from '@angular/router';
 import { SwUpdate } from '@angular/service-worker';
 import { OnInit } from '@angular/core';
+import { SettingsService } from './core/settings/settings.service';
+import { SettingsStateEnum } from './core/settings/settings-state.enum';
 
 @Component({
   selector: 'app-root',

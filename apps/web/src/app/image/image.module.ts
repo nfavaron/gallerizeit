@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
-
-import { SharedModule } from '../shared/shared.module';
 import { ImageRoutingModule } from './image-routing.module';
 import { ImageSerpComponent } from './serp/image-serp.component';
-import { CrawlerService } from './shared/crawler.service';
+import { CrawlerService, SharedModule } from '@gallerizeit/common';
 
 @NgModule({
   imports: [

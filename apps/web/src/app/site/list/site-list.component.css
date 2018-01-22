@@ -27,13 +27,13 @@ h2 {
   align-items: center;
 }
 
-.site {
-  display: block;
-  width: 100%;
+.panel .body {
   padding: 8px;
 }
 
-.panel .body {
+.site {
+  display: block;
+  width: 100%;
   padding: 8px;
 }
 
@@ -181,4 +181,3 @@ a:hover {
     width: 25%;
   }
 }
-

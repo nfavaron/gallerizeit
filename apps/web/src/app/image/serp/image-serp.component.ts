@@ -1,15 +1,11 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
-import { ImageModel } from '../shared/image.model';
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { CrawlerService } from '../shared/crawler.service';
-import { SiteService } from '../../core/site/site.service';
-import { SiteModel } from '../../core/site/site.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { ErrorModel } from '../shared/error.model';
 import { SettingsService } from '../../core/settings/settings.service';
 import { SettingsStateEnum } from '../../core/settings/settings-state.enum';
-import { ResultInterface } from '../shared/result.interface';
+import { ResultInterface } from './result.interface';
+import { CrawlerService, ErrorModel, ImageModel, SiteModel, SiteService } from '@gallerizeit/common';
 
 @Component({
   selector: 'app-image-serp',

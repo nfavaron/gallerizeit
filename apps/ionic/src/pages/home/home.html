@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>GallerizeIt!</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <div class="banner">
+    <section>
+      <strong>Animals, cars, anime...</strong>
+      <span>Collecting wallpapers ?</span>
+      <h1>Browse photos from your favourite websites simultaneously in one gallery!</h1>
+      <a [routerLink]="['/browse']" [queryParams]="{ url: demoUrl }" class="btn">Try now!</a>
+    </section>
+    <div></div>
+  </div>
+  <footer>
+    <div class="footer_top">
+      <section>
+        <div class="title">Connect with us</div>
+        <div class="links">
+          <a href="https://www.facebook.com/nicolas.favaron" target="_blank" rel="noopener" class="facebook" title="GallerizeIt! on Facebook"></a>
+          <a href="https://twitter.com/MoKoNiCoO" target="_blank" rel="noopener" class="twitter" title="GallerizeIt! on Twitter"></a>
+          <a href="https://www.linkedin.com/in/nicolasfavaron/" target="_blank" rel="noopener" class="linkedin" title="GallerizeIt! on LinkedIn"></a>
+          <a href="https://github.com/nfavaron/gallerizeit" target="_blank" rel="noopener" class="github" title="GallerizeIt! on GitHub"></a>
+        </div>
+      </section>
+    </div>
+    <div class="footer_bottom">
+      <section>&copy; GallerizeIt!</section>
+    </div>
+  </footer>
+</ion-content>

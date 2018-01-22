@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { IdeaCardComponent } from './idea-card/idea-card';
+import { SiteCardComponent } from './site-card/site-card';
 import { IonicModule } from 'ionic-angular';
 
 @NgModule({
-  declarations: [IdeaCardComponent],
+  declarations: [SiteCardComponent],
   imports: [
-    IonicModule.forRoot(IdeaCardComponent),
+    IonicModule.forRoot(SiteCardComponent),
   ],
-  exports: [IdeaCardComponent]
+  exports: [SiteCardComponent]
 })
 export class ComponentsModule {}
