@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "module": "es2015"
+  },
+  "include": [
+    "apps/ionic/src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "apps/ionic/src/**/*.spec.ts",
+    "apps/ionic/src/**/__tests__/*.ts"
+  ],
+  "compileOnSave": false,
+  "atom": {
+    "rewriteTsconfig": false
+  }
+}
