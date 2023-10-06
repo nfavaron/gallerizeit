@@ -1,4 +1,5 @@
 # Gallerizeit
+![Homepage](https://github.com/nfavaron/gallerizeit/assets/7037369/18edbc23-31aa-43b0-8b2e-b3fe75edb4c9)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.0.
 
